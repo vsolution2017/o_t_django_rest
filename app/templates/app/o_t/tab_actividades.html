@@ -1,195 +1,189 @@
 <!DOCTYPE html>
 <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label  class="control-label">Tipo de Actividad:</label>
-                            <select  id="cboTipoActividad" class="form-control">
-                                <!--<option value="1">Relleno</option>
-                                <option value="2">Pavimento E</option>
-                                <option value="3">Pavimento Acera</option>
-                                <option value="4">Instalación de Adoquín</option>
-                                <option value="5">Trabajo de Hormigón</option>-->
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-1">
-                        <div class="form-group">
-                            <label class="control-label " style="color: white">.</label>
-                            <button class="btn btn-success" id="btn_add_activity" ><i class="fa fa-plus"></i> Agregar</button>
-                        </div>
-                    </div>
-                    <!-- Actividad 1 -->
-                    <div class="clearfix"></div>
-                    <div class="row actividad_sample">
-                        <div class="col-md-9">
-                            <div class="">
-                                <div class="well well-sm">
-                                    <div class="pull-right">
-                                        <button class="btn-add-normal-compacto hidden btn btn-success " name="btn_area" ><i class="fa fa-plus"></i></button>
-                                        <button class="btn-dlt-normal-compacto hidden btn btn-danger "><i class="fa fa-trash"></i></button>
-                                    </div>
-
-                                    <div class="pull-left">
-                                        <div class="buying-selling-group" id="buying-selling-group" data-toggle="buttons">
-                                            <label class="btn-normal btn buying-selling">
-                                                <input type="checkbox" name="options" id="option1" autocomplete="off">
-                                                <span class="radio-dot"></span>
-                                                <span class="buying-selling-word">Normal</span>
-                                            </label>
-
-                                            <label class="btn-compacto btn buying-selling">
-                                                <input type="checkbox" name="optionsC" id="option2" autocomplete="off">
-                                                <span class="radio-dot"></span>
-                                                <span class="buying-selling-word">Compactado</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <br>
-                                    <div class="content">
-                                        <div class="row hidden op_add_area" >
-                                            <div class="col-md-3 col-sm-3">
-                                                <div class="input-group">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-danger delete" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                                        <button class="btn btn-info edit" type="button"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                                    </span>
-                                                    <input type="text" class="form-control" value="Area" readonly>
-                                                </div><!-- /input-group -->
-                                            </div>
-                                            <div class="contenedor-area col-sm-8">
-                                                <input type="text" class="form-control text-center input-area" required value="0.00">
-                                                <input type="text" class="form-control text-center input-area" required value="0.00">
-                                                <input type="text" class="form-control text-center input-area" required value="0.00">
-                                                <input type="text" class="form-control text-center total-area"  value="0.00" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Calculo Actividad 1  -->
-                        <div class="col-md-3 ">
-                            <div class="well well-sm">
-                                <div class="row">
-                                    <div class="col-md-5 col-sm-3">
-                                        <label class="control-label">Costo:</label>
-                                    </div>
-                                    <div class="col-md-7 col-sm-7">
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-info edit" type="button"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                            </span>
-                                            <input type="text" class="costo_relleno form-control" value="12.98" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <br>
-                                    <div class="col-md-5 col-sm-3">
-                                        <label class="control-label">Area Total:</label>
-                                    </div>
-                                    <div class="col-md-7 col-sm-7">
-                                        <input readonly value="0.00" type="text" class="form-control v_total-area text-center">
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <br>
-                                    <div class="col-md-5 col-sm-3">
-                                        <label class="control-label">Total:</label>
-                                    </div>
-                                    <div class="col-md-7 col-sm-7">
-                                        <input readonly value="0.00" type="text" class="total-relleno text-center form-control">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Fin Calculo Actividad 1  -->
-                    </div>
-                    <!-- Fin Actividad 1 -->
-
-                    <!-- Actividad 2 -->
-                    <div class="row actividad_sample">
-                        <div class="col-md-9">
-                            <div class="">
-                                <div class="well well-sm">
-                                    <div class="pull-right">
-                                        <button class="btn-add-veinte-quince hidden btn btn-success" name="btn_area" ><i class="fa fa-plus"></i></button>
-                                        <button class="btn-dlt-veinte-quince hidden btn btn-danger"><i class="fa fa-trash"></i></button>
-                                    </div>
-
-                                    <div class="pull-left">
-                                        <div class="buying-selling-group" id="buying-selling-group" data-toggle="buttons">
-                                            <label class="btn-veinte btn buying-selling">
-                                                <input type="radio" name="options" id="option1" autocomplete="off">
-                                                <span class="radio-dot"></span>
-                                                <span class="buying-selling-word">E= 20cm</span>
-                                            </label>
-
-                                            <label class="btn-quince btn buying-selling">
-                                                <input type="radio" name="options" id="option2" autocomplete="off">
-                                                <span class="radio-dot"></span>
-                                                <span class="buying-selling-word">E= 15cm</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <br>
-                                    <div class="content">
-                                        <div class="row hidden op_add_area" >
-                                            <div class="col-md-3 col-sm-3">
-                                                <div class="input-group">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-danger delete" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                                        <button class="btn btn-info edit" type="button"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                                    </span>
-                                                    <input type="text" class="form-control" value="Area" readonly>
-                                                </div><!-- /input-group -->
-                                            </div>
-                                            <div class="contenedor-area col-sm-8">
-                                                <input type="text" class="form-control text-center input-area" required value="0.00">
-                                                <input type="text" class="form-control text-center input-area" required value="0.00">
-                                                <input type="text" class="form-control text-center total-area-pav"  value="0.00" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="well well-sm">
-                                <div class="row">
-                                    <div class="col-md-5 col-sm-3">
-                                        <label class="control-label">Costo:</label>
-                                    </div>
-                                    <div class="col-md-7 col-sm-7">
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-info edit" type="button"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                            </span>
-                                            <input type="text" class="costo_pavimento form-control" value="0.00" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <br>
-                                    <div class="col-md-5 col-sm-3">
-                                        <label class="control-label">Area Total:</label>
-                                    </div>
-                                    <div class="col-md-7 col-sm-7">
-                                        <input readonly value="0.00" type="text" class="v_total-area_pav form-control text-center">
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <br>
-                                    <div class="col-md-5 col-sm-3">
-                                        <label class="control-label">Total:</label>
-                                    </div>
-                                    <div class="col-md-7 col-sm-7">
-                                        <input readonly value="0.00" type="text" class="total-pavimento text-center form-control">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Fin Actividad 2 -->
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label  class="control-label">Tipo de Actividad:</label>
+            <select  id="cboTipoActividad" class="form-control"> </select>
+        </div>
     </div>
+    <div class="col-sm-1">
+        <div class="form-group">
+            <label class="control-label " style="color: white">.</label>
+            <button class="btn btn-success" id="btn_add_activity" ><i class="fa fa-plus"></i> Agregar</button>
+        </div>
+    </div>
+    <!-- Actividad 1 -->
+    <div class="clearfix"></div>
+    <div class="row actividad_sample">
+        <div class="col-md-9">
+            <div class="">
+                <div class="well well-sm">
+                    <div class="pull-right">
+                        <button class="btn-add-normal-compacto hidden btn btn-success " name="btn_area" ><i class="fa fa-plus"></i></button>
+                        <button class="btn-dlt-normal-compacto hidden btn btn-danger "><i class="fa fa-trash"></i></button>
+                    </div>
+
+                    <div class="pull-left">
+                        <div class="buying-selling-group" id="buying-selling-group" data-toggle="buttons">
+                            <label class="btn-normal btn buying-selling">
+                                <input type="checkbox" name="options" id="option1" autocomplete="off">
+                                <span class="radio-dot"></span>
+                                <span class="buying-selling-word">Normal</span>
+                            </label>
+
+                            <label class="btn-compacto btn buying-selling">
+                                <input type="checkbox" name="optionsC" id="option2" autocomplete="off">
+                                <span class="radio-dot"></span>
+                                <span class="buying-selling-word">Compactado</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <br>
+                    <div class="content">
+                        <div class="row hidden op_add_area" >
+                            <div class="col-md-3 col-sm-3">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-danger delete" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        <button class="btn btn-info edit" type="button"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                    </span>
+                                    <input type="text" class="form-control" value="Area" readonly>
+                                </div><!-- /input-group -->
+                            </div>
+                            <div class="contenedor-area col-sm-8">
+                                <input type="text" class="form-control text-center input-area" required value="0.00">
+                                <input type="text" class="form-control text-center input-area" required value="0.00">
+                                <input type="text" class="form-control text-center input-area" required value="0.00">
+                                <input type="text" class="form-control text-center total-area"  value="0.00" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Calculo Actividad 1  -->
+        <div class="col-md-3 ">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-md-5 col-sm-3">
+                        <label class="control-label">Costo:</label>
+                    </div>
+                    <div class="col-md-7 col-sm-7">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-info edit" type="button"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                            </span>
+                            <input type="text" class="costo_relleno form-control" value="12.98" readonly>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <br>
+                    <div class="col-md-5 col-sm-3">
+                        <label class="control-label">Area Total:</label>
+                    </div>
+                    <div class="col-md-7 col-sm-7">
+                        <input readonly value="0.00" type="text" class="form-control v_total-area text-center">
+                    </div>
+                    <div class="clearfix"></div>
+                    <br>
+                    <div class="col-md-5 col-sm-3">
+                        <label class="control-label">Total:</label>
+                    </div>
+                    <div class="col-md-7 col-sm-7">
+                        <input readonly value="0.00" type="text" class="total-relleno text-center form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Calculo Actividad 1  -->
+    </div>
+    <!-- Fin Actividad 1 -->
+
+    <!-- Actividad 2 -->
+    <div class="row actividad_sample">
+        <div class="col-md-9">
+            <div class="">
+                <div class="well well-sm">
+                    <div class="pull-right">
+                        <button class="btn-add-veinte-quince hidden btn btn-success" name="btn_area" ><i class="fa fa-plus"></i></button>
+                        <button class="btn-dlt-veinte-quince hidden btn btn-danger"><i class="fa fa-trash"></i></button>
+                    </div>
+
+                    <div class="pull-left">
+                        <div class="buying-selling-group" id="buying-selling-group" data-toggle="buttons">
+                            <label class="btn-veinte btn buying-selling">
+                                <input type="radio" name="options" id="option1" autocomplete="off">
+                                <span class="radio-dot"></span>
+                                <span class="buying-selling-word">E= 20cm</span>
+                            </label>
+
+                            <label class="btn-quince btn buying-selling">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <span class="radio-dot"></span>
+                                <span class="buying-selling-word">E= 15cm</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <br>
+                    <div class="content">
+                        <div class="row hidden op_add_area" >
+                            <div class="col-md-3 col-sm-3">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-danger delete" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        <button class="btn btn-info edit" type="button"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                    </span>
+                                    <input type="text" class="form-control" value="Area" readonly>
+                                </div><!-- /input-group -->
+                            </div>
+                            <div class="contenedor-area col-sm-8">
+                                <input type="text" class="form-control text-center input-area" required value="0.00">
+                                <input type="text" class="form-control text-center input-area" required value="0.00">
+                                <input type="text" class="form-control text-center total-area-pav"  value="0.00" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-md-5 col-sm-3">
+                        <label class="control-label">Costo:</label>
+                    </div>
+                    <div class="col-md-7 col-sm-7">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-info edit" type="button"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                            </span>
+                            <input type="text" class="costo_pavimento form-control" value="0.00" readonly>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <br>
+                    <div class="col-md-5 col-sm-3">
+                        <label class="control-label">Area Total:</label>
+                    </div>
+                    <div class="col-md-7 col-sm-7">
+                        <input readonly value="0.00" type="text" class="v_total-area_pav form-control text-center">
+                    </div>
+                    <div class="clearfix"></div>
+                    <br>
+                    <div class="col-md-5 col-sm-3">
+                        <label class="control-label">Total:</label>
+                    </div>
+                    <div class="col-md-7 col-sm-7">
+                        <input readonly value="0.00" type="text" class="total-pavimento text-center form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Actividad 2 -->
+</div>

@@ -32,3 +32,8 @@ class TipoActividadSerializer(serializers.ModelSerializer):
     class Meta:
         model = TipoActividad
         fields = ('id', 'descripcion', 'op_seleccion')
+
+class SubActividadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SubActividad
+        fields = ('id', 'descripcion')

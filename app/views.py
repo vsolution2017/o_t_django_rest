@@ -25,7 +25,6 @@ class ListView(APIView):
             actividades_json = TipoActividadSerializer(actividades,many=True)
             return Response(actividades_json.data)
 
-
 class Contratista_view(APIView):
     def get(self,request):
         contratistas = Contratista.objects.all()
@@ -39,8 +38,9 @@ class Maquinaria_view(APIView):
         maq_conts_json = ContratistaMaquinariaSerializer(maq_conts,many=True)
         return Response(maq_conts_json.data)
 
-class TipoMantenimiento_view(APIView):
-    def get(self,request):
-        tipo_mantenimientos = TipoMantenimiento.objects.all()
-        tipo_mantenimientos_json = TipoMantenimientoSerializer(tipo_mantenimientos,many=True)
-        return Response(tipo_mantenimientos_json.data)
+class SubActividad_view(APIView):
+    def get(self, request, pk_actividad):
+        tipo_actividad = TipoActividad.objects.get(pk=pk_actividad)
+        sub_actividades = SubActividad.objects.filter(tipo_actividad=tipo_actividad)
+        sub_actividades_json = SubActividadSerializer(sub_actividades,many=True)
+        return Response(sub_actividades_json.data)

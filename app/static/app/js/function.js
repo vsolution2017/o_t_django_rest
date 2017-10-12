@@ -48,13 +48,21 @@ function load_TipoActividad(cbo){
         }
     });
 }
+function getSubActividades(id_actividad){
+    $.ajax({
+        url: ('/app/sub_actividad/' + id_actividad) ,
+        type: 'GET',
+        success: function(result){
+            return result;
+        }
+    });
+}
 function load_contratista(){
     $.ajax({
         url: '/app/contratista/',
         type: 'GET',
         async:false,
         success: function(result){
-            console.log(result);
             append = "";
             $(result).each(function(i,val){
                 append += '<option value="'+ val.id +'">'+ val.nombres +'</option>';

@@ -11,4 +11,8 @@ $(function () {
     $("#cboContratista").change(function(){
         load_maquinarias($(this));
     });
+    $("#btn_add_activity").click(function(){
+        id_actividad = $("#cboTipoActividad").selectpicker("val");
+        getSubActividades(id_actividad);
+    });
 });
