@@ -1,18 +1,7 @@
 
 $(function () {
     /* Style Tab Actividades */
-    load_contratista();
-    load_Mantenimiento("#cboTipo_mantenimiento");
-    load_Parroquia("#cboParroquia");
-    load_TipoActividad("#cboTipoActividad");
-
-    $('#exTab2 select').selectpicker();
-    $('#exTab2 select').selectpicker("val",0);
-    $('.dropdown-menu[role="combobox"]').removeClass("open");
-
-    $("#cboContratista").change(function(){
-        load_maquinarias($(this));
-    });
+    $(":input").inputmask();
 
     /* Style Tab Maquinas*/
     $("#tab_maquinaria").on("change", ".input-area", function () {
@@ -68,7 +57,7 @@ $(function () {
         }
     });
 
-    $(":input").inputmask();
+
 
     $("#btn_add_maq").click(function () {
         ValidationMaquinaria("#cbo_maq :selected", "#maquinaria_select", "#op_add_maq", true);
