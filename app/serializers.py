@@ -33,7 +33,20 @@ class TipoActividadSerializer(serializers.ModelSerializer):
         model = TipoActividad
         fields = ('id', 'descripcion', 'op_seleccion')
 
+class TipoActividadPrecioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TipoActividadPrecio
+        fields = ('id', 'fecha_inicio','fecha_fin','costo')
+
 class SubActividadSerializer(serializers.ModelSerializer):
+    precio = serializers.SerializerMethodField()
     class Meta:
         model = SubActividad
-        fields = ('id', 'descripcion')
+        fields = ('id', 'descripcion','precio')
+    def get_precio(self,obj):
+        try:
+            tipo_precio = TipoActividadPrecio.objects.filter(sub_actividad=obj.id).latest('fecha_inicio')
+            tipo_precio_json = TipoActividadPrecioSerializer(tipo_precio)
+            return tipo_precio_json.data
+        except TipoActividadPrecio.DoesNotExist:
+            return 0

@@ -14,3 +14,5 @@ urlpatterns = [
     #url(r'^videos-i/(?P<pk>[0-9]+)$', DetailVideo.as_view() , name='detail-video'),
 
 ]
+
+#TipoActividadPrecio.objects.filter(sub_actividad=4).latest('fecha_inicio')

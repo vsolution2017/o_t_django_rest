@@ -11,6 +11,33 @@ $(function () {
     $("#cboContratista").change(function(){
         load_maquinarias("#cbo_maq", $(this).val());
     });
+
+
+    $("#tab_actividades").on("click","label.buying-selling",function(){
+        datos = $(this).data("json");
+        div = $(this).closest(".row").find("input.costo").val(datos.precio.costo);
+    });
+
+
+
+    /*Actividades*/
+
+    $("#exTab2").on("click","button[name='btn_area']",function () {
+        op_area = $(this).closest(".row").find(".op_add_area").clone();
+        $(op_area).removeClass("hidden");
+        $(op_area).removeClass("op_add_area");
+        $(op_area).addClass("add_area");
+        $(this).closest(".row").find(".content").append(op_area);
+    });
+
+    $("#exTab2").on("click","button[name='btn_del_actividad']",function () {
+        actividades = $("#cont-actividades").data("actividades");
+        id = $(this).data("id");
+        actividades.splice($.inArray(id, actividades),1);
+        $("#cont-actividades").data("actividades",actividades)
+        $(this).closest(".row").remove();
+    });
+
     $("#btn_add_activity").click(function(){
         id_actividad = $("#cboTipoActividad").selectpicker("val");
         datos = cbo_option("#cboTipoActividad");
@@ -38,8 +65,11 @@ $(function () {
             $(actividad_sample).find("span[name='titulo_actividad']").html(datos.descripcion);
             $(actividad_sample).find("button[name='btn_del_actividad']").data("id",datos.id);
 
+
             $.each(sub_actividades,function(i,sub_actividad){
+                //$(actividad_sample).find("input.costo").val(sub_actividad.precio.costo);
                 op_subactividad = $(actividad_sample).find(".op_subactividad").clone();
+                $(op_subactividad).data("json",sub_actividad);
                 $(op_subactividad).removeClass("hidden");
                 $(op_subactividad).removeClass("op_subactividad");
                 $(op_subactividad).find(".buying-selling-word").html(sub_actividad.descripcion);
@@ -48,24 +78,6 @@ $(function () {
             });
             $("#cont-actividades").append(actividad_sample);
         }
-    });
-
-
-    /*Actividades*/
-    $("#exTab2").on("click","button[name='btn_area']",function () {
-        op_area = $(this).closest(".row").find(".op_add_area").clone();
-        $(op_area).removeClass("hidden");
-        $(op_area).removeClass("op_add_area");
-        $(op_area).addClass("add_area");
-        $(this).closest(".row").find(".content").append(op_area);
-    });
-
-    $("#exTab2").on("click","button[name='btn_del_actividad']",function () {
-        actividades = $("#cont-actividades").data("actividades");
-        id = $(this).data("id");
-        actividades.splice($.inArray(id, actividades),1);
-        $("#cont-actividades").data("actividades",actividades)
-        $(this).closest(".row").remove();
     });
 
 
