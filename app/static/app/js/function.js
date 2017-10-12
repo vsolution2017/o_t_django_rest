@@ -1,3 +1,7 @@
+function cbo_option(cbo){
+    return $(cbo).find("option[value='"+ $(cbo).selectpicker("val") +"']").data("json");
+}
+
 function load_Mantenimiento(cbo){
     url = '/app/list/mantenimiento/';
     $.ajax({
@@ -38,25 +42,30 @@ function load_TipoActividad(cbo){
         type:'GET',
         //async:false,
         success: function(response){
-            result = '';
-            $(cbo).html(result);
             $(response).each(function(i,val){
-                result+= '<option value="'+ val.id +'">'+ val.descripcion +'</option>';
+                option = document.createElement("option");
+                $(option).val(val.id);
+                $(option).text(val.descripcion);
+                $(option).data("json",val);
+                $(cbo).append(option);
             });
-            $(cbo).html(result);
             $(cbo).selectpicker('refresh');
         }
     });
 }
 function getSubActividades(id_actividad){
+    response = null;
     $.ajax({
         url: ('/app/sub_actividad/' + id_actividad) ,
         type: 'GET',
+        async:false,
         success: function(result){
-            return result;
+            response = result;
         }
     });
+    return response;
 }
+
 function load_contratista(){
     $.ajax({
         url: '/app/contratista/',
@@ -72,18 +81,22 @@ function load_contratista(){
         }
     });
 }
-function load_maquinarias(cbo){
+
+function load_maquinarias(cbo,contratista){
     $.ajax({
-        url: '/app/maquinarias/' + $(cbo).val() ,
+        url: '/app/maquinarias/' + contratista ,
         type: 'GET',
         success: function(result){
-            $("#cbo_maq").html("");
-            append = "";
+            $(cbo).html("");
             $(result).each(function(i,val){
-                append += '<option value="'+ val.maquinaria.id +'">'+ val.maquinaria.descripcion +'</option>';
+                option = document.createElement("option");
+                $(option).val(val.maquinaria.id);
+                $(option).text(val.maquinaria.descripcion);
+                $(option).data("json",val);
+                $(cbo).append(option);
+                //append += '<option value="'+ val.maquinaria.id +'">'+ val.maquinaria.descripcion +'</option>';
             });
-            $("#cbo_maq").html(append);
-            $("#cbo_maq").selectpicker("refresh");
+            $(cbo).selectpicker("refresh");
         }
     });
 }

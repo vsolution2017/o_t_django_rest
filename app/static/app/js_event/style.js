@@ -60,6 +60,9 @@ $(function () {
 
 
     $("#btn_add_maq").click(function () {
+        //console.log($("#cbo_maq option[value='"+ $("#cbo_maq").selectpicker("val") +"']").data("json"));
+        cbo_option("#cbo_maq");
+
         ValidationMaquinaria("#cbo_maq :selected", "#maquinaria_select", "#op_add_maq", true);
     });
 
@@ -155,40 +158,9 @@ $(function () {
     });
 
     /* Carlos */
-    $("button[name='btn_area']").click(function () {
-        op_area = $(this).closest(".actividad_sample").find(".op_add_area").clone();
-        $(op_area).removeClass("hidden");
-        $(op_area).removeClass("op_add_area");
 
-        $(this).closest(".actividad_sample").find(".content").append(op_area);
 
-    });
 
-    /*Actividades*/
-    $("#tab_actividades").on("click", ".delete", function () {
-        $(this).closest(".row").remove();
-    });
-
-    $("#tab_actividades").on("click", ".edit", function () {
-        $(this).removeClass("btn-info");
-        $(this).addClass("btn-success");
-        $(this).find("i").removeClass("fa-pencil");
-        $(this).find("i").addClass("fa-floppy-o");
-        $(this).closest(".input-group").find("input").removeAttr('readonly');
-        $(this).removeClass("edit");
-        $(this).addClass("save");
-    });
-
-    $("#tab_actividades").on("click", ".save", function () {
-        $(this).addClass("btn-info");
-        $(this).removeClass("btn-success");
-        $(this).find("i").addClass("fa-pencil");
-        $(this).find("i").removeClass("fa-floppy-o");
-        $(this).closest(".input-group").find("input").attr('readonly', 'readonly');
-        $(this).addClass("edit");
-        $(this).removeClass("save");
-
-    });
 
     /*Maquinarias */
     $("#tab_maquinaria").on("click", ".delete", function () {

@@ -47,7 +47,7 @@
   font-family: 'Muli';
   font-style: normal;
   font-weight: 300;
-  src: local('Muli Light'), local('Muli-Light'), url('assets/fonts/multi/3.woff2') format('woff2');
+  src: local('Muli Light'), local('Muli-Light'), url('../fonts/multi/3.woff2') format('woff2');
 }
 /* vietnamese */
 @font-face {
@@ -74,6 +74,7 @@
 
 
 /* Radio - Check */
+/*
 .buying-selling.active {
     background: #7BB712;
 }
@@ -162,7 +163,7 @@
         position: relative;
     }
 
-}
+}*/
 /* Radio - Check */
 
 

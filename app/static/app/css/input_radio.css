@@ -3,16 +3,18 @@
 }
 
 .buying-selling {
-    width: 150px; 
-    padding: 10px;
+    width: 200px;
+    /*padding: 5px;*/
+    padding: 8px 0;
+    margin-right: 2px;
     position: relative;
     border-color: #ccc;
 }
 
 .buying-selling-word {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 600;
-    margin-left: 22px;
+    /*margin-left: 22px;*/
 }
 
 .radio-dot:before, .radio-dot:after {
@@ -28,7 +30,7 @@
     height: 20px;
     border: 1px solid #ccc;
     top: 10px;
-    left: 16px;
+    left: 10px;
 }
 
 .radio-dot:after {
@@ -36,7 +38,7 @@
     height: 12px;
     border-radius: 100%;
     top: 14px;
-    left: 20px;
+    left: 14px;
 }
 
 .buying-selling.active .buying-selling-word {
