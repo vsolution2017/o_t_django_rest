@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<div class="row">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label  class="control-label">Nombre del solicitante:</label>
+                    <select id="cboTipo_mantenimiento"  class="form-control">
+
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label  class="control-label">Nombre del solicitante:</label>
+                    <input type="text" class="form-control" value="EPMAPAQ" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label  class="control-label">Fecha pedido: </label>
+                    <input data-inputmask="'alias': 'date'" class="form-control"/>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label  class="control-label">Fecha planificada: </label>
+                    <input data-inputmask="'alias': 'date'" class="form-control"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label  class="control-label">Fecha inicio:</label>
+                    <input data-inputmask="'alias': 'date'" class="form-control" id="fechaInicio"/>
+                </div>
+
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label  class="control-label">Fecha cierre:</label>
+                    <input data-inputmask="'alias': 'date'" class="form-control" id="fechaCierre"/>
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <div class="form-group">
+                    <label  class="control-label" style="color:white;">.</label>
+                    <button class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btn_hora" ><i class="fa fa-hourglass-3"></i> Hora</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label  class="control-label">Jefe de area:</label>
+                    <select   class="form-control">
+                        <option value="">Ing. Francisco Bucheli</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label  class="control-label">Coord. Mant.:</label>
+                    <select   class="form-control">
+                        <option value="">Sr. Andres Benitez</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="control-label">Parroquia:</label>
+            <select id="cboParroquia" class="form-control">
+            </select>
+        </div>
+        <div class="form-group">
+            <label  class="control-label">Dirección:</label>
+            <input type="text" class="form-control" value="">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label  class="control-label">Descripción del problema:</label>
+            <textarea  class="form-control"  rows="6"></textarea>
+        </div>
+    </div>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Especificar horario de trabajo</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Generación automatica dependiendo de las fechas registradas</p>
+                    <div id="contenedor"></div>
+                    <div class="modal_horas row hidden" id="opcionD">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label  class="control-label">Fecha:</label>
+                                <input type="text" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label  class="control-label">Hora Inicio</label>
+                                <input type="time" class="form-control time_ini">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label  class="control-label">Hora Fin</label>
+                                <input type="time" class="form-control time_fin">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" id="btn_save_hr"><i class="fa fa-save"></i> Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,53 @@
+{% extends 'app/base.html' %}
+
+{%block contenedor %}
+<div class="row">
+    <div id="exTab2" class="container card">
+        <ul class="nav nav-tabs">
+            <li >
+                <a href="#tab_inicio" data-toggle="tab">Inicio</a>
+            </li>
+            <li class="active">
+                <a href="#tab_maquinaria" data-toggle="tab">Maquinaria</a>
+            </li>
+            <li >
+                <a href="#tab_actividades" data-toggle="tab">Actividades</a>
+            </li>
+            <li>
+                <a href="#tab_rubros" data-toggle="tab">Rubros</a>
+            </li>
+        </ul>
+        <div class="tab-content ">
+            <div class="tab-pane" id="tab_inicio">
+                {% include 'app/o_t/tab_inicio.html' %}
+            </div>
+            <div class="tab-pane" id="tab_maquinaria">
+                {% include 'app/o_t/tab_maquinaria.html' %}
+            </div>
+            <div class="tab-pane" id="tab_actividades">
+                {% include 'app/o_t/tab_actividades.html' %}
+            </div>
+            <div class="tab-pane" id="tab_rubros">
+                {% include 'app/o_t/tab_rubros.html' %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% load staticfiles %}
+{% block js %}
+    <script src="{% static 'app/js_event/jquery.inputmask.bundle.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'app/js_event/moment.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'app/js/function.js' %}" type="text/javascript"></script>
+    <script src="{% static 'app/js_event/style.js' %}" type="text/javascript"></script>
+
+    <!-- Table -->
+    <script src="{% static 'app/table/bootstrap-table.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'app/table/bootstrap-editable.js' %}" type="text/javascript"></script>
+    <script src="{% static 'app/table/bootstrap-table-editable.js' %}" type="text/javascript"></script>
+    <script src="{% static 'app/table/locale/bootstrap-table-es-ES.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'app/js_event/style_table.js' %}" type="text/javascript"></script>
+    <!-- Table -->
+{% endblock %}
