@@ -13,12 +13,7 @@ $(function () {
     /* Style Tab Maquinas */
 
     /* Style Tab Actividades Relleno*/
-    $("#tab_actividades").on("change", ".input-area", function () {
-        SumarAreas(".input-area", ".contenedor-area", ".total-area", this);
-    });
-    $("#tab_actividades").on("change", ".total-area", function () {
-        SumarCosto(".content .row:not(.hidden) .total-area", ".actividad_sample", ".total-relleno", this, 0);
-    });
+
     /* Style Tab Actividades */
 
     /* Style Tab Actividades Pavimento*/

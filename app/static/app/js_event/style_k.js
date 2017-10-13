@@ -15,12 +15,32 @@ $(function () {
 
     $("#tab_actividades").on("click","label.buying-selling",function(){
         datos = $(this).data("json");
-        div = $(this).closest(".row").find("input.costo").val(datos.precio.costo);
+        div = $(this).closest(".row").find("input.costo").val(datos.precio.costo).change();
     });
 
-
-
     /*Actividades*/
+    function _sumTotalAreas(elem){
+        sum = 0;
+        $(elem).closest(".content").find(".row:not(.hidden) .total-area").each(function (i, v_ta) {
+            sum += parseFloat($(v_ta).val());
+        });
+        $(elem).closest(".content").closest(".row").find(".v_total-area").val(sum.toFixed(2)).change();
+    }
+
+    $("#tab_actividades").on("change", ".input-area", function () {
+        SumarAreas(".input-area", ".contenedor-area", ".total-area", this);
+    });
+    $("#tab_actividades").on("change", ".total-area", function () {
+        _sumTotalAreas($(this).closest(".content"));
+    });
+
+    $("#tab_actividades").on("change", "input[name='costo_actividad']", function () {
+        sum = 0;
+        $(this).closest(".row").find("input[name='costo_actividad']").each(function(i,input){
+            sum *= parseFloat($(input).val());
+        });
+        $(this).closest(".row").find("input[name='total_actividad']").val(sum.toFixed(2));
+    });
 
     $("#exTab2").on("click","button[name='btn_area']",function () {
         op_area = $(this).closest(".row").find(".op_add_area").clone();
@@ -80,10 +100,10 @@ $(function () {
         }
     });
 
-
-
     $("#tab_actividades").on("click", ".delete", function () {
+        _content = $(this).closest(".content");
         $(this).closest(".row").remove();
+        _sumTotalAreas(_content);
     });
 
     $("#tab_actividades").on("click", ".edit", function () {
