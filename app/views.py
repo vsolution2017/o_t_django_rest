@@ -5,6 +5,8 @@ from rest_framework.response import Response
 from .models import *
 from .serializers import *
 
+def login(request):
+    return render(request,'app/login.html',{})
 def admin(request):
     return render(request,'app/base.html',{})
 def o_t(request):

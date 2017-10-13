@@ -1,0 +1,118 @@
+.bx{
+    outline: 1px red solid;
+}
+*{
+    font-family: 'Muli', "Helvetica", Arial, sans-serif;
+}
+#header {
+
+    border-bottom: 2px solid #76b82a;
+    outline: 2px solid #026937;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 60px;
+    overflow-y: hidden;
+
+}
+#header .logo-enlinea {
+
+    background: url('../img/v_sol.png') no-repeat right;
+    /*background-color: #4cae4c;*/
+    height: 80px;
+
+}
+
+.form-signin {
+    max-width: 310px;
+    padding: 15px;
+    margin: 0 auto;
+        margin-bottom: 0px;
+    margin-bottom: 10px;
+    color: #7d8088;
+    text-align: center;
+    border: solid 1px;
+        border-top-color: currentcolor;
+        border-right-color: currentcolor;
+        border-bottom-color: currentcolor;
+        border-left-color: currentcolor;
+    border-color: #b2b4b9;
+    border-radius: 5px;
+    background-color: #fbfbfb;
+
+}
+legend {
+
+    display: block;
+    width: 100%;
+    padding: 0;
+        padding-bottom: 0px;
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: inherit;
+    color: #333;
+    border: 0;
+        border-bottom-width: 0px;
+        border-bottom-style: none;
+        border-bottom-color: currentcolor;
+    border-bottom: 1px solid #e5e5e5;
+
+}
+.btn-primary {
+    color: #fff;
+    background-color: #014826;
+    border-color: #012f19;
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: #027b40;
+    border-color: #000;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+    background-color: #026937;
+    border-color: #026937;
+    color: #fff;
+}
+
+/* vietnamese */
+@font-face {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Muli Light'), local('Muli-Light'), url('../fonts/multi/1.woff2') format('woff2');
+
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Muli Light'), local('Muli-Light'), url('../fonts/multi/2.woff2') format('woff2');
+}
+/* latin */
+@font-face {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Muli Light'), local('Muli-Light'), url('../fonts/multi/3.woff2') format('woff2');
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Muli Regular'), local('Muli-Regular'), url('../fonts/multi/4.woff2') format('woff2');
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Muli Regular'), local('Muli-Regular'), url('../fonts/multi/5.woff2') format('woff2');
+}
+/* latin */
+@font-face {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Muli Regular'), local('Muli-Regular'), url('../fonts/multi/6.woff2') format('woff2');
+}

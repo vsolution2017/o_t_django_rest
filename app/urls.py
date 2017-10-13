@@ -5,7 +5,8 @@ from .views import *
 app_name= "app"
 urlpatterns = [
     url(r'^admin/', admin),
-    url(r'^o_t/', o_t),
+    url(r'^login/', login,name="login"),
+    url(r'^o_t/', o_t, name="ot"),
     url(r'^contratista/$', Contratista_view.as_view()),
     url(r'^maquinarias/(?P<pk_contratista>[0-9]+)$', Maquinaria_view.as_view()),
     url(r'^sub_actividad/(?P<pk_actividad>[0-9]+)$', SubActividad_view.as_view()),
