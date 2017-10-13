@@ -44,3 +44,10 @@ class SubActividad_view(APIView):
         sub_actividades = SubActividad.objects.filter(tipo_actividad=tipo_actividad)
         sub_actividades_json = SubActividadSerializer(sub_actividades,many=True)
         return Response(sub_actividades_json.data)
+
+
+class Cargo_view(APIView):
+    def get(self,request,pk_cargo):
+        cargos = AreaRrhh.objects.filter(cargo=pk_cargo)
+        cargos_json = AreaRrhhSerializer(cargos,many=True)
+        return Response(cargos_json.data)

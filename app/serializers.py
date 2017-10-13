@@ -50,3 +50,18 @@ class SubActividadSerializer(serializers.ModelSerializer):
             return tipo_precio_json.data
         except TipoActividadPrecio.DoesNotExist:
             return 0
+class RrhhSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Rrhh
+        fields = ('id', 'nombres', 'apellidos')
+
+
+class AreaRrhhSerializer(serializers.ModelSerializer):
+    h = serializers.SerializerMethodField()
+    class Meta:
+        model = AreaRrhh
+        fields = ('id', 'cargo', 'rrhh', 'h')
+    def get_h(self,obj):
+        rrhh = Rrhh.objects.get(pk=obj.rrhh.id)
+        rrhh_json = RrhhSerializer(rrhh)
+        return rrhh_json.data

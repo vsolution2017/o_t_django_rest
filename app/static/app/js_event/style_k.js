@@ -3,6 +3,8 @@ $(function () {
     load_Mantenimiento("#cboTipo_mantenimiento");
     load_Parroquia("#cboParroquia");
     load_TipoActividad("#cboTipoActividad");
+    load_Cargos(1,"#cbo_jefe");
+    load_Cargos(2,"#cbo_coord");
 
     $('#exTab2 select').selectpicker();
     $('#exTab2 select').selectpicker("val",0);
@@ -79,23 +81,37 @@ $(function () {
         }
         if(bandera){
             sub_actividades = getSubActividades(id_actividad);
+
+
+
             actividad_sample = $("#cont-actividades .actividad_sample").clone();
             $(actividad_sample).removeClass("actividad_sample");
             $(actividad_sample).removeClass("hidden");
             $(actividad_sample).find("span[name='titulo_actividad']").html(datos.descripcion);
             $(actividad_sample).find("button[name='btn_del_actividad']").data("id",datos.id);
 
+            if(sub_actividades.length === 1){
+                console.log(sub_actividades[0]);
+                if(sub_actividades[0].descripcion === "_"){
+                    $(actividad_sample).find("input.costo").val(sub_actividades[0].precio.costo).change();
+                }
+            }else{
+                $.each(sub_actividades,function(i,sub_actividad){
+                    op_subactividad = $(actividad_sample).find(".op_subactividad").clone();
+                    $(op_subactividad).data("json",sub_actividad);
+                    $(op_subactividad).removeClass("hidden");
+                    $(op_subactividad).removeClass("op_subactividad");
+                    $(op_subactividad).find(".buying-selling-word").html(sub_actividad.descripcion);
+                    $(op_subactividad).find("input[type]").attr("type",(datos.op_seleccion === 1)?"radio":"checkbox");
+                    $(actividad_sample).find(".buying-selling-group").append(op_subactividad);
+                });
+            }
 
-            $.each(sub_actividades,function(i,sub_actividad){
-                //$(actividad_sample).find("input.costo").val(sub_actividad.precio.costo);
-                op_subactividad = $(actividad_sample).find(".op_subactividad").clone();
-                $(op_subactividad).data("json",sub_actividad);
-                $(op_subactividad).removeClass("hidden");
-                $(op_subactividad).removeClass("op_subactividad");
-                $(op_subactividad).find(".buying-selling-word").html(sub_actividad.descripcion);
-                $(op_subactividad).find("input[type]").attr("type",(datos.op_seleccion === 1)?"radio":"checkbox");
-                $(actividad_sample).find(".buying-selling-group").append(op_subactividad);
-            });
+            /*$(actividad_sample).find("input.decimal").inputmask("decimal",{
+                rightAlign :false,
+                digits: 2,
+                greedy: false
+            });*/
             $("#cont-actividades").append(actividad_sample);
         }
     });
@@ -111,6 +127,7 @@ $(function () {
         $(this).addClass("btn-success");
         $(this).find("i").removeClass("fa-pencil");
         $(this).find("i").addClass("fa-floppy-o");
+        $(this).closest(".input-group").find("input").val("");
         $(this).closest(".input-group").find("input").removeAttr('readonly');
         $(this).removeClass("edit");
         $(this).addClass("save");

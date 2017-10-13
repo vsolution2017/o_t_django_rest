@@ -19,6 +19,7 @@ function load_Mantenimiento(cbo){
         }
     });
 }
+
 function load_Parroquia(cbo){
     url = '/app/list/parroquia/';
     $.ajax({
@@ -35,6 +36,7 @@ function load_Parroquia(cbo){
         }
     });
 }
+
 function load_TipoActividad(cbo){
     url = '/app/list/actividad/';
     $.ajax({
@@ -53,6 +55,7 @@ function load_TipoActividad(cbo){
         }
     });
 }
+
 function getSubActividades(id_actividad){
     response = null;
     $.ajax({
@@ -92,6 +95,26 @@ function load_maquinarias(cbo,contratista){
                 option = document.createElement("option");
                 $(option).val(val.maquinaria.id);
                 $(option).text(val.maquinaria.descripcion);
+                $(option).data("json",val);
+                $(cbo).append(option);
+                //append += '<option value="'+ val.maquinaria.id +'">'+ val.maquinaria.descripcion +'</option>';
+            });
+            $(cbo).selectpicker("refresh");
+        }
+    });
+}
+
+function load_Cargos(id,cbo){
+    $.ajax({
+        url: '/app/cargo/' + id ,
+        type: 'GET',
+        success: function(result){
+            $(cbo).html("");
+            $(result).each(function(i,val){
+                option = document.createElement("option");
+                //console.log(val);
+                $(option).val(val.id);
+                $(option).text(val.h.apellidos + " " + val.h.nombres);
                 $(option).data("json",val);
                 $(cbo).append(option);
                 //append += '<option value="'+ val.maquinaria.id +'">'+ val.maquinaria.descripcion +'</option>';
