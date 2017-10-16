@@ -16,8 +16,9 @@
 }
 #header .logo-enlinea {
 
-    background: url('../img/v_sol.png') no-repeat right;
+    background: url('../img/logo.jpg') no-repeat right;
     /*background-color: #4cae4c;*/
+    background-size: 320px 80px;
     height: 80px;
 
 }
