@@ -1308,10 +1308,10 @@ hr {
     .navbar-nav {
         margin: 1px 0; }
 
-    .dropdown-menu {
-        display: none; }
-    .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
-        background-color: transparent; }
+    /*.dropdown-menu {
+        display: none;
+    }.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+        background-color: transparent; }*/
 
     .navbar-fixed-top {
         -webkit-backface-visibility: hidden; }
