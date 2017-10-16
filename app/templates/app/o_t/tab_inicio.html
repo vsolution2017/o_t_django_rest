@@ -21,13 +21,13 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label  class="control-label">Fecha pedido: </label>
-                    <input data-inputmask="'alias': 'date'" class="form-control"/>
+                    <input id="f_pedido" data-inputmask="'alias': 'date'" class="form-control"/>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
                     <label  class="control-label">Fecha planificada: </label>
-                    <input data-inputmask="'alias': 'date'" class="form-control"/>
+                    <input id="f_planificada" data-inputmask="'alias': 'date'" class="form-control"/>
                 </div>
             </div>
         </div>
@@ -80,7 +80,7 @@
         </div>
         <div class="form-group">
             <label  class="control-label">Dirección:</label>
-            <input type="text" class="form-control" value="">
+            <input id="i_direccion" type="text" class="form-control" >
         </div>
     </div>
 </div>
@@ -88,7 +88,7 @@
     <div class="col-md-12">
         <div class="form-group">
             <label  class="control-label">Descripción del problema:</label>
-            <textarea  class="form-control"  rows="6"></textarea>
+            <textarea id="i_problema"  class="form-control"  rows="6"></textarea>
         </div>
     </div>
 </div>
@@ -107,19 +107,19 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label  class="control-label">Fecha:</label>
-                                <input type="text" class="form-control" readonly>
+                                <input name="fecha" type="text" class="form-control" readonly>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label  class="control-label">Hora Inicio</label>
-                                <input type="time" class="form-control time_ini">
+                                <input name="h_inicio" type="time" class="form-control time_ini">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label  class="control-label">Hora Fin</label>
-                                <input type="time" class="form-control time_fin">
+                                <input name="h_fin" type="time" class="form-control time_fin">
                             </div>
                         </div>
                     </div>

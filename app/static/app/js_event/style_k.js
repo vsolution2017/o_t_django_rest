@@ -6,6 +6,12 @@ $(function () {
     load_Cargos(1,"#cbo_jefe");
     load_Cargos(2,"#cbo_coord");
 
+
+    $("#_save").click(function(){
+        console.log(get_TabActividades());
+        //$("#cont-actividades").data("actividades");
+    });
+
     $('#exTab2 select').selectpicker();
     $('#exTab2 select').selectpicker("val",0);
     $('.dropdown-menu[role="combobox"]').removeClass("open");
@@ -81,17 +87,15 @@ $(function () {
         }
         if(bandera){
             sub_actividades = getSubActividades(id_actividad);
-
-
-
             actividad_sample = $("#cont-actividades .actividad_sample").clone();
             $(actividad_sample).removeClass("actividad_sample");
             $(actividad_sample).removeClass("hidden");
             $(actividad_sample).find("span[name='titulo_actividad']").html(datos.descripcion);
             $(actividad_sample).find("button[name='btn_del_actividad']").data("id",datos.id);
+            $(actividad_sample).data("subActividades",sub_actividades);
 
             if(sub_actividades.length === 1){
-                console.log(sub_actividades[0]);
+                //console.log(sub_actividades[0]);
                 if(sub_actividades[0].descripcion === "_"){
                     $(actividad_sample).find("input.costo").val(sub_actividades[0].precio.costo).change();
                 }
