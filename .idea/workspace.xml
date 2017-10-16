@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d4cd018-8e35-4dd5-8c1f-16f6b1ba6c5d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/app/js/function.js" afterPath="$PROJECT_DIR$/app/static/app/js/function.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/app/js_event/style_k.js" afterPath="$PROJECT_DIR$/app/static/app/js_event/style_k.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/app/o_t/tab_inicio.html" afterPath="$PROJECT_DIR$/app/templates/app/o_t/tab_inicio.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/app/register_ot.html" afterPath="$PROJECT_DIR$/app/templates/app/register_ot.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/app/o_t/tab_actividades.html" afterPath="$PROJECT_DIR$/app/templates/app/o_t/tab_actividades.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,14 +18,14 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5568319">
+    <splitter split-orientation="horizontal" split-proportion="0.45405078">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="function.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/static/app/js/function.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="187">
-                  <caret line="71" column="0" lean-forward="true" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+                <state relative-caret-position="521">
+                  <caret line="185" column="11" lean-forward="true" selection-start-line="185" selection-start-column="11" selection-end-line="185" selection-end-column="11" />
                   <folding>
                     <element signature="n#!!block;n#load_Mantenimiento#0" expanded="false" />
                     <element signature="n#!!block;n#load_Parroquia#0" expanded="false" />
@@ -37,7 +35,6 @@
                     <element signature="n#!!block;n#load_maquinarias#0" expanded="false" />
                     <element signature="n#!!block;n#load_Cargos#0" expanded="false" />
                     <element signature="n#!!block;n#get_TabInicio#0" expanded="false" />
-                    <element signature="n#!!block;n#get_TabActividades#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -47,31 +44,31 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="tab_actividades.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="tab_actividades.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/templates/app/o_t/tab_actividades.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="21">
-                  <caret line="16" column="34" lean-forward="false" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+                <state relative-caret-position="312">
+                  <caret line="45" column="76" lean-forward="false" selection-start-line="45" selection-start-column="76" selection-end-line="45" selection-end-column="91" />
                   <folding>
+                    <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#3;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#div#1;n#div#0;n#div#3;n#div#0;n#!!top" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="style_k.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="style_k.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/static/app/js_event/style_k.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="397">
-                  <caret line="104" column="57" lean-forward="false" selection-start-line="104" selection-start-column="57" selection-end-line="104" selection-end-column="57" />
+                <state relative-caret-position="323">
+                  <caret line="101" column="41" lean-forward="false" selection-start-line="101" selection-start-column="41" selection-end-line="101" selection-end-column="41" />
                   <folding>
                     <element signature="e#1892#2167#0" expanded="false" />
                     <element signature="e#2246#2515#0" expanded="false" />
-                    <element signature="e#2802#3180#0" expanded="false" />
-                    <element signature="e#4872#5047#0" expanded="false" />
-                    <element signature="e#5189#5320#0" expanded="false" />
-                    <element signature="e#5383#5787#0" expanded="false" />
-                    <element signature="e#5850#6197#0" expanded="false" />
+                    <element signature="e#2803#3181#0" expanded="false" />
+                    <element signature="e#4987#5162#0" expanded="false" />
+                    <element signature="e#5304#5435#0" expanded="false" />
+                    <element signature="e#5967#6314#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -116,7 +113,6 @@
         <option value="$PROJECT_DIR$/app/static/app/css/input_radio.css" />
         <option value="$PROJECT_DIR$/o_t_django_rest/settings.py" />
         <option value="$PROJECT_DIR$/app/static/app/js_event/jquery.inputmask.bundle.min.js" />
-        <option value="$PROJECT_DIR$/app/templates/app/o_t/tab_actividades.html" />
         <option value="$PROJECT_DIR$/app/models.py" />
         <option value="$PROJECT_DIR$/app/tests.py" />
         <option value="$PROJECT_DIR$/app/serializers.py" />
@@ -132,6 +128,7 @@
         <option value="$PROJECT_DIR$/app/templates/app/o_t/tab_inicio.html" />
         <option value="$PROJECT_DIR$/app/static/app/js_event/style.js" />
         <option value="$PROJECT_DIR$/app/static/app/js_event/style_k.js" />
+        <option value="$PROJECT_DIR$/app/templates/app/o_t/tab_actividades.html" />
         <option value="$PROJECT_DIR$/app/static/app/js/function.js" />
       </list>
     </option>
@@ -608,11 +605,10 @@
           <folding>
             <element signature="e#1892#2167#0" expanded="false" />
             <element signature="e#2246#2515#0" expanded="false" />
-            <element signature="e#2802#3180#0" expanded="false" />
-            <element signature="e#4872#5047#0" expanded="false" />
-            <element signature="e#5189#5320#0" expanded="false" />
-            <element signature="e#5383#5787#0" expanded="false" />
-            <element signature="e#5850#6197#0" expanded="false" />
+            <element signature="e#2803#3181#0" expanded="false" />
+            <element signature="e#4987#5162#0" expanded="false" />
+            <element signature="e#5304#5435#0" expanded="false" />
+            <element signature="e#5967#6314#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -622,6 +618,7 @@
         <state relative-caret-position="816">
           <caret line="48" column="34" lean-forward="true" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
           <folding>
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#3;n#div#0;n#!!top" expanded="true" />
             <element signature="n#div#1;n#div#0;n#div#3;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
@@ -634,11 +631,10 @@
           <folding>
             <element signature="e#1892#2167#0" expanded="false" />
             <element signature="e#2246#2515#0" expanded="false" />
-            <element signature="e#2802#3180#0" expanded="false" />
-            <element signature="e#4872#5047#0" expanded="false" />
-            <element signature="e#5189#5320#0" expanded="false" />
-            <element signature="e#5383#5787#0" expanded="false" />
-            <element signature="e#5850#6197#0" expanded="false" />
+            <element signature="e#2803#3181#0" expanded="false" />
+            <element signature="e#4987#5162#0" expanded="false" />
+            <element signature="e#5304#5435#0" expanded="false" />
+            <element signature="e#5967#6314#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -669,6 +665,7 @@
         <state relative-caret-position="272">
           <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="23" />
           <folding>
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#3;n#div#0;n#!!top" expanded="true" />
             <element signature="n#div#1;n#div#0;n#div#3;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
@@ -861,26 +858,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/o_t/tab_actividades.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="45" column="76" lean-forward="false" selection-start-line="45" selection-start-column="76" selection-end-line="45" selection-end-column="91" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#3;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#div#0;n#div#3;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/app/js_event/style_k.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="104" column="57" lean-forward="false" selection-start-line="104" selection-start-column="57" selection-end-line="104" selection-end-column="57" />
+        <state relative-caret-position="323">
+          <caret line="101" column="41" lean-forward="false" selection-start-line="101" selection-start-column="41" selection-end-line="101" selection-end-column="41" />
           <folding>
             <element signature="e#1892#2167#0" expanded="false" />
             <element signature="e#2246#2515#0" expanded="false" />
-            <element signature="e#2802#3180#0" expanded="false" />
-            <element signature="e#4872#5047#0" expanded="false" />
-            <element signature="e#5189#5320#0" expanded="false" />
-            <element signature="e#5383#5787#0" expanded="false" />
-            <element signature="e#5850#6197#0" expanded="false" />
+            <element signature="e#2803#3181#0" expanded="false" />
+            <element signature="e#4987#5162#0" expanded="false" />
+            <element signature="e#5304#5435#0" expanded="false" />
+            <element signature="e#5967#6314#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/static/app/js/function.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="71" column="0" lean-forward="true" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+        <state relative-caret-position="521">
+          <caret line="185" column="11" lean-forward="true" selection-start-line="185" selection-start-column="11" selection-end-line="185" selection-end-column="11" />
           <folding>
             <element signature="n#!!block;n#load_Mantenimiento#0" expanded="false" />
             <element signature="n#!!block;n#load_Parroquia#0" expanded="false" />
@@ -890,17 +897,6 @@
             <element signature="n#!!block;n#load_maquinarias#0" expanded="false" />
             <element signature="n#!!block;n#load_Cargos#0" expanded="false" />
             <element signature="n#!!block;n#get_TabInicio#0" expanded="false" />
-            <element signature="n#!!block;n#get_TabActividades#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app/o_t/tab_actividades.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="16" column="34" lean-forward="false" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
-          <folding>
-            <element signature="n#div#1;n#div#0;n#div#3;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>

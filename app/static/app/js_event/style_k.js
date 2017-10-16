@@ -69,6 +69,7 @@ $(function () {
     $("#btn_add_activity").click(function(){
         id_actividad = $("#cboTipoActividad").selectpicker("val");
         datos = cbo_option("#cboTipoActividad");
+
         bandera = true;
         actividades = [];
         if(!$.isEmptyObject($("#cont-actividades").data("actividades"))){
@@ -88,11 +89,13 @@ $(function () {
         if(bandera){
             sub_actividades = getSubActividades(id_actividad);
             actividad_sample = $("#cont-actividades .actividad_sample").clone();
+            $(actividad_sample).data("json",datos);
             $(actividad_sample).removeClass("actividad_sample");
             $(actividad_sample).removeClass("hidden");
             $(actividad_sample).find("span[name='titulo_actividad']").html(datos.descripcion);
             $(actividad_sample).find("button[name='btn_del_actividad']").data("id",datos.id);
-            $(actividad_sample).data("subActividades",sub_actividades);
+            $(actividad_sample).data("sub_actividades",sub_actividades);
+            $(actividad_sample).attr("name","_actividades");
 
             if(sub_actividades.length === 1){
                 //console.log(sub_actividades[0]);
@@ -131,7 +134,7 @@ $(function () {
         $(this).addClass("btn-success");
         $(this).find("i").removeClass("fa-pencil");
         $(this).find("i").addClass("fa-floppy-o");
-        $(this).closest(".input-group").find("input").val("");
+        //$(this).closest(".input-group").find("input").val("");
         $(this).closest(".input-group").find("input").removeAttr('readonly');
         $(this).removeClass("edit");
         $(this).addClass("save");

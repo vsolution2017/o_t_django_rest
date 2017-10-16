@@ -154,20 +154,53 @@ function get_TabInicio(){
 
 function get_TabActividades(){
     actividades = [];
-    $("#cont-actividades > .row").each(function(i,div_actividad){
+    $("#cont-actividades div[name='_actividades']").each(function(i,div_actividad){
+        datos = $(div_actividad).data("json");
 
-        sub_actividades = $(div_actividad).data("subActividades");
+        sub_actividades = $(div_actividad).data("sub_actividades");
+        subs = [];
         if(sub_actividades.length > 1){
-            $(div_actividad).find(".buying-selling-group label").each(function (i,label) {
-               console.log($(label).find("input :checked"));
+            $(div_actividad).find(".buying-selling-group label:not('.hidden')").each(function (i,label) {
+               if($(label).hasClass("active")){
+                   data_sub = $(label).data("json");
+                   subs.push({
+                       id_sub : data_sub.id,
+                       precio : $(div_actividad).find("input[name='costo_actividad']").val()
+                   });
+               }
             });
         }
+        else{
+            subs.push({
+                id_sub : sub_actividades[0].id,
+                precio : $(div_actividad).find("input[name='costo_actividad']").val()
+            });
+        }
+        $.each(subs,function(i,sub){
+            $.extend(sub, { areas: get_Areas($(div_actividad).find(".content")) } );
+        });
 
         actividades.push({
-
+            id: datos.id,
+            sub_actividad: subs
         });
-        console.log("====");
     });
+    return actividades;
+}
 
-    return $("#cont-actividades").data("actividades");
+function get_Areas(content){
+    areas = [];
+    $(content).find(".row:not('.hidden')").each(function(i,row){
+        area = {
+            area: $(row).find('input[name="nom_area"]').val()
+        };
+
+        $(row).find(".contenedor-area input.input-area").each(function(i,input){
+            //Validar valores en 0
+            json = '{ "v_'+ (i + 1) +'" : "'+ $(input).val() +'" }';
+            $.extend(area,JSON.parse(json));
+        });
+        areas.push(area);
+    });
+    return areas;
 }
