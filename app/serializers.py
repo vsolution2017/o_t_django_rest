@@ -65,3 +65,8 @@ class AreaRrhhSerializer(serializers.ModelSerializer):
         rrhh = Rrhh.objects.get(pk=obj.rrhh.id)
         rrhh_json = RrhhSerializer(rrhh)
         return rrhh_json.data
+
+class PrecioRubroFechaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PrecioRubroFecha
+        fields = ('id', 'valores', 'fecha_mes')

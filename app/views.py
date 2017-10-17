@@ -1,16 +1,22 @@
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
 #from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
+from rest_framework.renderers import JSONRenderer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import *
 from .serializers import *
 
+def settings(request):
+    return render(request, 'app/settings_ot.html', { "title" : "Configuración"})
 def login(request):
     return render(request,'app/login.html',{})
 def admin(request):
     return render(request,'app/base.html',{})
 def o_t(request):
-    return render(request, 'app/register_ot.html', {})
+    return render(request, 'app/register_ot.html', { "title" : "Orden de Trabajo"})
 
 class ListView(APIView):
     def get(self,request,op):
@@ -26,6 +32,15 @@ class ListView(APIView):
             actividades = TipoActividad.objects.all()
             actividades_json = TipoActividadSerializer(actividades,many=True)
             return Response(actividades_json.data)
+
+class PrecioRubroView(APIView):
+    def post(self,request):
+        precio_rubro = PrecioRubroFechaSerializer(data=request.data)
+        if precio_rubro.is_valid():
+            precio_rubro.save()
+            return Response(precio_rubro.data, status=201)
+        return Response(precio_rubro.errors, status=400)
+
 
 class Contratista_view(APIView):
     def get(self,request):

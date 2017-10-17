@@ -98,7 +98,6 @@ $(function () {
             $(actividad_sample).attr("name","_actividades");
 
             if(sub_actividades.length === 1){
-                //console.log(sub_actividades[0]);
                 if(sub_actividades[0].descripcion === "_"){
                     $(actividad_sample).find("input.costo").val(sub_actividades[0].precio.costo).change();
                 }

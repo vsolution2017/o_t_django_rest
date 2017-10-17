@@ -156,6 +156,7 @@ class DetalleOrdenTrabajo(models.Model):
 class DetalleOtActividad(models.Model):
     costo = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
     orden_trabajo = models.ForeignKey('OrdenTrabajo', models.DO_NOTHING, db_column='orden_trabajo')
+    sub_actividad = models.ForeignKey('SubActividad', models.DO_NOTHING, db_column='sub_actividad', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -283,6 +284,15 @@ class Parroquia(models.Model):
     class Meta:
         managed = False
         db_table = 'parroquia'
+
+
+class PrecioRubroFecha(models.Model):
+    valores = models.TextField()
+    fecha_mes = models.DateField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'precio_rubro_fecha'
 
 
 class Rrhh(models.Model):

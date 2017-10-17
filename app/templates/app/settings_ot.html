@@ -1,0 +1,74 @@
+{% extends 'app/base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <link href="{% static 'app/datetimepicker/bootstrap-datetimepicker.min.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{%block contenedor %}
+    <div class="row">
+        <div style="width: 50%; margin: 0 auto;" >
+            <div class="pull-left">
+                <!--<div class="form-inline">
+                    <div class="form-group">
+                        <label for="">Fecha:</label>
+                        <input id="f_precio" type="date" class="form-control" >
+                    </div>
+                </div>-->
+                <div class='input-group date date-mes' >
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar">
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <h4>Transporte</h4>
+            <div class="well well-sm">
+                <div class="form-group">
+                    <label for="" class="control-label">Total KM: </label>
+                    <input id="t_km" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Valor KM: </label>
+                    <input id="v_km" type="text" class="form-control">
+                </div>
+            </div>
+            <h4>Seguridad Industrial</h4>
+            <div class="well well-sm">
+                <div class="form-group">
+                    <label for="" class="control-label">Total: </label>
+                    <input id="t_si" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Cant. Hombre: </label>
+                    <input id="c_hombre" type="text" class="form-control">
+                </div>
+            </div>
+            <h4>Operaciones</h4>
+            <div class="well well-sm">
+                <div class="form-group">
+                    <label for="" class="control-label">Porcentaje: </label>
+                    <input id="porcentaje_op" type="text" class="form-control">
+                </div>
+
+            </div>
+            <div class="pull-right">
+                <a href="{% url 'app:admin' %}" class="btn btn-danger">Cancelar</a>
+                <button id="_save" class="btn btn-success">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+{% block js %}
+    <script src="{% static 'app/datetimepicker/transition.js' %}" type="text/javascript"></script>
+    <script src="{% static 'app/datetimepicker/collapse.js' %}" type="text/javascript"></script>
+    <script src="{% static 'app/js_event/moment.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'app/datetimepicker/bootstrap-datetimepicker.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'app/setting/o_t/function.js' %}" type="text/javascript"></script>
+    <script src="{% static 'app/setting/o_t/style.js' %}" type="text/javascript"></script>
+{% endblock %}
