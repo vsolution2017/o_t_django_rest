@@ -1,4 +1,8 @@
 {% extends 'app/base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <link href="{% static 'app/table/bootstrap-table.min.css' %}" rel="stylesheet" />
+{% endblock %}
 
 {%block contenedor %}
 <div class="row">
@@ -47,7 +51,7 @@
 
 {% endblock %}
 
-{% load staticfiles %}
+
 {% block js %}
     <script src="{% static 'app/js_event/jquery.inputmask.bundle.min.js' %}" type="text/javascript"></script>
     <script src="{% static 'app/js_event/moment.min.js' %}" type="text/javascript"></script>

@@ -1,5 +1,16 @@
-function getData(){
-    data = {
+function load_precio_rubro(){
+    $.get("/app/s_PrecioRubro/",function(response){
+        $.each(response,function(i,row){
+            $.extend(row,{
+                accion : "<button name='edit' d-id='"+ row.id +"' class='btn btn-sm btn-primary'><i class='fa fa-edit'></i> Editar</button> " +
+                        "<button name='delete' d-id='"+ row.id +"' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i> Eliminar</button>"
+            });
+        });
+        $("#tb_precio_rubro").bootstrapTable("load",response);
+    });
+}
+function getData(id){
+    valores = {
         seguridad : {
             t_si: $("#t_si").val(),
             c_hombre: $("#c_hombre").val()
@@ -12,19 +23,40 @@ function getData(){
             v_km: $("#v_km").val()
         }
     };
-    return {
+
+    data = {
         fecha_mes: $("#f_precio").val(),
-        valores: JSON.stringify(data)
+        valores: JSON.stringify(valores)
     };
+    if(id != 0){
+        $.extend(data,{
+                id:id
+            });
+    }
+    console.log(data);
+    return data;
 }
-function _save(){
+
+function _delete(id){
     $.ajax({
-        url : "/app/s_PrecioRubro/",
-        type: "POST",
-        dataType: "json",
-        data: getData(),
+        url : "/app/s_PrecioRubro/"+ id,
+        type: "DELETE",
         success: function(response){
-            console.log(response);
+            load_precio_rubro();
+        }
+    });
+
+}
+function _save(id,method){
+    url = id == 0 ? "/app/s_PrecioRubro/" : "/app/s_PrecioRubro/"+ id;
+    $.ajax({
+        url : url,
+        type: method,
+        dataType: "json",
+        data: getData(id),
+        success: function(response){
+            $(".modal").modal("toggle");
+            load_precio_rubro();
         }
     });
 }

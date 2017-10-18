@@ -14,6 +14,7 @@ $(function () {
 
     $('#exTab2 select').selectpicker();
     $('#exTab2 select').selectpicker("val",0);
+
     $('.dropdown-menu[role="combobox"]').removeClass("open");
 
     $("#cboContratista").change(function(){

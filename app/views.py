@@ -1,4 +1,4 @@
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse, HttpResponse, Http404
 from django.shortcuts import render
 #from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -9,8 +9,10 @@ from rest_framework.response import Response
 from .models import *
 from .serializers import *
 
+def test(request):
+    return render(request, 'app/test.html', {"title": "Configuración"})
 def settings(request):
-    return render(request, 'app/settings_ot.html', { "title" : "Configuración"})
+    return render(request, 'app/settings_ot.html', { "title" : "Precio Rubro Mensual"})
 def login(request):
     return render(request,'app/login.html',{})
 def admin(request):
@@ -34,12 +36,36 @@ class ListView(APIView):
             return Response(actividades_json.data)
 
 class PrecioRubroView(APIView):
+    def get(self,request):
+        precio_rubro = PrecioRubroFecha.objects.all()
+        precio_rubro_json = PrecioRubroFechaSerializer(precio_rubro,many=True)
+        return Response(precio_rubro_json.data)
+        pass
     def post(self,request):
         precio_rubro = PrecioRubroFechaSerializer(data=request.data)
         if precio_rubro.is_valid():
             precio_rubro.save()
             return Response(precio_rubro.data, status=201)
         return Response(precio_rubro.errors, status=400)
+
+class Detail_PrecioRubroView(APIView):
+    def get_object(self,pk):
+        try:
+            return PrecioRubroFecha.objects.get(pk=pk)
+        except PrecioRubroFecha.DoesNotExist:
+            raise Http404
+
+    def put(self,request,pk):
+        precio_rubro = self.get_object(pk)
+        precio_rubro_json = PrecioRubroFechaSerializer(precio_rubro,data=request.data)
+        if precio_rubro_json.is_valid():
+            precio_rubro_json.save()
+            return Response(precio_rubro_json.data)
+        return Response(precio_rubro.errors, status=400)
+    def delete(self,request,pk):
+        precio_rubro = self.get_object(pk)
+        precio_rubro.delete()
+        return Response(status=204)
 
 
 class Contratista_view(APIView):
