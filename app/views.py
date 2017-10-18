@@ -37,6 +37,7 @@ class ListView(APIView):
             actividades_json = TipoActividadSerializer(actividades,many=True)
             return Response(actividades_json.data)
 
+
 class PrecioRubroView(APIView):
     def get(self,request):
         precio_rubro = PrecioRubroFecha.objects.all()
@@ -90,9 +91,21 @@ class SubActividad_view(APIView):
         sub_actividades_json = SubActividadSerializer(sub_actividades,many=True)
         return Response(sub_actividades_json.data)
 
-
 class Cargo_view(APIView):
     def get(self,request,pk_cargo):
         cargos = AreaRrhh.objects.filter(cargo=pk_cargo)
         cargos_json = AreaRrhhSerializer(cargos,many=True)
         return Response(cargos_json.data)
+
+class Orden_TrabajoView(APIView):
+    def get(self,request):
+        ordenes = OrdenTrabajo.objects.all()
+        ordenes_json = OrdenTrabajoSerializer(ordenes,many=True)
+        return Response(ordenes_json.data)
+
+    def post(self,request):
+        orden = OrdenTrabajoSerializer(data=request.data)
+        if orden.is_valid():
+            orden.save()
+            return Response(orden.data,status=201)
+        return Response(orden.errors, status=400)

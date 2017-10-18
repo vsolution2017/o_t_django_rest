@@ -137,7 +137,7 @@ function get_TabInicio(){
         horas: null,
         cbo_jefe : $("#cbo_jefe").selectpicker("val"),
         cbo_coord : $("#cbo_coord").selectpicker("val"),
-        cboParroquia : $("#cboParroquia").selectpicker("id"),
+        cboParroquia : $("#cboParroquia").selectpicker("val"),
         i_direccion : $("#i_direccion").val(),
         i_problema : $("#i_problema").val()
     };

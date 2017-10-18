@@ -70,3 +70,9 @@ class PrecioRubroFechaSerializer(serializers.ModelSerializer):
     class Meta:
         model = PrecioRubroFecha
         fields = ('id', 'valores', 'fecha_mes')
+
+
+class OrdenTrabajoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrdenTrabajo
+        fields = ('id','fecha_pedido','fecha_planificada','direccion','descripcion_problema','observacion','tipo_mantenimiento','parroquia')

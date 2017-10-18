@@ -10,6 +10,7 @@ $(function () {
     $("#f_pedido, #f_planificada, #fechaInicio").val(utc);
 
     $("#_save").click(function(){
+        console.log(get_TabInicio());
         console.log(get_TabActividades());
         //$("#cont-actividades").data("actividades");
     });
@@ -48,7 +49,12 @@ $(function () {
     $("#tab_actividades").on("change", "input[name='costo_actividad']", function () {
         sum = 0;
         $(this).closest(".row").find("input[name='costo_actividad']").each(function(i,input){
-            sum *= parseFloat($(input).val());
+            if(sum == 0){
+                sum = parseFloat($(input).val());
+            }
+            else {
+                sum *= parseFloat($(input).val());
+            }
         });
         $(this).closest(".row").find("input[name='total_actividad']").val(sum.toFixed(2));
     });
