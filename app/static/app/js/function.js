@@ -1,3 +1,6 @@
+function generar_horarios(){
+
+}
 function cbo_option(cbo){
     return $(cbo).find("option[value='"+ $(cbo).selectpicker("val") +"']").data("json");
 }

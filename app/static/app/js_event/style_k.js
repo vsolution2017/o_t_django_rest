@@ -6,6 +6,8 @@ $(function () {
     load_Cargos(1,"#cbo_jefe");
     load_Cargos(2,"#cbo_coord");
 
+    var utc = new Date().toJSON().slice(0, 10);
+    $("#f_pedido, #f_planificada, #fechaInicio").val(utc);
 
     $("#_save").click(function(){
         console.log(get_TabActividades());

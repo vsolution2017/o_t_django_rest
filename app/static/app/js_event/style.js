@@ -27,35 +27,31 @@ $(function () {
 
     $("#fechaInicio , #fechaCierre").change(function () {
         if ($("#fechaInicio").inputmask("isComplete") && $("#fechaCierre").inputmask("isComplete")) {
-            var dateFechaInicio = $("#fechaInicio").val();
-            var dateFechaCierre = $("#fechaCierre").val();
-            var dateI = moment(dateFechaInicio, "DD/MM/YYYY");
-            var dateC = moment(dateFechaCierre, "DD/MM/YYYY");
-
-            var date1 = new Date(dateI);
-            var date2 = new Date(dateC);
-            var delta = date2 - date1;
-            var diffDays = (Number(delta) / 86400000) + 1;
+            dateFechaInicio = $("#fechaInicio").val();
+            dateFechaCierre = $("#fechaCierre").val();
+            dateI = moment(dateFechaInicio, "YYYY-MM-DD");
+            dateC = moment(dateFechaCierre, "YYYY-MM-DD");
+            duracion = dateC.diff(dateI, 'days');
             $("#contenedor").html("");
-            for (var i = 0; i < diffDays; i++) {
-                var date = new Date(dateI);
-                var newdate = new Date(date);
-                newdate.setDate(newdate.getDate() + i);
-                var fecha = newdate.getDate() + "-" + (newdate.getMonth() + 1) + "-" + newdate.getFullYear();
+            for (var i = 0; i <= duracion; i++) {
                 op_clone = $("#opcionD").clone();
-                $(op_clone).find("input[type='text']").val(fecha);
+                $(op_clone).find("input[type='text']").val(dateI.format("YYYY-MM-DD"));
                 $(op_clone).removeClass("hidden");
                 $("#contenedor").append(op_clone);
+                dateI.add(1,"d");
             }
         } else {
             $("#contenedor").html("");
         }
     });
-
-
+    $("#myModal").on("show.bs.modal",function (e) {
+        if ($("#fechaInicio").inputmask("isComplete") && $("#fechaCierre").inputmask("isComplete")) {
+        }else{
+            e.preventDefault();
+        }
+    });
 
     $("#btn_add_maq").click(function () {
-        //console.log($("#cbo_maq option[value='"+ $("#cbo_maq").selectpicker("val") +"']").data("json"));
         cbo_option("#cbo_maq");
 
         ValidationMaquinaria("#cbo_maq :selected", "#maquinaria_select", "#op_add_maq", true);

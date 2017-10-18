@@ -56,21 +56,21 @@
 
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="#" class="simple-text">
+                    <a href="{% url 'app:admin' %}" class="simple-text">
                     Verde Solution
                 </a>
                 </div>
                 <ul class="nav">
                     <li class="active">
-                        <a href="{% url 'app:o_t' %}">
+                        <a href="{% url 'app:list_ot' %}">
                             <i class="ti-pie-chart"></i>
                             <p>Orden trabajo</p>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{% url 'app:settings' %}">
                             <i class="ti-pie-chart"></i>
-                            <p>Agua Potable</p>
+                            <p>Rubros</p>
                         </a>
                     </li>
                 </ul>

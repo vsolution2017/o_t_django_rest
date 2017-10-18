@@ -6,6 +6,7 @@ app_name= "app"
 urlpatterns = [
     url(r'^admin/', admin, name="admin"),
     url(r'^login/', login,name="login"),
+    url(r'^list_ot/', list_ot,name="list_ot"),
     url(r'^o_t/', o_t,name="o_t"),
     url(r'^test/', test,name="test"),
     url(r'^settings/', settings, name="settings"),

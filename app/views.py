@@ -9,6 +9,8 @@ from rest_framework.response import Response
 from .models import *
 from .serializers import *
 
+def list_ot(request):
+    return render(request, 'app/list_ot.html', {"title": "Listado de Ordenes de Trabajo"})
 def test(request):
     return render(request, 'app/test.html', {"title": "Configuración"})
 def settings(request):
