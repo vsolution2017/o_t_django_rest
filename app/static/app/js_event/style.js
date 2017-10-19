@@ -52,9 +52,28 @@ $(function () {
     });
 
     $("#btn_add_maq").click(function () {
-        cbo_option("#cbo_maq");
+        datos = cbo_option("#cbo_maq");
+        console.log(datos);
 
-        ValidationMaquinaria("#cbo_maq :selected", "#maquinaria_select", "#op_add_maq", true);
+        op_add = $(".op_add_maq").clone();
+        $(op_add).removeClass("op_add_maq");
+        $(op_add).removeClass("hidden");
+        $(op_add).find('button[name="nom_maq"]').html(datos.maquinaria.descripcion);
+        $(op_add).find("input").attr("max",datos.stock);
+        $(op_add).find("input").attr("min",1);
+        $(op_add).find("input").val(1);
+
+        op_costo_maq =  $("div[name='op_costo_maq']").clone();
+        $(op_costo_maq).removeClass("hidden");
+        $(op_costo_maq).find('span[name="titulo"]').html(datos.maquinaria.descripcion);
+
+
+        $("#maquinaria_costo").append(op_costo_maq);
+        $("#maquinaria_select").append(op_add);
+
+
+
+        //ValidationMaquinaria("#cbo_maq :selected", "#maquinaria_select", "#op_add_maq", true);
     });
 
     $("#btn_add_mano_obra").click(function () {
@@ -149,10 +168,6 @@ $(function () {
     });
 
     /* Carlos */
-
-
-
-
     /*Maquinarias */
     $("#tab_maquinaria").on("click", ".delete", function () {
         $(this).closest(".row").remove();

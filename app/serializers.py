@@ -16,7 +16,7 @@ class ContratistaMaquinariaSerializer(serializers.ModelSerializer):
     maquinaria = MaquinariaSerializer(read_only=True)
     class Meta:
         model= ContratistaMaquinaria
-        fields= ('id','maquinaria','contratista')
+        fields= ('id','maquinaria','contratista','stock')
 
 class TipoMantenimientoSerializer(serializers.ModelSerializer):
     class Meta:
