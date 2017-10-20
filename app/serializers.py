@@ -12,11 +12,24 @@ class MaquinariaSerializer(serializers.ModelSerializer):
         model= Maquinaria
         fields= ('id','descripcion')
 
+class ContratistaMaquinariaPrecioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContratistaMaquinariaPrecio
+        fields = ('id','fecha_inicio','fecha_fin','costo')
+
 class ContratistaMaquinariaSerializer(serializers.ModelSerializer):
     maquinaria = MaquinariaSerializer(read_only=True)
+    precio = serializers.SerializerMethodField()
     class Meta:
         model= ContratistaMaquinaria
-        fields= ('id','maquinaria','contratista','stock')
+        fields= ('id','maquinaria','contratista','stock','precio')
+    def get_precio(self,obj):
+        try:
+            tipo_precio = ContratistaMaquinariaPrecio.objects.filter(contratista_maquinaria=obj.id).latest('fecha_inicio')
+            tipo_precio_json = ContratistaMaquinariaPrecioSerializer(tipo_precio)
+            return tipo_precio_json.data
+        except ContratistaMaquinariaPrecio.DoesNotExist:
+            return 0
 
 class TipoMantenimientoSerializer(serializers.ModelSerializer):
     class Meta:

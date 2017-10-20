@@ -30,6 +30,13 @@ $(function () {
         div = $(this).closest(".row").find("input.costo").val(datos.precio.costo).change();
     });
 
+    /*Maquinaria*/
+
+    $("#tab_maquinaria table").bootstrapTable();
+
+    /*Maquinaria*/
+
+
     /*Actividades*/
     function _sumTotalAreas(elem){
         sum = 0;

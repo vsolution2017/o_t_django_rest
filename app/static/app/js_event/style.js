@@ -1,7 +1,44 @@
+function input_number(value, row) {
+    return '<input type="number" class="form-control input-sm" min="1" max="' + row.stock + '" value="'+ value +'" />';
+}
+window.input_numer_action = {
+    'change input[type="number"]': function (e, value, row, index) {
+        tiempo = $('input[name="_tiempo"]').val();
+        row.total = get_costo_tiempo(tiempo,row.costo) * $(e.target).val();
+        row.cantidad = parseInt($(e.target).val());
+        table = $(this).closest("table");
+        $(table).bootstrapTable('updateRow', {
+            index : index,
+            row : row
+        });
+    }
+};
+function get_costo_tiempo(tiempo,costo){
+    horas = moment(tiempo,"HH:mm");
+    return ((horas.hour() * costo) + (horas.minute() * costo / 60)).toFixed(2);
+}
+function get_tiempo_total(){
+    h_total = moment({ hour: 0, minute: 0 });
+    $("#myModal #contenedor .row").each(function(i,div){
+        h_inicio = moment($(div).find("input[name='h_inicio']").val(),"HH:mm");
+        h_fin = moment($(div).find("input[name='h_fin']").val(),"HH:mm");
+        hora = h_fin.diff(h_inicio,"hours");
+        min = h_fin.diff(h_inicio,"minutes");
+        min = min % 60;
+        //h_row = moment({ hour: hora, minute: min });
+        h_total.add(hora,"h");
+        h_total.add(min,"m");
+    });
+    //console.log(h_total.format("HH:mm"));
+    return h_total.format("HH:mm");
+}
 
 $(function () {
-    /* Style Tab Actividades */
     $(":input").inputmask();
+
+    $("#myModal").on("hidden.bs.modal",function(e){
+        $('input[name="_tiempo"]').val(get_tiempo_total()).change();
+    });
 
     /* Style Tab Maquinas*/
     $("#tab_maquinaria").on("change", ".input-area", function () {
@@ -10,20 +47,12 @@ $(function () {
     $("#tab_maquinaria").on("change", ".total-area-viaje", function () {
         SumarCosto(".content .row:not(.hidden) .total-area-viaje", ".actividad_sample", ".total_viajes", this, 1);
     });
-    /* Style Tab Maquinas */
-
-    /* Style Tab Actividades Relleno*/
-
-    /* Style Tab Actividades */
-
-    /* Style Tab Actividades Pavimento*/
     $("#tab_actividades").on("change", ".input-area", function () {
         SumarAreas(".input-area", ".contenedor-area", ".total-area-pav", this);
     });
     $("#tab_actividades").on("change", ".total-area-pav", function () {
         SumarCosto(".content .row:not(.hidden) .total-area-pav", ".actividad_sample", ".total-pavimento", this, 2);
     });
-    /* Style Tab Actividades */
 
     $("#fechaInicio , #fechaCierre").change(function () {
         if ($("#fechaInicio").inputmask("isComplete") && $("#fechaCierre").inputmask("isComplete")) {
@@ -44,6 +73,7 @@ $(function () {
             $("#contenedor").html("");
         }
     });
+
     $("#myModal").on("show.bs.modal",function (e) {
         if ($("#fechaInicio").inputmask("isComplete") && $("#fechaCierre").inputmask("isComplete")) {
         }else{
@@ -51,30 +81,41 @@ $(function () {
         }
     });
 
+    $('input[name="_tiempo"]').change(function(e){
+        rows = $.map($("#tab_maquinaria table").bootstrapTable('getData'), function (row) {
+            row.total = get_costo_tiempo($(e.target).val(),row.costo) * row.cantidad;
+            return row;
+        });
+        $("#tab_maquinaria table").bootstrapTable("load",rows);
+    });
+
     $("#btn_add_maq").click(function () {
         datos = cbo_option("#cbo_maq");
-        console.log(datos);
+        ids = $.map($("#tab_maquinaria table").bootstrapTable('getData'), function (row) {
+            return row.id;
+        });
 
-        op_add = $(".op_add_maq").clone();
-        $(op_add).removeClass("op_add_maq");
-        $(op_add).removeClass("hidden");
-        $(op_add).find('button[name="nom_maq"]').html(datos.maquinaria.descripcion);
-        $(op_add).find("input").attr("max",datos.stock);
-        $(op_add).find("input").attr("min",1);
-        $(op_add).find("input").val(1);
-
-        op_costo_maq =  $("div[name='op_costo_maq']").clone();
-        $(op_costo_maq).removeClass("hidden");
-        $(op_costo_maq).find('span[name="titulo"]').html(datos.maquinaria.descripcion);
-
-
-        $("#maquinaria_costo").append(op_costo_maq);
-        $("#maquinaria_select").append(op_add);
-
-
-
-        //ValidationMaquinaria("#cbo_maq :selected", "#maquinaria_select", "#op_add_maq", true);
+        if($.inArray(datos.id,ids) == -1){
+            tiempo = $('input[name="_tiempo"]').val();
+            total = get_costo_tiempo(tiempo,datos.precio.costo);
+            $("#tab_maquinaria table").bootstrapTable("insertRow",{
+            index: 0,
+            row:{
+                    id: datos.id,
+                    cantidad: 1,
+                    stock: datos.stock,
+                    recurso: datos.maquinaria.descripcion,
+                    costo:  datos.precio.costo,
+                    total: total
+                }
+        });
+        }
     });
+
+
+
+
+
 
     $("#btn_add_mano_obra").click(function () {
         ValidationMaquinaria("#cbo_mano_obra :selected", "#mano_obra_select", "#op_add_mano_obra", false);
