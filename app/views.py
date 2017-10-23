@@ -22,6 +22,21 @@ def admin(request):
 def o_t(request):
     return render(request, 'app/register_ot.html', { "title" : "Orden de Trabajo"})
 
+
+
+
+"""
+class ExampleView(APIView):
+    
+    A view that can accept POST requests with JSON content.
+    
+    parser_classes = (JSONParser,)
+    renderer_classes = (JSONRenderer,)
+
+    def post(self, request, format=None):
+        return Response(request.data["t"])
+"""
+
 class ListView(APIView):
     def get(self,request,op):
         if op == "parroquia":
@@ -104,8 +119,10 @@ class Orden_TrabajoView(APIView):
         return Response(ordenes_json.data)
 
     def post(self,request):
-        orden = OrdenTrabajoSerializer(data=request.data)
+        orden= OrdenTrabajoSerializer(data=request.data["o_t"])
+
         if orden.is_valid():
-            orden.save()
+            #orden.save()
             return Response(orden.data,status=201)
         return Response(orden.errors, status=400)
+

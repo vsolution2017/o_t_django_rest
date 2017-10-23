@@ -130,23 +130,24 @@ function load_Cargos(id,cbo){
 function get_TabInicio(){
     tab_inicio = {
         tipo_mantenimiento : $("#cboTipo_mantenimiento").selectpicker("val"),
-        f_pedido : $("#f_pedido").val(),
-        f_planificada : $("#f_planificada").val(),
-        fechaInicio : $("#fechaInicio").val(),
-        fechaCierre : $("#fechaCierre").val(),
+        fecha_pedido : $("#f_pedido").val(),
+        fecha_planificada : $("#f_planificada").val(),
+        /*fechaInicio : $("#fechaInicio").val(),
+        fechaCierre : $("#fechaCierre").val(),*/
         horas: null,
-        cbo_jefe : $("#cbo_jefe").selectpicker("val"),
-        cbo_coord : $("#cbo_coord").selectpicker("val"),
-        cboParroquia : $("#cboParroquia").selectpicker("val"),
-        i_direccion : $("#i_direccion").val(),
-        i_problema : $("#i_problema").val()
+        /*cbo_jefe : $("#cbo_jefe").selectpicker("val"),
+        cbo_coord : $("#cbo_coord").selectpicker("val"),*/
+        parroquia : $("#cboParroquia").selectpicker("val"),
+        direccion : $("#i_direccion").val(),
+        descripcion_problema : $("#i_problema").val(),
+        observacion : ""
     };
     t_fecha_horas = [];
     $("#myModal .modal-body #contenedor .modal_horas").each(function(i,div_horas){
         t_fecha_horas.push({
             fecha : $(div_horas).find("input[name='fecha']").val(),
-            h_inicio: $(div_horas).find("input[name='h_inicio']").val(),
-            h_fin: $(div_horas).find("input[name='h_fin']").val()
+            hora_entrada: $(div_horas).find("input[name='h_inicio']").val(),
+            hora_salida: $(div_horas).find("input[name='h_fin']").val()
         });
     });
     $.extend(tab_inicio,{
