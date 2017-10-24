@@ -7,6 +7,9 @@
 {%block contenedor %}
 <div class="row">
     <div class="container">
+        <div class="pull-left">
+            <input type="text" id="_cod" class="form-control" style="width: 300px; font-weight: bold;"  readonly/>
+        </div>
         <div class="pull-right">
             <!--<button id="_cancel" class="btn btn-danger">Cancelar</button>-->
             <a href="{% url 'app:list_ot' %}" class="btn btn-danger">Cancelar</a>

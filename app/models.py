@@ -246,14 +246,15 @@ class Material(models.Model):
 
 
 class OrdenTrabajo(models.Model):
-    fecha_pedido = models.TextField()
-    fecha_planificada = models.TextField()
-    direccion = models.TextField()
-    descripcion_problema = models.TextField()
-    observacion = models.TextField()
+    fecha_pedido = models.TextField(blank=True, null=True)
+    fecha_planificada = models.TextField(blank=True, null=True)
+    direccion = models.TextField(blank=True, null=True)
+    descripcion_problema = models.TextField(blank=True, null=True)
+    observacion = models.TextField(blank=True, null=True)
     tipo_mantenimiento = models.ForeignKey('TipoMantenimiento', models.DO_NOTHING, db_column='tipo_mantenimiento')
-    parroquia = models.ForeignKey('Parroquia', models.DO_NOTHING, db_column='parroquia', blank=True, null=True)
-    horario = models.TextField(blank=True, null=True)
+    parroquia = models.ForeignKey('Parroquia', models.DO_NOTHING, db_column='parroquia')
+    estado = models.CharField(max_length=1,default=1)
+    cod_crav = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False

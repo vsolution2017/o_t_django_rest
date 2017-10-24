@@ -1,6 +1,3 @@
-function generar_horarios(){
-
-}
 function cbo_option(cbo){
     return $(cbo).find("option[value='"+ $(cbo).selectpicker("val") +"']").data("json");
 }
@@ -135,7 +132,7 @@ function get_TabInicio(){
         parroquia : $("#cboParroquia").selectpicker("val"),
         direccion : $("#i_direccion").val(),
         descripcion_problema : $("#i_problema").val(),
-        observacion : "observacion"
+        observacion : ""
     };
     t_fecha_horas = [];
     $("#myModal .modal-body #contenedor .modal_horas").each(function(i,div_horas){
@@ -202,4 +199,12 @@ function get_Areas(content){
         areas.push(area);
     });
     return areas;
+}
+
+function gen_Cod() {
+    _tipo = "MNT";
+    parroquia = "QVD";
+    t_mantenimiento = "MR";
+    fecha = moment().format("YYYYMMDD");
+    return ["CRAV",_tipo,parroquia,"OTR",t_mantenimiento,fecha].join("-");
 }

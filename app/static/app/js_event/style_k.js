@@ -1,4 +1,5 @@
 $(function () {
+    $("#_cod").val(gen_Cod());
     load_contratista();
     load_Mantenimiento("#cboTipo_mantenimiento");
     load_Parroquia("#cboParroquia");
@@ -10,15 +11,15 @@ $(function () {
     $("#f_pedido, #f_planificada, #fechaInicio").val(utc);
 
     $("#_save").click(function(){
-        $.ajax({
+        /*$.ajax({
             url : "/app/s_OrdenTrabajo/",
             type: "POST",
             data: get_TabInicio(),
             success: function (response) {
                 console.log(response);
             }
-        });
-        //console.log(get_TabActividades());
+        });*/
+        console.log(get_TabActividades());
         //$("#cont-actividades").data("actividades");
     });
 

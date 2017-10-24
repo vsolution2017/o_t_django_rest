@@ -90,7 +90,7 @@ class DetalleFinicioFcierreSerializer(serializers.ModelSerializer):
         model = DetalleFinicioFcierre
         fields = "__all__"
 
-class OrdenTrabajoSerializer(serializers.ModelSerializer):
+class OrdenTrabajoSerializer_tabview(serializers.ModelSerializer):
     t_mantenimiento = serializers.SerializerMethodField()
     horas = serializers.SerializerMethodField()
     f_inicio = serializers.SerializerMethodField()
@@ -110,18 +110,23 @@ class OrdenTrabajoSerializer(serializers.ModelSerializer):
         except DetalleFinicioFcierre.DoesNotExist:
             return 0
     def get_f_inicio(self,obj):
-        try:
-            horas = DetalleFinicioFcierre.objects.filter(orden_trabajo=obj.id).order_by("fecha").first()
-            return horas.fecha
-        except DetalleFinicioFcierre.DoesNotExist:
-            return 0
+        if DetalleFinicioFcierre.objects.filter(orden_trabajo=obj.id).exists():
+            try:
+                horas = DetalleFinicioFcierre.objects.filter(orden_trabajo=obj.id).order_by("fecha").first()
+                return horas.fecha
+            except DetalleFinicioFcierre.DoesNotExist:
+                return "-"
 
     def get_f_cierre(self, obj):
-        try:
-            horas = DetalleFinicioFcierre.objects.filter(orden_trabajo=obj.id).latest('fecha')
-            return horas.fecha
-        except DetalleFinicioFcierre.DoesNotExist:
-            return 0
+        if DetalleFinicioFcierre.objects.filter(orden_trabajo=obj.id).exists():
+            try:
+                horas = DetalleFinicioFcierre.objects.filter(orden_trabajo=obj.id).latest('fecha')
+                return horas.fecha
+            except DetalleFinicioFcierre.DoesNotExist:
+                return "-"
 
-
-
+# Vista para la clase normal
+class OrdenTrabajoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrdenTrabajo
+        fields = "__all__"

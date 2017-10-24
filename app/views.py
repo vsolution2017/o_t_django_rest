@@ -22,9 +22,6 @@ def admin(request):
 def o_t(request):
     return render(request, 'app/register_ot.html', { "title" : "Orden de Trabajo"})
 
-
-
-
 """
 class ExampleView(APIView):
     
@@ -120,8 +117,8 @@ class Orden_TrabajoView(APIView):
         return horas
 
     def get(self,request):
-        ordenes = OrdenTrabajo.objects.all()
-        ordenes_json = OrdenTrabajoSerializer(ordenes,many=True)
+        ordenes = OrdenTrabajo.objects.filter(estado=1)
+        ordenes_json = OrdenTrabajoSerializer_tabview(ordenes,many=True)
         return Response(ordenes_json.data)
 
     def post(self, request):
@@ -137,3 +134,17 @@ class Orden_TrabajoView(APIView):
                 return Response(horas_json.errors, status=400)
             return Response(orden.data["id"], status=201)
         return Response(orden.errors, status=400)
+
+class Detail_Orden_TrabajoView(APIView):
+    def get_object(self,pk):
+        try:
+            return OrdenTrabajo.objects.get(pk=pk)
+        except OrdenTrabajo.DoesNotExist:
+            raise Http404
+    def put(self,request):
+        pass
+    def delete(self,request,pk):
+        orden = self.get_object(pk)
+        orden.estado = 0
+        orden.save()
+        return Response(OrdenTrabajoSerializer(orden).data,status=201)
