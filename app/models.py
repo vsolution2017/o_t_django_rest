@@ -253,6 +253,7 @@ class OrdenTrabajo(models.Model):
     observacion = models.TextField()
     tipo_mantenimiento = models.ForeignKey('TipoMantenimiento', models.DO_NOTHING, db_column='tipo_mantenimiento')
     parroquia = models.ForeignKey('Parroquia', models.DO_NOTHING, db_column='parroquia', blank=True, null=True)
+    horario = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False

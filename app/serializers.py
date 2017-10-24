@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import *
+import json
 
 
 class ContratistaSerializer(serializers.ModelSerializer):
@@ -63,11 +64,11 @@ class SubActividadSerializer(serializers.ModelSerializer):
             return tipo_precio_json.data
         except TipoActividadPrecio.DoesNotExist:
             return 0
+
 class RrhhSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rrhh
         fields = ('id', 'nombres', 'apellidos')
-
 
 class AreaRrhhSerializer(serializers.ModelSerializer):
     h = serializers.SerializerMethodField()
@@ -84,8 +85,43 @@ class PrecioRubroFechaSerializer(serializers.ModelSerializer):
         model = PrecioRubroFecha
         fields = ('id', 'valores', 'fecha_mes')
 
+class DetalleFinicioFcierreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DetalleFinicioFcierre
+        fields = "__all__"
 
 class OrdenTrabajoSerializer(serializers.ModelSerializer):
+    t_mantenimiento = serializers.SerializerMethodField()
+    horas = serializers.SerializerMethodField()
+    f_inicio = serializers.SerializerMethodField()
+    f_cierre = serializers.SerializerMethodField()
     class Meta:
         model = OrdenTrabajo
-        fields = ('id','fecha_pedido','fecha_planificada','direccion','descripcion_problema','observacion','tipo_mantenimiento','parroquia')
+        fields = "__all__"
+        extra_fields = ['t_mantenimiento','horas','f_inicio','f_cierre']
+
+    def get_t_mantenimiento(self,obj):
+        tipo = TipoMantenimiento.objects.get(pk=obj.tipo_mantenimiento.id)
+        return tipo.descripcion
+    def get_horas(self,obj):
+        try:
+            horas = DetalleFinicioFcierre.objects.filter(orden_trabajo=obj.id)
+            return DetalleFinicioFcierreSerializer(horas, many=True).data
+        except DetalleFinicioFcierre.DoesNotExist:
+            return 0
+    def get_f_inicio(self,obj):
+        try:
+            horas = DetalleFinicioFcierre.objects.filter(orden_trabajo=obj.id).order_by("fecha").first()
+            return horas.fecha
+        except DetalleFinicioFcierre.DoesNotExist:
+            return 0
+
+    def get_f_cierre(self, obj):
+        try:
+            horas = DetalleFinicioFcierre.objects.filter(orden_trabajo=obj.id).latest('fecha')
+            return horas.fecha
+        except DetalleFinicioFcierre.DoesNotExist:
+            return 0
+
+
+

@@ -113,16 +113,27 @@ class Cargo_view(APIView):
         return Response(cargos_json.data)
 
 class Orden_TrabajoView(APIView):
+    def get_horas(self,id_orden,horas):
+        horas = json.loads(horas)
+        for item in horas:
+            item["orden_trabajo"] = id_orden
+        return horas
+
     def get(self,request):
         ordenes = OrdenTrabajo.objects.all()
         ordenes_json = OrdenTrabajoSerializer(ordenes,many=True)
         return Response(ordenes_json.data)
 
-    def post(self,request):
-        orden= OrdenTrabajoSerializer(data=request.data["o_t"])
-
+    def post(self, request):
+        orden = OrdenTrabajoSerializer(data=request.data)
         if orden.is_valid():
-            #orden.save()
-            return Response(orden.data,status=201)
+            orden.save()
+            horas = self.get_horas(orden.data["id"], request.data["horas"])
+            horas_json = DetalleFinicioFcierreSerializer(data=horas, many=True)
+            if horas_json.is_valid():
+                horas_json.save()
+                return Response(horas_json.data, status=201)
+            else:
+                return Response(horas_json.errors, status=400)
+            return Response(orden.data["id"], status=201)
         return Response(orden.errors, status=400)
-

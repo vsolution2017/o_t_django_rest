@@ -132,15 +132,10 @@ function get_TabInicio(){
         tipo_mantenimiento : $("#cboTipo_mantenimiento").selectpicker("val"),
         fecha_pedido : $("#f_pedido").val(),
         fecha_planificada : $("#f_planificada").val(),
-        /*fechaInicio : $("#fechaInicio").val(),
-        fechaCierre : $("#fechaCierre").val(),*/
-        horas: null,
-        /*cbo_jefe : $("#cbo_jefe").selectpicker("val"),
-        cbo_coord : $("#cbo_coord").selectpicker("val"),*/
         parroquia : $("#cboParroquia").selectpicker("val"),
         direccion : $("#i_direccion").val(),
         descripcion_problema : $("#i_problema").val(),
-        observacion : ""
+        observacion : "observacion"
     };
     t_fecha_horas = [];
     $("#myModal .modal-body #contenedor .modal_horas").each(function(i,div_horas){
@@ -151,7 +146,7 @@ function get_TabInicio(){
         });
     });
     $.extend(tab_inicio,{
-        horas : t_fecha_horas
+        horas : JSON.stringify(t_fecha_horas)
     });
     return tab_inicio;
 }

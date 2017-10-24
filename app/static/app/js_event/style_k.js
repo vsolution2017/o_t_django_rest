@@ -10,8 +10,15 @@ $(function () {
     $("#f_pedido, #f_planificada, #fechaInicio").val(utc);
 
     $("#_save").click(function(){
-        console.log(get_TabInicio());
-        console.log(get_TabActividades());
+        $.ajax({
+            url : "/app/s_OrdenTrabajo/",
+            type: "POST",
+            data: get_TabInicio(),
+            success: function (response) {
+                console.log(response);
+            }
+        });
+        //console.log(get_TabActividades());
         //$("#cont-actividades").data("actividades");
     });
 

@@ -9,8 +9,8 @@
     <div class="row">
         <div style="width: 75%; margin: 0 auto;" >
             <div class="pull-right">
-                <a href="{% url 'app:o_t' %}" class="btn btn-info"><i class="fa fa-plus"></i>  Agregar Planilla</a>
-                <button id="btn_test" class="btn btn-success">POST</button>
+                <a href="{% url 'app:o_t' %}" class="btn btn-success"><i class="fa fa-plus"></i>  Agregar Planilla</a>
+                <!--<button id="btn_test" class="btn btn-success">POST</button>-->
                 <!--<button data-toggle="modal" data-target="#add-modif" class="btn btn-info"><i class="fa fa-plus"></i> Agregar Planilla</button>-->
             </div>
             <div class="clearfix"></div>
@@ -22,7 +22,8 @@
                     <th data-field="codigo" data-align="center">Cod.</th>
                     <th data-field="t_mantenimiento" data-align="center">Tipo Mantenimiento</th>
                     <th data-field="f_inicio" data-align="center">Fecha Inicio</th>
-                    <th data-field="accion" data-align="center">Acción</th>
+                    <th data-field="f_cierre" data-align="center">Fecha Cierre</th>
+                    <th data-field="accion" data-formatter="btn_accion" data-events="func_accion" data-align="center">Acción</th>
                 </tr>
                 </thead>
             </table>
