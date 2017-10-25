@@ -7,6 +7,7 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import *
+from .tests import *
 from .serializers import *
 
 def list_ot(request):
@@ -22,17 +23,7 @@ def admin(request):
 def o_t(request):
     return render(request, 'app/register_ot.html', { "title" : "Orden de Trabajo"})
 
-"""
-class ExampleView(APIView):
-    
-    A view that can accept POST requests with JSON content.
-    
-    parser_classes = (JSONParser,)
-    renderer_classes = (JSONRenderer,)
 
-    def post(self, request, format=None):
-        return Response(request.data["t"])
-"""
 
 class ListView(APIView):
     def get(self,request,op):
@@ -110,11 +101,13 @@ class Cargo_view(APIView):
         return Response(cargos_json.data)
 
 class Orden_TrabajoView(APIView):
-    def get_horas(self,id_orden,horas):
-        horas = json.loads(horas)
-        for item in horas:
+    """
+    def get_array(self,id_orden,_array):
+        _array = json.loads(_array)
+        for item in _array:
             item["orden_trabajo"] = id_orden
-        return horas
+        return _array
+    """
 
     def get(self,request):
         ordenes = OrdenTrabajo.objects.filter(estado=1)
@@ -125,14 +118,46 @@ class Orden_TrabajoView(APIView):
         orden = OrdenTrabajoSerializer(data=request.data)
         if orden.is_valid():
             orden.save()
-            horas = self.get_horas(orden.data["id"], request.data["horas"])
+            # Guardar Horas
+            horas = get_array(orden.data["id"],"orden_trabajo", request.data["horas"])
             horas_json = DetalleFinicioFcierreSerializer(data=horas, many=True)
+
             if horas_json.is_valid():
                 horas_json.save()
-                return Response(horas_json.data, status=201)
             else:
                 return Response(horas_json.errors, status=400)
-            return Response(orden.data["id"], status=201)
+
+            # Guardar Maquinarias
+            maquinarias = get_array(orden.data["id"],"orden_trabajo", request.data["maquinarias"])
+            maquinarias_json = OtContMaqSerializer(data=maquinarias,many=True)
+
+            if maquinarias_json.is_valid():
+                maquinarias_json.save()
+                #return Response(maquinarias_json.data, status=201)
+            else:
+                return Response(maquinarias_json.errors, status=400)
+
+            # Guardar Actividades
+            actividades = get_array(orden.data["id"],"orden_trabajo",request.data["actividades"])
+            actividades_json = DetalleOtActividadSerializer(data=actividades,many=True)
+
+            if actividades_json.is_valid():
+                actividades_json.save()
+                #Se recorren las actividades para asignar el [id] correspondiente
+                i = 0
+                for actividad in actividades_json.data:
+                    areas = get_array(actividad["id"], "detalle_ot_actividad",
+                                      actividades[i]["areas"])
+                    i+=1
+                    areas_json = DetalleOtActividadAreaSerializer(data=areas, many=True)
+                    if areas_json.is_valid():
+                        areas_json.save()
+                    else:
+                        return Response(areas_json.errors, status=400)
+            else:
+                return Response(actividades_json.errors, status=400)
+
+            return Response({ "estado" : "ok"}, status=201)
         return Response(orden.errors, status=400)
 
 class Detail_Orden_TrabajoView(APIView):
@@ -148,3 +173,19 @@ class Detail_Orden_TrabajoView(APIView):
         orden.estado = 0
         orden.save()
         return Response(OrdenTrabajoSerializer(orden).data,status=201)
+
+
+class ExampleView(APIView):
+
+    parser_classes = (JSONParser,)
+    renderer_classes = (JSONRenderer,)
+
+    def post(self, request, format=None):
+        actividades = request.data["actividades"]
+        for act in actividades:
+            _array = get_array("0", "detalle_ot_actividad", act["areas"])
+            return Response(_array, status=201)
+
+
+
+

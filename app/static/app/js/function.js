@@ -1,5 +1,7 @@
 function cbo_option(cbo){
-    return $(cbo).find("option[value='"+ $(cbo).selectpicker("val") +"']").data("json");
+    data = $(cbo).find("option[value='"+ $(cbo).selectpicker("val") +"']").data("json");
+
+    return $.isEmptyObject(data)? "":data;
 }
 
 function load_Mantenimiento(cbo){
@@ -7,13 +9,14 @@ function load_Mantenimiento(cbo){
     $.ajax({
         url:url,
         type:'GET',
-        //async:false,
+        async:false,
         success: function(response){
             $(cbo).html("");
             $(response).each(function(i,val){
                 option = document.createElement("option");
                 $(option).val(val.id);
                 $(option).text(val.descripcion);
+                $(option).data("json",val);
                 $(cbo).append(option);
             });
             $(cbo).selectpicker('refresh');
@@ -26,6 +29,7 @@ function load_Parroquia(cbo){
     $.ajax({
         url: url,
         type:'GET',
+        async:false,
         success: function(response){
             result = '';
             $(cbo).html(result);
@@ -43,7 +47,7 @@ function load_TipoActividad(cbo){
     $.ajax({
         url: url,
         type:'GET',
-        //async:false,
+        async:false,
         success: function(response){
             $(response).each(function(i,val){
                 option = document.createElement("option");
@@ -52,6 +56,7 @@ function load_TipoActividad(cbo){
                 $(option).data("json",val);
                 $(cbo).append(option);
             });
+
             $(cbo).selectpicker('refresh');
         }
     });
@@ -82,6 +87,8 @@ function load_contratista(){
             });
             $("#cboContratista").html(append);
             $("#cboContratista").selectpicker("refresh");
+            $("#cboContratista").change();
+            load_maquinarias("#cbo_maq", $("#cboContratista").val());
         }
     });
 }
@@ -129,10 +136,12 @@ function get_TabInicio(){
         tipo_mantenimiento : $("#cboTipo_mantenimiento").selectpicker("val"),
         fecha_pedido : $("#f_pedido").val(),
         fecha_planificada : $("#f_planificada").val(),
+        fecha_inicio: $("#fechaInicio").val(),
         parroquia : $("#cboParroquia").selectpicker("val"),
         direccion : $("#i_direccion").val(),
         descripcion_problema : $("#i_problema").val(),
-        observacion : ""
+        observacion : "",
+        cod_crav : $("#_cod").val()
     };
     t_fecha_horas = [];
     $("#myModal .modal-body #contenedor .modal_horas").each(function(i,div_horas){
@@ -152,7 +161,6 @@ function get_TabActividades(){
     actividades = [];
     $("#cont-actividades div[name='_actividades']").each(function(i,div_actividad){
         datos = $(div_actividad).data("json");
-
         sub_actividades = $(div_actividad).data("sub_actividades");
         subs = [];
         if(sub_actividades.length > 1){
@@ -160,25 +168,20 @@ function get_TabActividades(){
                if($(label).hasClass("active")){
                    data_sub = $(label).data("json");
                    subs.push({
-                       id_sub : data_sub.id,
-                       precio : $(div_actividad).find("input[name='costo_actividad']").val()
+                    id :data_sub.id
                    });
                }
             });
         }
         else{
             subs.push({
-                id_sub : sub_actividades[0].id,
-                precio : $(div_actividad).find("input[name='costo_actividad']").val()
-            });
+                    id :sub_actividades[0].id
+                   });
         }
-        $.each(subs,function(i,sub){
-            $.extend(sub, { areas: get_Areas($(div_actividad).find(".content")) } );
-        });
-
         actividades.push({
-            id: datos.id,
-            sub_actividad: subs
+            tipo_actividad: datos.id,
+            sub_actividades: JSON.stringify(subs),
+            areas: JSON.stringify(get_Areas($(div_actividad).find(".content")))
         });
     });
     return actividades;
@@ -188,12 +191,12 @@ function get_Areas(content){
     areas = [];
     $(content).find(".row:not('.hidden')").each(function(i,row){
         area = {
-            area: $(row).find('input[name="nom_area"]').val()
+            nombre: $(row).find('input[name="nom_area"]').val()
         };
 
         $(row).find(".contenedor-area input.input-area").each(function(i,input){
             //Validar valores en 0
-            json = '{ "v_'+ (i + 1) +'" : "'+ $(input).val() +'" }';
+            json = '{ "v'+ (i + 1) +'" : "'+ $(input).val() +'" }';
             $.extend(area,JSON.parse(json));
         });
         areas.push(area);
@@ -201,10 +204,28 @@ function get_Areas(content){
     return areas;
 }
 
+function get_TabMaquinarias(){
+    data_tb = $("#tab_maquinaria table").bootstrapTable("getData");
+    data = $.map(data_tb,function (row) {
+       return {
+           cantidad : row.cantidad,
+           contratista_maquinaria : row.id
+       };
+    });
+    return data;
+}
+
+function get_save(){
+    return  $.extend({},get_TabInicio(),{
+        maquinarias : JSON.stringify(get_TabMaquinarias()),
+        actividades : JSON.stringify(get_TabActividades())
+    });
+}
+
 function gen_Cod() {
     _tipo = "MNT";
     parroquia = "QVD";
-    t_mantenimiento = "MR";
+    t_mantenimiento = cbo_option("#cboTipo_mantenimiento").abr;
     fecha = moment().format("YYYYMMDD");
     return ["CRAV",_tipo,parroquia,"OTR",t_mantenimiento,fecha].join("-");
 }

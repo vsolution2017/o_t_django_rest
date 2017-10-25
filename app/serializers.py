@@ -35,7 +35,7 @@ class ContratistaMaquinariaSerializer(serializers.ModelSerializer):
 class TipoMantenimientoSerializer(serializers.ModelSerializer):
     class Meta:
         model = TipoMantenimiento
-        fields = ('id', 'descripcion')
+        fields = "__all__"
 
 class ParroquiaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -90,15 +90,32 @@ class DetalleFinicioFcierreSerializer(serializers.ModelSerializer):
         model = DetalleFinicioFcierre
         fields = "__all__"
 
+class OtContMaqSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OtContMaq
+        fields = "__all__"
+
+class DetalleOtActividadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DetalleOtActividad
+        fields = "__all__"
+
+class DetalleOtActividadAreaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DetalleOtActividadArea
+        fields = "__all__"
+
+
 class OrdenTrabajoSerializer_tabview(serializers.ModelSerializer):
     t_mantenimiento = serializers.SerializerMethodField()
     horas = serializers.SerializerMethodField()
     f_inicio = serializers.SerializerMethodField()
     f_cierre = serializers.SerializerMethodField()
+    codigo = serializers.SerializerMethodField()
     class Meta:
         model = OrdenTrabajo
         fields = "__all__"
-        extra_fields = ['t_mantenimiento','horas','f_inicio','f_cierre']
+        extra_fields = ['t_mantenimiento','horas','f_inicio','f_cierre','codigo']
 
     def get_t_mantenimiento(self,obj):
         tipo = TipoMantenimiento.objects.get(pk=obj.tipo_mantenimiento.id)
@@ -110,12 +127,10 @@ class OrdenTrabajoSerializer_tabview(serializers.ModelSerializer):
         except DetalleFinicioFcierre.DoesNotExist:
             return 0
     def get_f_inicio(self,obj):
-        if DetalleFinicioFcierre.objects.filter(orden_trabajo=obj.id).exists():
-            try:
-                horas = DetalleFinicioFcierre.objects.filter(orden_trabajo=obj.id).order_by("fecha").first()
-                return horas.fecha
-            except DetalleFinicioFcierre.DoesNotExist:
-                return "-"
+        return obj.fecha_inicio
+
+    def get_codigo(self,obj):
+        return obj.cod_crav
 
     def get_f_cierre(self, obj):
         if DetalleFinicioFcierre.objects.filter(orden_trabajo=obj.id).exists():

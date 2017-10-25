@@ -1,35 +1,39 @@
 $(function () {
-    $("#_cod").val(gen_Cod());
-    load_contratista();
+
     load_Mantenimiento("#cboTipo_mantenimiento");
     load_Parroquia("#cboParroquia");
     load_TipoActividad("#cboTipoActividad");
     load_Cargos(1,"#cbo_jefe");
     load_Cargos(2,"#cbo_coord");
+    load_contratista();
+
+    $("#_cod").val(gen_Cod());
 
     var utc = new Date().toJSON().slice(0, 10);
     $("#f_pedido, #f_planificada, #fechaInicio").val(utc);
 
     $("#_save").click(function(){
-        /*$.ajax({
+        $.ajax({
             url : "/app/s_OrdenTrabajo/",
             type: "POST",
-            data: get_TabInicio(),
+            data: get_save(),
             success: function (response) {
                 console.log(response);
             }
-        });*/
-        console.log(get_TabActividades());
-        //$("#cont-actividades").data("actividades");
+        });
+        //console.log(get_TabActividades());
     });
 
     $('#exTab2 select').selectpicker();
-    $('#exTab2 select').selectpicker("val",0);
+    //$('#exTab2 select').selectpicker("val",0);
 
     $('.dropdown-menu[role="combobox"]').removeClass("open");
 
     $("#cboContratista").change(function(){
         load_maquinarias("#cbo_maq", $(this).val());
+    });
+    $("#cboTipo_mantenimiento").change(function(e){
+       $("#_cod").val(gen_Cod());
     });
 
 

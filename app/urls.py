@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^list/(?P<op>[\w-]+)/', ListView.as_view()),
     url(r'^contratista/$', Contratista_view.as_view()),
     url(r'^cargo/(?P<pk_cargo>[0-9]+)$', Cargo_view.as_view()),
+    url(r'^test/$', ExampleView.as_view()),
 
 ]
 

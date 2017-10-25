@@ -154,9 +154,9 @@ class DetalleOrdenTrabajo(models.Model):
 
 
 class DetalleOtActividad(models.Model):
-    costo = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
     orden_trabajo = models.ForeignKey('OrdenTrabajo', models.DO_NOTHING, db_column='orden_trabajo')
-    sub_actividad = models.ForeignKey('SubActividad', models.DO_NOTHING, db_column='sub_actividad', blank=True, null=True)
+    tipo_actividad = models.ForeignKey('TipoActividad', models.DO_NOTHING, db_column='tipo_actividad', blank=True, null=True)
+    sub_actividades = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -246,8 +246,6 @@ class Material(models.Model):
 
 
 class OrdenTrabajo(models.Model):
-    fecha_pedido = models.TextField(blank=True, null=True)
-    fecha_planificada = models.TextField(blank=True, null=True)
     direccion = models.TextField(blank=True, null=True)
     descripcion_problema = models.TextField(blank=True, null=True)
     observacion = models.TextField(blank=True, null=True)
@@ -255,6 +253,10 @@ class OrdenTrabajo(models.Model):
     parroquia = models.ForeignKey('Parroquia', models.DO_NOTHING, db_column='parroquia')
     estado = models.CharField(max_length=1,default=1)
     cod_crav = models.TextField(blank=True, null=True)
+    fecha_inicio = models.DateField(blank=True, null=True)
+    fecha_cierre = models.DateField(blank=True, null=True)
+    fecha_pedido = models.DateField(blank=True, null=True)
+    fecha_planificada = models.DateField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -282,6 +284,7 @@ class OtRrhh(models.Model):
 
 class Parroquia(models.Model):
     descripcion = models.TextField(blank=True, null=True)
+    abr = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -349,6 +352,7 @@ class TipoActividadPrecio(models.Model):
 
 class TipoMantenimiento(models.Model):
     descripcion = models.TextField()
+    abr = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
