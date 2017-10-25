@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d4cd018-8e35-4dd5-8c1f-16f6b1ba6c5d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models.py" afterPath="$PROJECT_DIR$/app/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/serializers.py" afterPath="$PROJECT_DIR$/app/serializers.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/app/js/function.js" afterPath="$PROJECT_DIR$/app/static/app/js/function.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/app/js_event/style_k.js" afterPath="$PROJECT_DIR$/app/static/app/js_event/style_k.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/app/setting/o_t/function.js" afterPath="$PROJECT_DIR$/app/static/app/setting/o_t/function.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/app/o_t/tab_inicio.html" afterPath="$PROJECT_DIR$/app/templates/app/o_t/tab_inicio.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/app/o_t/tab_maquinaria.html" afterPath="$PROJECT_DIR$/app/templates/app/o_t/tab_maquinaria.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/app/register_ot.html" afterPath="$PROJECT_DIR$/app/templates/app/register_ot.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/tests.py" afterPath="$PROJECT_DIR$/app/tests.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/urls.py" afterPath="$PROJECT_DIR$/app/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
     </list>
@@ -25,28 +24,27 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.55065256">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/views.py">
+          <file leaf-file-name="function.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/static/app/js/function.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="297">
-                  <caret line="140" column="35" lean-forward="false" selection-start-line="140" selection-start-column="35" selection-end-line="140" selection-end-column="35" />
+                <state relative-caret-position="323">
+                  <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
                   <folding>
-                    <element signature="e#0#59#0" expanded="true" />
-                    <element signature="e#1022#1724#0" expanded="false" />
-                    <element signature="e#1763#2260#0" expanded="false" />
-                    <element signature="e#2305#2959#0" expanded="false" />
-                    <element signature="e#2509#2817#0" expanded="false" />
-                    <element signature="e#2999#3193#0" expanded="false" />
-                    <element signature="e#3231#3555#0" expanded="false" />
-                    <element signature="e#3595#3917#0" expanded="false" />
-                    <element signature="e#3950#4139#0" expanded="false" />
-                    <element signature="e#4399#4562#0" expanded="false" />
-                    <element signature="e#5328#5419#0" expanded="false" />
-                    <element signature="e#5789#6413#0" expanded="false" />
-                    <element signature="e#6658#7040#0" expanded="false" />
+                    <element signature="n#!!block;n#load_Parroquia#0" expanded="false" />
+                    <element signature="n#!!block;n#load_TipoActividad#0" expanded="false" />
+                    <element signature="n#!!block;n#getSubActividades#0" expanded="false" />
+                    <element signature="n#!!block;n#load_contratista#0" expanded="false" />
+                    <element signature="n#!!block;n#load_maquinarias#0" expanded="false" />
+                    <element signature="n#!!block;n#load_Cargos#0" expanded="false" />
+                    <element signature="n#!!block;n#get_TabInicio#0" expanded="false" />
+                    <element signature="n#!!block;n#get_TabActividades#0" expanded="false" />
+                    <element signature="n#!!block;n#get_Areas#0" expanded="false" />
+                    <element signature="n#!!block;n#get_TabMaquinarias#0" expanded="false" />
+                    <element signature="n#!!block;n#get_save#0" expanded="false" />
+                    <element signature="n#!!block;n#gen_Cod#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -55,52 +53,41 @@
           <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/urls.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
-                  <caret line="21" column="43" lean-forward="true" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+                <state relative-caret-position="119">
+                  <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="18" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/models.py">
+          <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="354">
-                  <caret line="254" column="12" lean-forward="false" selection-start-line="254" selection-start-column="4" selection-end-line="254" selection-end-column="12" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="tests.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/tests.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
-                  <caret line="8" column="17" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="serializers.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/serializers.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="331">
-                  <caret line="117" column="81" lean-forward="true" selection-start-line="117" selection-start-column="81" selection-end-line="117" selection-end-column="81" />
+                <state relative-caret-position="133">
+                  <caret line="48" column="40" lean-forward="false" selection-start-line="48" selection-start-column="40" selection-end-line="48" selection-end-column="40" />
                   <folding>
-                    <element signature="e#2425#2505#0" expanded="false" />
-                    <element signature="e#2566#2836#0" expanded="false" />
-                    <element signature="e#2905#2997#0" expanded="false" />
+                    <element signature="e#0#15#0" expanded="true" />
+                    <element signature="e#1038#1740#0" expanded="false" />
+                    <element signature="e#3829#4023#0" expanded="false" />
+                    <element signature="e#4061#4385#0" expanded="false" />
+                    <element signature="e#4425#4747#0" expanded="false" />
+                    <element signature="e#4780#4969#0" expanded="false" />
+                    <element signature="e#5009#7441#0" expanded="false" />
+                    <element signature="e#5229#5392#0" expanded="false" />
+                    <element signature="e#6158#6249#0" expanded="false" />
+                    <element signature="e#6619#7243#0" expanded="false" />
+                    <element signature="e#7488#7870#0" expanded="false" />
+                    <element signature="e#8301#8496#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="list_ot.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/templates/app/list_ot.html">
+          <file leaf-file-name="register_ot.html" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/templates/app/register_ot.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="156">
-                  <caret line="21" column="42" lean-forward="false" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="42" />
+                <state relative-caret-position="357">
+                  <caret line="39" column="39" lean-forward="false" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
                   <folding />
                 </state>
               </provider>
@@ -109,8 +96,8 @@
           <file leaf-file-name="style_k.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/static/app/js_event/style_k.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="153">
-                  <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="30" />
+                <state relative-caret-position="425">
+                  <caret line="25" column="55" lean-forward="true" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
                   <folding />
                 </state>
               </provider>
@@ -120,21 +107,22 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="function.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/static/app/js/function.js">
+          <file leaf-file-name="style.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/static/app/setting/o_t/style.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="138" column="37" lean-forward="false" selection-start-line="138" selection-start-column="37" selection-end-line="138" selection-end-column="37" />
-                  <folding>
-                    <element signature="n#!!block;n#load_Parroquia#0" expanded="false" />
-                    <element signature="n#!!block;n#load_TipoActividad#0" expanded="false" />
-                    <element signature="n#!!block;n#getSubActividades#0" expanded="false" />
-                    <element signature="n#!!block;n#load_contratista#0" expanded="false" />
-                    <element signature="n#!!block;n#load_maquinarias#0" expanded="false" />
-                    <element signature="n#!!block;n#load_Cargos#0" expanded="false" />
-                    <element signature="n#!!block;n#get_TabMaquinarias#0" expanded="false" />
-                    <element signature="n#!!block;n#gen_Cod#0" expanded="false" />
-                  </folding>
+                <state relative-caret-position="544">
+                  <caret line="50" column="33" lean-forward="true" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="function.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/static/app/setting/o_t/function.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="595">
+                  <caret line="35" column="6" lean-forward="false" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -191,28 +179,28 @@
         <option value="$PROJECT_DIR$/app/templates/app/test.html" />
         <option value="$PROJECT_DIR$/app/static/app/css/paper-dashboard.css" />
         <option value="$PROJECT_DIR$/app/static/app/setting/o_t/style.js" />
-        <option value="$PROJECT_DIR$/app/static/app/setting/o_t/function.js" />
         <option value="$PROJECT_DIR$/app/templates/app/settings_ot.html" />
         <option value="$PROJECT_DIR$/app/static/app/js_event/moment.js" />
         <option value="$PROJECT_DIR$/app/templates/app/base.html" />
         <option value="$PROJECT_DIR$/app/templates/app/login.html" />
         <option value="$PROJECT_DIR$/app/templates/app/o_t/tab_fotos.html" />
         <option value="$PROJECT_DIR$/app/static/app/css/style.css" />
-        <option value="$PROJECT_DIR$/app/templates/app/o_t/tab_maquinaria.html" />
         <option value="$PROJECT_DIR$/app/static/app/js_event/style.js" />
         <option value="$PROJECT_DIR$/o_t_django_rest/settings.py" />
         <option value="$PROJECT_DIR$/app/static/app/o_t/function.js" />
         <option value="$PROJECT_DIR$/app/templates/app/list_ot.html" />
         <option value="$PROJECT_DIR$/app/static/app/o_t/style.js" />
-        <option value="$PROJECT_DIR$/app/templates/app/o_t/tab_inicio.html" />
-        <option value="$PROJECT_DIR$/app/templates/app/register_ot.html" />
-        <option value="$PROJECT_DIR$/app/static/app/js_event/style_k.js" />
         <option value="$PROJECT_DIR$/app/tests.py" />
-        <option value="$PROJECT_DIR$/app/urls.py" />
-        <option value="$PROJECT_DIR$/app/views.py" />
-        <option value="$PROJECT_DIR$/app/static/app/js/function.js" />
         <option value="$PROJECT_DIR$/app/models.py" />
+        <option value="$PROJECT_DIR$/app/templates/app/o_t/tab_inicio.html" />
+        <option value="$PROJECT_DIR$/app/static/app/js/function.js" />
         <option value="$PROJECT_DIR$/app/serializers.py" />
+        <option value="$PROJECT_DIR$/app/templates/app/o_t/tab_maquinaria.html" />
+        <option value="$PROJECT_DIR$/app/urls.py" />
+        <option value="$PROJECT_DIR$/app/static/app/setting/o_t/function.js" />
+        <option value="$PROJECT_DIR$/app/views.py" />
+        <option value="$PROJECT_DIR$/app/static/app/js_event/style_k.js" />
+        <option value="$PROJECT_DIR$/app/templates/app/register_ot.html" />
       </list>
     </option>
   </component>
@@ -322,6 +310,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="o_t" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="o_t_django_rest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="o_t_django_rest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -353,32 +367,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="js_event" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="o_t_django_rest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="o_t_django_rest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -666,7 +654,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16197917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -676,7 +663,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19767442" sideWeight="0.49790356" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19767442" sideWeight="0.49790356" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -701,7 +688,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -944,20 +931,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/app/setting/o_t/style.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="53" column="10" lean-forward="true" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/app/setting/o_t/function.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="39" column="21" lean-forward="true" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/app/o_t/style.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -980,22 +953,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app/o_t/tab_inicio.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="41" lean-forward="true" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app/register_ot.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="41" column="49" lean-forward="false" selection-start-line="41" selection-start-column="49" selection-end-line="41" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/app/o_t/tab_actividades.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1004,74 +961,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app/o_t/tab_maquinaria.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="95" column="44" lean-forward="false" selection-start-line="95" selection-start-column="36" selection-end-line="95" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="21" column="43" lean-forward="true" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="17" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/app/js_event/style_k.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="140" column="35" lean-forward="false" selection-start-line="140" selection-start-column="35" selection-end-line="140" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#59#0" expanded="true" />
-            <element signature="e#1022#1724#0" expanded="false" />
-            <element signature="e#1763#2260#0" expanded="false" />
-            <element signature="e#2305#2959#0" expanded="false" />
-            <element signature="e#2509#2817#0" expanded="false" />
-            <element signature="e#2999#3193#0" expanded="false" />
-            <element signature="e#3231#3555#0" expanded="false" />
-            <element signature="e#3595#3917#0" expanded="false" />
-            <element signature="e#3950#4139#0" expanded="false" />
-            <element signature="e#4399#4562#0" expanded="false" />
-            <element signature="e#5328#5419#0" expanded="false" />
-            <element signature="e#5789#6413#0" expanded="false" />
-            <element signature="e#6658#7040#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/app/js/function.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="138" column="37" lean-forward="false" selection-start-line="138" selection-start-column="37" selection-end-line="138" selection-end-column="37" />
-          <folding>
-            <element signature="n#!!block;n#load_Parroquia#0" expanded="false" />
-            <element signature="n#!!block;n#load_TipoActividad#0" expanded="false" />
-            <element signature="n#!!block;n#getSubActividades#0" expanded="false" />
-            <element signature="n#!!block;n#load_contratista#0" expanded="false" />
-            <element signature="n#!!block;n#load_maquinarias#0" expanded="false" />
-            <element signature="n#!!block;n#load_Cargos#0" expanded="false" />
-            <element signature="n#!!block;n#get_TabMaquinarias#0" expanded="false" />
-            <element signature="n#!!block;n#gen_Cod#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1085,21 +979,125 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/app/list_ot.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="21" column="42" lean-forward="false" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="42" />
+        <state relative-caret-position="173">
+          <caret line="22" column="65" lean-forward="false" selection-start-line="22" selection-start-column="65" selection-end-line="22" selection-end-column="65" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/app/setting/o_t/function.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="6" lean-forward="false" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/app/setting/o_t/style.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="50" column="33" lean-forward="true" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="48" column="40" lean-forward="false" selection-start-line="48" selection-start-column="40" selection-end-line="48" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#1038#1740#0" expanded="false" />
+            <element signature="e#3829#4023#0" expanded="false" />
+            <element signature="e#4061#4385#0" expanded="false" />
+            <element signature="e#4425#4747#0" expanded="false" />
+            <element signature="e#4780#4969#0" expanded="false" />
+            <element signature="e#5009#7441#0" expanded="false" />
+            <element signature="e#5229#5392#0" expanded="false" />
+            <element signature="e#6158#6249#0" expanded="false" />
+            <element signature="e#6619#7243#0" expanded="false" />
+            <element signature="e#7488#7870#0" expanded="false" />
+            <element signature="e#8301#8496#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="117" column="81" lean-forward="true" selection-start-line="117" selection-start-column="81" selection-end-line="117" selection-end-column="81" />
+        <state relative-caret-position="620">
+          <caret line="149" column="48" lean-forward="false" selection-start-line="149" selection-start-column="48" selection-end-line="149" selection-end-column="48" />
           <folding>
             <element signature="e#2425#2505#0" expanded="false" />
             <element signature="e#2566#2836#0" expanded="false" />
             <element signature="e#2905#2997#0" expanded="false" />
+            <element signature="e#3209#3273#0" expanded="false" />
+            <element signature="e#3643#4935#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/app/js_event/style_k.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="55" lean-forward="true" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/o_t/tab_maquinaria.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="69" column="71" lean-forward="false" selection-start-line="69" selection-start-column="71" selection-end-line="69" selection-end-column="71" />
+          <folding>
+            <marker date="1508970562895" expanded="false" signature="2503:2515" ph="..." />
+            <marker date="1508970562895" expanded="false" signature="2775:2793" ph="..." />
+            <marker date="1508970562895" expanded="false" signature="3324:3336" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/o_t/tab_inicio.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="90" column="40" lean-forward="true" selection-start-line="90" selection-start-column="40" selection-end-line="90" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/app/js/function.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!block;n#load_Parroquia#0" expanded="false" />
+            <element signature="n#!!block;n#load_TipoActividad#0" expanded="false" />
+            <element signature="n#!!block;n#getSubActividades#0" expanded="false" />
+            <element signature="n#!!block;n#load_contratista#0" expanded="false" />
+            <element signature="n#!!block;n#load_maquinarias#0" expanded="false" />
+            <element signature="n#!!block;n#load_Cargos#0" expanded="false" />
+            <element signature="n#!!block;n#get_TabInicio#0" expanded="false" />
+            <element signature="n#!!block;n#get_TabActividades#0" expanded="false" />
+            <element signature="n#!!block;n#get_Areas#0" expanded="false" />
+            <element signature="n#!!block;n#get_TabMaquinarias#0" expanded="false" />
+            <element signature="n#!!block;n#get_save#0" expanded="false" />
+            <element signature="n#!!block;n#gen_Cod#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/register_ot.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="39" column="39" lean-forward="false" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -14,18 +14,19 @@
             <!--<button id="_cancel" class="btn btn-danger">Cancelar</button>-->
             <a href="{% url 'app:list_ot' %}" class="btn btn-danger">Cancelar</a>
             <button id="_save" class="btn btn-info">Guardar</button>
+            <!--<button id="_redirect" class="btn btn-info">Redirect</button>-->
         </div>
         <div class="clearfix"></div>
         <br>
         <div id="exTab2" class="card">
         <ul class="nav nav-tabs">
-            <li >
+            <li class="active" >
                 <a  href="#tab_inicio" data-toggle="tab">Inicio</a>
             </li>
             <li>
                 <a href="#tab_maquinaria" data-toggle="tab">Maquinaria</a>
             </li>
-            <li class="active" >
+            <li >
                 <a href="#tab_actividades" data-toggle="tab">Actividades</a>
             </li>
             <li>
@@ -36,13 +37,13 @@
             </li>
         </ul>
         <div class="tab-content ">
-            <div class="tab-pane " id="tab_inicio">
+            <div class="tab-pane active " id="tab_inicio">
                 {% include 'app/o_t/tab_inicio.html' %}
             </div>
             <div class="tab-pane " id="tab_maquinaria">
                 {% include 'app/o_t/tab_maquinaria.html' %}
             </div>
-            <div class="tab-pane active" id="tab_actividades">
+            <div class="tab-pane " id="tab_actividades">
                 {% include 'app/o_t/tab_actividades.html' %}
             </div>
             <div class="tab-pane" id="tab_rubros">

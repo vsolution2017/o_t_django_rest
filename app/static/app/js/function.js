@@ -222,6 +222,17 @@ function get_save(){
     });
 }
 
+
+function get_Rubros() {
+    $.ajax({
+        url : "/app/s_rubro_orden/",
+        type : "GET",
+        success : function (response) {
+            //console.log()
+        }
+    });
+}
+
 function gen_Cod() {
     _tipo = "MNT";
     parroquia = "QVD";

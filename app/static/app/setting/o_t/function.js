@@ -33,7 +33,7 @@ function getData(id){
                 id:id
             });
     }
-    console.log(data);
+    //console.log(data);
     return data;
 }
 
@@ -48,13 +48,14 @@ function _delete(id){
 
 }
 function _save(id,method){
-    url = id == 0 ? "/app/s_PrecioRubro/" : "/app/s_PrecioRubro/"+ id;
+    url = id == 0 ? "/app/s_PrecioRubro/" : "/app/s_PrecioRubro/"+ id+"/id";
     $.ajax({
         url : url,
         type: method,
         dataType: "json",
         data: getData(id),
         success: function(response){
+            console.log(response);
             $(".modal").modal("toggle");
             load_precio_rubro();
         }

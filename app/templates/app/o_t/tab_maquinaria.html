@@ -40,6 +40,7 @@
     </div>
     <!-- Fin Maquina -->
     <!-- Mano Obras -->
+    <!--
     <div class="col-md-5 col-md-offset-1">
         <div class="row">
             <div class="col-sm-5">
@@ -73,7 +74,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     <!-- Fin Mano Obra -->
 </div>
 
@@ -81,20 +82,26 @@
 <br>
 <div class="row">
     <div class="col-md-12">
-        <div class="form-inline">
-            <label class="control-label">Total Horas:</label>
-            <input type="text" class="form-control" name="_tiempo" readonly value="00:00" style="width: 70px;">
+        <div class="pull-right">
+            <div class="form-inline">
+                <label class="control-label">Total Horas:</label>
+                <input type="text" class="form-control" name="_tiempo" readonly value="00:00" style="width: 70px;">
+            </div>
         </div>
+        <div class="pull-left">
+            <button id="button" class="btn btn-danger" name="remove_tb">Remover</button>
+        </div>
+        <div class="clearfix"></div>
         <br>
-        <table>
+        <table data-toggle="table">
             <thead>
                 <tr>
-                    <th data-align="center" data-field="id" data-unique-id="id" class="col-md-1">Cod.</th>
-                    <th data-field="recurso" class="col-md-4">Recurso</th>
-                    <th data-field="stock">stock</th>
-                    <th data-align="center" data-field="costo"  class="col-md-1">Costo</th>
-                    <th data-field="cantidad" data-formatter="input_number" data-events="input_numer_action" class="col-md-1">Cantidad</th>
-                    <th data-align="center" data-field="total" class="col-md-1">Total</th>
+                    <th data-field="state" data-checkbox="true" ></th>
+                    <th data-align="center" data-field="id"  >Cod.</th>
+                    <th data-field="recurso" >Recurso</th>
+                    <th data-align="center" data-field="costo"  >Costo</th>
+                    <th data-field="cantidad" data-formatter="input_number" data-events="input_numer_action" class="col-md-1" >Cantidad</th>
+                    <th data-align="center" data-field="total" >Total</th>
                 </tr>
             </thead>
         </table>

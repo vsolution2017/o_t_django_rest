@@ -145,3 +145,9 @@ class OrdenTrabajoSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrdenTrabajo
         fields = "__all__"
+class Rubros_OrdenTrabajo(serializers.Serializer):
+    #nombre = serializers.SerializerMethodField()
+    nombre = serializers.SerializerMethodField()
+
+
+

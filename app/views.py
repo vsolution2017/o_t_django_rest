@@ -1,3 +1,4 @@
+import datetime
 from django.http import JsonResponse, HttpResponse, Http404
 from django.shortcuts import render
 #from django.http import HttpResponse
@@ -48,28 +49,44 @@ class PrecioRubroView(APIView):
         return Response(precio_rubro_json.data)
         pass
     def post(self,request):
-        precio_rubro = PrecioRubroFechaSerializer(data=request.data)
-        if precio_rubro.is_valid():
-            precio_rubro.save()
-            return Response(precio_rubro.data, status=201)
-        return Response(precio_rubro.errors, status=400)
+        if PrecioRubroFecha.objects.filter(fecha_mes=request.data["fecha_mes"]).exists():
+            return  Response({"estado": "Configuración Existente"},status=201)
+        else:
+            precio_rubro = PrecioRubroFechaSerializer(data=request.data)
+            if precio_rubro.is_valid():
+                precio_rubro.save()
+                return Response(precio_rubro.data, status=201)
+            return Response(precio_rubro.errors, status=400)
 
 class Detail_PrecioRubroView(APIView):
-    def get_object(self,pk):
+    def get_object(self,pk,op):
         try:
-            return PrecioRubroFecha.objects.get(pk=pk)
+            if op == "id":
+                return PrecioRubroFecha.objects.get(pk=pk)
+            else:
+                date = datetime.datetime.strptime(pk, '%Y%m%d').date()
+                return PrecioRubroFecha.objects.get(fecha_mes=date)
+        except PrecioRubroFecha.DoesNotExist:
+            raise Http404
+    def get(self,request,pk,op):
+        try:
+            #fecha_mes = '2017-08-01'
+            precio_rubro_fecha = self.get_object(pk,op) # PrecioRubroFecha.objects.get(fecha_mes=fecha_mes)
+            precio_rubro_fecha_json = PrecioRubroFechaSerializer(precio_rubro_fecha)
+            return Response(precio_rubro_fecha_json.data)
         except PrecioRubroFecha.DoesNotExist:
             raise Http404
 
-    def put(self,request,pk):
-        precio_rubro = self.get_object(pk)
+    def put(self,request,pk,op):
+        precio_rubro = self.get_object(pk,op)
         precio_rubro_json = PrecioRubroFechaSerializer(precio_rubro,data=request.data)
         if precio_rubro_json.is_valid():
             precio_rubro_json.save()
             return Response(precio_rubro_json.data)
         return Response(precio_rubro.errors, status=400)
-    def delete(self,request,pk):
-        precio_rubro = self.get_object(pk)
+
+    def delete(self,request,pk,op):
+        precio_rubro = self.get_object(pk,op)
         precio_rubro.delete()
         return Response(status=204)
 
@@ -176,6 +193,11 @@ class Detail_Orden_TrabajoView(APIView):
 
 
 class ExampleView(APIView):
+    def get(self,request):
+        fecha_mes = '2017-08-01'
+        precio_rubro_fecha = PrecioRubroFecha.objects.get(fecha_mes=fecha_mes)
+        precio_rubro_fecha_json = PrecioRubroFechaSerializer(precio_rubro_fecha)
+        return Response(precio_rubro_fecha_json.data)
 
     parser_classes = (JSONParser,)
     renderer_classes = (JSONRenderer,)

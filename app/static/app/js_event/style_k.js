@@ -12,6 +12,10 @@ $(function () {
     var utc = new Date().toJSON().slice(0, 10);
     $("#f_pedido, #f_planificada, #fechaInicio").val(utc);
 
+    $("#_redirect").click(function () {
+       window.location.href = "/app/list_ot/";
+    });
+
     $("#_save").click(function(){
         $.ajax({
             url : "/app/s_OrdenTrabajo/",
@@ -19,12 +23,26 @@ $(function () {
             data: get_save(),
             success: function (response) {
                 console.log(response);
+                window.location.href = "/app/list_ot/";
             }
         });
         //console.log(get_TabActividades());
     });
 
     $('#exTab2 select').selectpicker();
+
+    $('button[name="remove_tb"]').click(function(){
+        row = $(this).closest(".row");
+        table = $(row).find("table");
+        ids = $.map($(table).bootstrapTable("getSelections"),function (row) {
+            return row.id;
+        }) ;
+        $(table).bootstrapTable("remove",{
+            field: 'id',
+            values: ids
+        });
+
+    });
     //$('#exTab2 select').selectpicker("val",0);
 
     $('.dropdown-menu[role="combobox"]').removeClass("open");
