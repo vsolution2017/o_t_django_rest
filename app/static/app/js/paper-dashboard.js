@@ -1,23 +1,7 @@
-/*!
-    
- =========================================================
- * Paper Dashboard - v1.1.2
- =========================================================
- 
- * Product Page: http://www.creative-tim.com/product/paper-dashboard
- * Copyright 2017 Creative Tim (http://www.creative-tim.com)
- * Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard/blob/master/LICENSE.md)
- 
- =========================================================
- 
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- 
- */
-
-
 var fixedTop = false;
 var transparent = true;
 var navbar_initialized = false;
+var container_initialized = false;
 
 $(document).ready(function(){
     window_width = $(window).width();
@@ -27,6 +11,9 @@ $(document).ready(function(){
     // Init navigation toggle for small screens
     if(window_width <= 991){
         pd.initRightMenu();
+        $("div[name='redimensionar']").addClass("container");
+    }else{
+        $("div[name='redimensionar']").removeClass("container");
     }
 
     //  Activate the tooltips
@@ -38,6 +25,9 @@ $(document).ready(function(){
 $(window).resize(function(){
     if($(window).width() <= 991){
         pd.initRightMenu();
+        $("div[name='redimensionar']").addClass("container");
+    }else{
+        pd.initContainer();
     }
 });
 
@@ -136,6 +126,12 @@ pd = {
             navbar_initialized = true;
         }
 
+    },
+    initContainer: function () {
+        if(!container_initialized){
+            $("div[name='redimensionar']").removeClass("container");
+            container_initialized = false;
+        }
     }
 }
 
