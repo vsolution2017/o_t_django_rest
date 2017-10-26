@@ -9,11 +9,16 @@ $(function () {
 
     $("#_cod").val(gen_Cod());
 
-    var utc = new Date().toJSON().slice(0, 10);
-    $("#f_pedido, #f_planificada, #fechaInicio").val(utc);
+    //var utc = new Date().toJSON().slice(0, 10);
+    //$("#f_pedido, #f_planificada, #fechaInicio").val(utc);
+    $('.day_date').datetimepicker('update');
 
-    $("#_redirect").click(function () {
-       window.location.href = "/app/list_ot/";
+
+    $("#cal").click(function () {
+       fields = $.map($('.day_date'),function(date){
+           return $("#"+ $(date).attr("data-link-field")).val();
+       });
+       console.log(fields);
     });
 
     $("#_save").click(function(){

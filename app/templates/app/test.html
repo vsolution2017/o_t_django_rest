@@ -13,6 +13,7 @@
         </div>
         <input type="hidden" id="dtp_input2" value="" /><br/>
     </div>
+    <button id="btn-date" class="btn btn-info">Fecha</button>
 {% endblock %}
 
 
@@ -20,6 +21,12 @@
     <script src="{% static 'app/datetimepicker/bootstrap-datetimepicker.js' %}" type="text/javascript"></script>
     <script src="{% static 'app/datetimepicker/bootstrap-datetimepicker.es.js' %}" type="text/javascript"></script>
     <script type="text/javascript">
+
+    $("#btn-date").click(function(){
+        alert($("#dtp_input2").val());
+    });
+
+
         $('.form_datetime').datetimepicker({
             //language:  'fr',
             weekStart: 1,
@@ -35,10 +42,11 @@
             weekStart: 1,
             todayBtn:  1,
             autoclose: 1,
-            todayHighlight: 1,
+            todayHighlight: true,
             startView: 2,
             minView: 2,
             forceParse: 0
+            //format: 'MM/yyyy'
         });
         $('.form_time').datetimepicker({
             language:  'fr',

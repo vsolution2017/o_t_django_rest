@@ -11,9 +11,9 @@ $(document).ready(function(){
     // Init navigation toggle for small screens
     if(window_width <= 991){
         pd.initRightMenu();
-        $("div[name='redimensionar']").addClass("container");
+        //$("div[name='redimensionar']").addClass("container");
     }else{
-        $("div[name='redimensionar']").removeClass("container");
+        //$("div[name='redimensionar']").removeClass("container");
     }
 
     //  Activate the tooltips
@@ -25,9 +25,9 @@ $(document).ready(function(){
 $(window).resize(function(){
     if($(window).width() <= 991){
         pd.initRightMenu();
-        $("div[name='redimensionar']").addClass("container");
+        //$("div[name='redimensionar']").addClass("container");
     }else{
-        pd.initContainer();
+        //pd.initContainer();
     }
 });
 

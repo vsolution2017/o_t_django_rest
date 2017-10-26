@@ -55,6 +55,7 @@ $(function () {
     });
 
     $("#fechaInicio , #fechaCierre").change(function () {
+        alert();
         if ($("#fechaInicio").inputmask("isComplete") && $("#fechaCierre").inputmask("isComplete")) {
             dateFechaInicio = $("#fechaInicio").val();
             dateFechaCierre = $("#fechaCierre").val();
