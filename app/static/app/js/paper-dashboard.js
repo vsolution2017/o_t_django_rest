@@ -1,6 +1,7 @@
 var fixedTop = false;
 var transparent = true;
 var navbar_initialized = false;
+var container_initialized = false;
 
 $(document).ready(function(){
     window_width = $(window).width();
@@ -10,6 +11,9 @@ $(document).ready(function(){
     // Init navigation toggle for small screens
     if(window_width <= 991){
         pd.initRightMenu();
+        $("div[name='redimensionar']").addClass("container");
+    }else{
+        $("div[name='redimensionar']").removeClass("container");
     }
 
     //  Activate the tooltips
@@ -21,6 +25,9 @@ $(document).ready(function(){
 $(window).resize(function(){
     if($(window).width() <= 991){
         pd.initRightMenu();
+        $("div[name='redimensionar']").addClass("container");
+    }else{
+        pd.initContainer();
     }
 });
 
@@ -119,6 +126,12 @@ pd = {
             navbar_initialized = true;
         }
 
+    },
+    initContainer: function () {
+        if(!container_initialized){
+            $("div[name='redimensionar']").removeClass("container");
+            container_initialized = false;
+        }
     }
 }
 

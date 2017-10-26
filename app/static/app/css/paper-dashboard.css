@@ -764,6 +764,7 @@ hr {
 /* Dropmenu */
 
 
+.dropdown-menu:not(.datetimepicker) {
     background-color: #FFFCF5;
     border: 0 none;
     border-radius: 6px;
