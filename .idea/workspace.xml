@@ -14,6 +14,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
@@ -120,6 +121,9 @@
         </leaf>
       </split-second>
     </splitter>
+=======
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+>>>>>>> a1b21c1f5878930950760e59b1f4afb8ea19076a
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -147,6 +151,7 @@
       <find>detalle_f</find>
       <find>OrdenTra</find>
       <find>OrdenTrabajo</find>
+      <find>navbar_initialized</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -166,8 +171,6 @@
         <option value="$PROJECT_DIR$/app/static/app/setting/funtion.js" />
         <option value="$PROJECT_DIR$/app/static/app/setting/o_t/funtion.js" />
         <option value="$PROJECT_DIR$/app/static/app/js/CSRF.js" />
-        <option value="$PROJECT_DIR$/app/templates/app/test.html" />
-        <option value="$PROJECT_DIR$/app/static/app/css/paper-dashboard.css" />
         <option value="$PROJECT_DIR$/app/static/app/setting/o_t/style.js" />
         <option value="$PROJECT_DIR$/app/templates/app/settings_ot.html" />
         <option value="$PROJECT_DIR$/app/static/app/js_event/moment.js" />
@@ -186,11 +189,14 @@
         <option value="$PROJECT_DIR$/app/static/app/js/function.js" />
         <option value="$PROJECT_DIR$/app/serializers.py" />
         <option value="$PROJECT_DIR$/app/templates/app/o_t/tab_maquinaria.html" />
-        <option value="$PROJECT_DIR$/app/urls.py" />
         <option value="$PROJECT_DIR$/app/static/app/setting/o_t/function.js" />
         <option value="$PROJECT_DIR$/app/views.py" />
         <option value="$PROJECT_DIR$/app/static/app/js_event/style_k.js" />
+        <option value="$PROJECT_DIR$/app/static/app/js/paper-dashboard.js" />
         <option value="$PROJECT_DIR$/app/templates/app/register_ot.html" />
+        <option value="$PROJECT_DIR$/app/urls.py" />
+        <option value="$PROJECT_DIR$/app/static/app/css/paper-dashboard.css" />
+        <option value="$PROJECT_DIR$/app/templates/app/test.html" />
       </list>
     </option>
   </component>
@@ -203,8 +209,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -278,54 +284,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="o_t_django_rest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="o_t_django_rest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="o_t" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="o_t_django_rest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="o_t_django_rest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -356,7 +314,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js_event" />
+              <option name="myItemId" value="datetimepicker" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -374,15 +332,16 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\python\github2\o_t_django_rest\app\static\app\fonts" />
-      <recent name="E:\python\github2\o_t_django_rest\app\static\app\datetimepicker" />
-      <recent name="E:\python\github2\o_t_django_rest\app\static\app\img" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\python\github2\o_t_django_rest\app\static\app\setting\o_t" />
       <recent name="E:\python\github2\o_t_django_rest\app\templates\app" />
       <recent name="E:\python\github2\o_t_django_rest\o_t_django_rest\templates" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\kebryan\Documents\Github\o_t_django_rest\app\static\app\datetimepicker" />
+      <recent name="E:\python\github2\o_t_django_rest\app\static\app\fonts" />
+      <recent name="E:\python\github2\o_t_django_rest\app\static\app\datetimepicker" />
+      <recent name="E:\python\github2\o_t_django_rest\app\static\app\img" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -643,9 +602,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16197917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23499268" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5020964" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -653,7 +612,11 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19767442" sideWeight="0.49790356" order="9" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26025236" sideWeight="0.49790356" order="9" side_tool="false" content_ui="tabs" />
+>>>>>>> a1b21c1f5878930950760e59b1f4afb8ea19076a
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -678,18 +641,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/static/app/setting/o_t/style.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="53" column="12" lean-forward="false" selection-start-line="53" selection-start-column="12" selection-end-line="53" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/app/js/function.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3145">
@@ -802,13 +758,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/app/js/paper-dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/app/js_event/jquery.inputmask.bundle.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -816,13 +765,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Python35/Lib/site-packages/rest_framework/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="117" column="8" lean-forward="false" selection-start-line="117" selection-start-column="8" selection-end-line="117" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/Python35/Lib/site-packages/rest_framework/views.py" />
     <entry file="file://$PROJECT_DIR$/app/static/app/css/style_login.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -837,31 +780,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/app/datetimepicker/bootstrap-datetimepicker.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="65" lean-forward="false" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/app/js/CSRF.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="23" lean-forward="true" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="44" column="7" lean-forward="true" selection-start-line="35" selection-start-column="4" selection-end-line="44" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/app/css/paper-dashboard.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="765" column="0" lean-forward="true" selection-start-line="765" selection-start-column="0" selection-end-line="765" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -883,13 +805,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="58" column="46" lean-forward="false" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -939,7 +854,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -947,7 +861,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="62" column="16" lean-forward="false" selection-start-line="62" selection-start-column="16" selection-end-line="92" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -955,7 +868,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -963,7 +875,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
           <caret line="254" column="12" lean-forward="false" selection-start-line="254" selection-start-column="4" selection-end-line="254" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -975,20 +886,93 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/app/setting/o_t/function.js">
+    <entry file="file://$PROJECT_DIR$/app/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="620">
+          <caret line="149" column="48" lean-forward="false" selection-start-line="149" selection-start-column="48" selection-end-line="149" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/app/js_event/style_k.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="55" lean-forward="true" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/o_t/tab_maquinaria.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="69" column="71" lean-forward="false" selection-start-line="69" selection-start-column="71" selection-end-line="69" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/o_t/tab_inicio.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="90" column="40" lean-forward="true" selection-start-line="90" selection-start-column="40" selection-end-line="90" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/app/js/function.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
+          <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/app/setting/o_t/style.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="41" column="23" lean-forward="false" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/app/setting/o_t/function.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
           <caret line="35" column="6" lean-forward="false" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/app/js/paper-dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="31" column="3" lean-forward="true" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/app/datetimepicker/bootstrap-datetimepicker.es.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="6" lean-forward="true" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/app/datetimepicker/bootstrap-datetimepicker.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="45" lean-forward="true" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/app/templates/app/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="67" column="28" lean-forward="true" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> a1b21c1f5878930950760e59b1f4afb8ea19076a
     <entry file="file://$PROJECT_DIR$/app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="48" column="40" lean-forward="false" selection-start-line="48" selection-start-column="40" selection-end-line="48" selection-end-column="40" />
+        <state relative-caret-position="68">
+          <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="8" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
             <element signature="e#1038#1740#0" expanded="false" />
             <element signature="e#3829#4023#0" expanded="false" />
             <element signature="e#4061#4385#0" expanded="false" />
@@ -1004,77 +988,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="620">
-          <caret line="149" column="48" lean-forward="false" selection-start-line="149" selection-start-column="48" selection-end-line="149" selection-end-column="48" />
-          <folding>
-            <element signature="e#2425#2505#0" expanded="false" />
-            <element signature="e#2566#2836#0" expanded="false" />
-            <element signature="e#2905#2997#0" expanded="false" />
-            <element signature="e#3209#3273#0" expanded="false" />
-            <element signature="e#3643#4935#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="18" />
+        <state relative-caret-position="204">
+          <caret line="22" column="44" lean-forward="true" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/app/js_event/style_k.js">
+    <entry file="file://$PROJECT_DIR$/app/templates/app/test.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="425">
           <caret line="25" column="55" lean-forward="false" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
+=======
+        <state relative-caret-position="153">
+          <caret line="33" column="26" lean-forward="false" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
+>>>>>>> a1b21c1f5878930950760e59b1f4afb8ea19076a
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app/o_t/tab_maquinaria.html">
+    <entry file="file://$PROJECT_DIR$/app/static/app/css/paper-dashboard.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="69" column="71" lean-forward="false" selection-start-line="69" selection-start-column="71" selection-end-line="69" selection-end-column="71" />
-          <folding>
-            <marker date="1508970562895" expanded="false" signature="2503:2515" ph="..." />
-            <marker date="1508970562895" expanded="false" signature="2775:2793" ph="..." />
-            <marker date="1508970562895" expanded="false" signature="3324:3336" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app/o_t/tab_inicio.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="90" column="40" lean-forward="true" selection-start-line="90" selection-start-column="40" selection-end-line="90" selection-end-column="40" />
+        <state relative-caret-position="170">
+          <caret line="765" column="0" lean-forward="true" selection-start-line="765" selection-start-column="0" selection-end-line="765" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/app/js/function.js">
+    <entry file="file://$PROJECT_DIR$/app/templates/app/register_ot.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="323">
           <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+=======
+        <state relative-caret-position="102">
+          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="14" />
+>>>>>>> a1b21c1f5878930950760e59b1f4afb8ea19076a
           <folding>
-            <element signature="n#!!block;n#load_Parroquia#0" expanded="false" />
-            <element signature="n#!!block;n#load_TipoActividad#0" expanded="false" />
-            <element signature="n#!!block;n#getSubActividades#0" expanded="false" />
-            <element signature="n#!!block;n#load_contratista#0" expanded="false" />
-            <element signature="n#!!block;n#load_maquinarias#0" expanded="false" />
-            <element signature="n#!!block;n#load_Cargos#0" expanded="false" />
-            <element signature="n#!!block;n#get_TabInicio#0" expanded="false" />
-            <element signature="n#!!block;n#get_TabActividades#0" expanded="false" />
-            <element signature="n#!!block;n#get_Areas#0" expanded="false" />
-            <element signature="n#!!block;n#get_TabMaquinarias#0" expanded="false" />
-            <element signature="n#!!block;n#get_save#0" expanded="false" />
-            <element signature="n#!!block;n#gen_Cod#0" expanded="false" />
+            <element signature="e#193#2200#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/static/app/setting/o_t/style.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1091,5 +1049,7 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> a1b21c1f5878930950760e59b1f4afb8ea19076a
   </component>
 </project>
