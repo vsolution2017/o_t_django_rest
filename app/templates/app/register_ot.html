@@ -6,9 +6,13 @@
 
 {%block contenedor %}
 <div class="row">
-    <div name="redimensionar" class="container">
+    <div name="redimensionar" data-id="{{ id }}" class="container">
         <div class="pull-left">
-            <input type="text" id="_cod" class="form-control" style="width: 300px; font-weight: bold;"  readonly/>
+            <div class="form-inline">
+                <input type="text" id="_cod" class="form-control" style="width: 300px; font-weight: bold;"  readonly/>
+                <input name="costo_general" title="Costos General" type="text" class="form-control" style="width: 80px; font-weight: bold;" value="$ 00.00"  readonly/>
+            </div>
+
         </div>
         <div class="pull-right">
             <!--<button id="_cancel" class="btn btn-danger">Cancelar</button>-->

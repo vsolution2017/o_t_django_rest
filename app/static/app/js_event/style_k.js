@@ -1,7 +1,12 @@
-
+function load_pag(){
+    if(!$.isEmptyObject($("div[name='redimensionar']").attr("data-id"))){
+        alert("good");
+    }
+}
 $(function () {
     $("#tab_maquinaria table").bootstrapTable();
     $("#tab_rubros table").bootstrapTable();
+    $('#exTab2 select').selectpicker();
     //load_rubros("2017-09-30");
     load_rubros(moment());
 
@@ -12,12 +17,18 @@ $(function () {
     load_Cargos(2,"#cbo_coord");
     load_contratista();
 
+    load_pag();
+
+
     $("#_cod").val(gen_Cod());
 
-    //var utc = new Date().toJSON().slice(0, 10);
-    //$("#f_pedido, #f_planificada, #fechaInicio").val(utc);
-    $('.day_date').datetimepicker('update');
-
+    $('input[name="costo_tab"]').change(function () {
+       total =0;
+       $.each('input[name="costo_tab"]',function (i,input) {
+          total+= $(input).val()
+       });
+       $('input[name="costo_general"]').val(total);
+    });
 
     $("#cal").click(function () {
        console.log($("#tab_maquinaria table").bootstrapTable("getData"));
@@ -37,10 +48,7 @@ $(function () {
                 window.location.href = "/app/list_ot/";
             }
         });
-        //console.log(get_TabActividades());
     });
-
-    $('#exTab2 select').selectpicker();
 
     $('button[name="remove_tb"]').click(function(){
         row = $(this).closest(".row");
@@ -54,42 +62,28 @@ $(function () {
         });
 
     });
-    //$('#exTab2 select').selectpicker("val",0);
 
     $('.dropdown-menu[role="combobox"]').removeClass("open");
 
     $("#cboContratista").change(function(){
         load_maquinarias("#cbo_maq", $(this).val());
     });
+
     $("#cboTipo_mantenimiento").change(function(e){
        $("#_cod").val(gen_Cod());
     });
-
 
     $("#tab_actividades").on("click","label.buying-selling",function(){
         datos = $(this).data("json");
         div = $(this).closest(".row").find("input.costo").val(datos.precio.costo).change();
     });
 
-    /*Maquinaria*/
-
-
-
-    /*Maquinaria*/
-
-
     /*Actividades*/
-    function _sumTotalAreas(elem){
-        sum = 0;
-        $(elem).closest(".content").find(".row:not(.hidden) .total-area").each(function (i, v_ta) {
-            sum += parseFloat($(v_ta).val());
-        });
-        $(elem).closest(".content").closest(".row").find(".v_total-area").val(sum.toFixed(2)).change();
-    }
 
     $("#tab_actividades").on("change", ".input-area", function () {
         SumarAreas(".input-area", ".contenedor-area", ".total-area", this);
     });
+
     $("#tab_actividades").on("change", ".total-area", function () {
         _sumTotalAreas($(this).closest(".content"));
     });
@@ -208,3 +202,11 @@ $(function () {
 
 
 });
+
+function _sumTotalAreas(elem){
+    sum = 0;
+    $(elem).closest(".content").find(".row:not(.hidden) .total-area").each(function (i, v_ta) {
+        sum += parseFloat($(v_ta).val());
+    });
+    $(elem).closest(".content").closest(".row").find(".v_total-area").val(sum.toFixed(2)).change();
+}

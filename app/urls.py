@@ -7,7 +7,9 @@ urlpatterns = [
     url(r'^admin/', admin, name="admin"),
     url(r'^login/', login,name="login"),
     url(r'^list_ot/', list_ot,name="list_ot"),
-    url(r'^o_t/', o_t,name="o_t"),
+
+    url(r'^o_t/$', o_t_register,name="o_t"),
+    url(r'^o_t/(?P<pk>[0-9]+)$', o_t_update,name="ot_update"),
     url(r'^s_OrdenTrabajo/$', Orden_TrabajoView.as_view(),name="test"),
     url(r'^s_OrdenTrabajo/(?P<pk>[0-9]+)$', Detail_Orden_TrabajoView.as_view(),name="d_Orden_trabajo"),
     url(r'^settings/', settings, name="settings"),
@@ -20,7 +22,9 @@ urlpatterns = [
     url(r'^list/(?P<op>[\w-]+)/', ListView.as_view()),
     url(r'^contratista/$', Contratista_view.as_view()),
     url(r'^cargo/(?P<pk_cargo>[0-9]+)$', Cargo_view.as_view()),
-    url(r'^test/(?P<fecha>\d{8})$', ExampleView.as_view()),
+    #url(r'^test/(?P<fecha>\d{8})$', ExampleView.as_view()),
+    url(r'^test/$', ExampleView.as_view()),
+    #url(r'^c_consolidado/', c_consolidado,name="c_consolidado"),
     #url(r'^test/$', test),
 
 ]

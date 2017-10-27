@@ -3,11 +3,12 @@ function load_rubros(fecha){
     fecha1.set("date",1);
     console.log(fecha1.format("YYYYMMDD"));
     $.ajax({
-        url: '/app/test/'+fecha1.format("YYYYMMDD"),
+        url: '/app/s_PrecioRubro/'+fecha1.format("YYYYMMDD")+'/date',
         type:'GET',
         async: false,
         success: function(response){
             data = JSON.parse(response.precio_rubro.valores);
+            console.log(response);
             //Transporte
             transporte = data.transporte;
             t_transporte = (transporte.t_km * transporte.v_km);

@@ -1,6 +1,14 @@
 function input_number(value, row) {
     return '<input type="number" class="form-control input-sm" min="1" max="' + row.stock + '" value="'+ value +'" />';
 }
+function total_tabMaquinaria() {
+    total = 0;
+    $.each($("#tab_maquinaria table").bootstrapTable("getData"),function (i,row) {
+        alert(row.total);
+        total+= row.total;
+    });
+    $("#tab_maquinaria input[name='costo_tab']").val("$ "+total.toFixed(2));
+}
 window.input_numer_action = {
     'change input[type="number"]': function (e, value, row, index) {
         tiempo = $('input[name="_tiempo"]').val();
@@ -11,6 +19,7 @@ window.input_numer_action = {
             index : index,
             row : row
         });
+        total_tabMaquinaria();
     }
 };
 function get_costo_tiempo(tiempo,costo){
@@ -89,6 +98,7 @@ $(function () {
             return row;
         });
         $("#tab_maquinaria table").bootstrapTable("load",rows);
+        total_tabMaquinaria();
     });
 
     $("#btn_add_maq").click(function () {
@@ -101,16 +111,17 @@ $(function () {
             tiempo = $('input[name="_tiempo"]').val();
             total = get_costo_tiempo(tiempo,datos.precio.costo);
             $("#tab_maquinaria table").bootstrapTable("insertRow",{
-            index: 0,
-            row:{
-                    id: datos.id,
-                    cantidad: 1,
-                    stock: datos.stock,
-                    recurso: datos.maquinaria.descripcion,
-                    costo:  datos.precio.costo,
-                    total: total
-                }
-        });
+                index: 0,
+                row:{
+                        id: datos.id,
+                        cantidad: 1,
+                        stock: datos.stock,
+                        recurso: datos.maquinaria.descripcion,
+                        costo:  datos.precio.costo,
+                        total: total
+                    }
+            });
+            total_tabMaquinaria();
         }
     });
 

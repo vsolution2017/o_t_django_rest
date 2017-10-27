@@ -145,6 +145,18 @@ class OrdenTrabajoSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrdenTrabajo
         fields = "__all__"
+
+
+#Vista para Cuadro Consolidado Ordenes de Trabajo
+class OrdenTrabajo_CCSerializer(serializers.ModelSerializer):
+    t_mantenimiento = serializers.SerializerMethodField()
+    class Meta:
+        model = OrdenTrabajo
+        fields = ["id","cod_crav","direccion","t_mantenimiento"]
+    def get_t_mantenimiento(self,obj):
+        return obj.tipo_mantenimiento.descripcion # TipoMantenimiento.objects.get(pk=obj.tipo_mantenimiento.id).descripcion
+
+
 class Rubros_OrdenTrabajo(serializers.Serializer):
     #nombre = serializers.SerializerMethodField()
     nombre = serializers.SerializerMethodField()

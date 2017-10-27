@@ -5,7 +5,7 @@ $(function(){
 
 window.func_accion ={
     'click button[name="edit"]': function (e, value, row, index) {
-        alert("Editar Orden Trabajo");
+        window.location.href = "/app/o_t/"+row.id;
     },
     'click button[name="del"]': function (e, value, row, index) {
         alert("Eliminar Orden Trabajo");
