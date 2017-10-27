@@ -1,4 +1,9 @@
+
 $(function () {
+    $("#tab_maquinaria table").bootstrapTable();
+    $("#tab_rubros table").bootstrapTable();
+    //load_rubros("2017-09-30");
+    load_rubros(moment());
 
     load_Mantenimiento("#cboTipo_mantenimiento");
     load_Parroquia("#cboParroquia");
@@ -15,10 +20,11 @@ $(function () {
 
 
     $("#cal").click(function () {
-       fields = $.map($('.day_date'),function(date){
+       console.log($("#tab_maquinaria table").bootstrapTable("getData"));
+        /*fields = $.map($('.day_date'),function(date){
            return $("#"+ $(date).attr("data-link-field")).val();
        });
-       console.log(fields);
+       console.log(fields);*/
     });
 
     $("#_save").click(function(){
@@ -67,7 +73,7 @@ $(function () {
 
     /*Maquinaria*/
 
-    $("#tab_maquinaria table").bootstrapTable();
+
 
     /*Maquinaria*/
 

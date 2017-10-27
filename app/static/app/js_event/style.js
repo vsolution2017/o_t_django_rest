@@ -55,10 +55,11 @@ $(function () {
     });
 
     $("#fechaInicio , #fechaCierre").change(function () {
-        alert();
-        if ($("#fechaInicio").inputmask("isComplete") && $("#fechaCierre").inputmask("isComplete")) {
-            dateFechaInicio = $("#fechaInicio").val();
-            dateFechaCierre = $("#fechaCierre").val();
+        dateFechaInicio = $("#fechaInicio").val();
+        dateFechaCierre = $("#fechaCierre").val();
+
+        if(!$.isEmptyObject(dateFechaInicio) && !$.isEmptyObject(dateFechaCierre)){
+            //console.log(dateFechaInicio +" "+ dateFechaCierre);
             dateI = moment(dateFechaInicio, "YYYY-MM-DD");
             dateC = moment(dateFechaCierre, "YYYY-MM-DD");
             duracion = dateC.diff(dateI, 'days');
@@ -70,13 +71,13 @@ $(function () {
                 $("#contenedor").append(op_clone);
                 dateI.add(1,"d");
             }
-        } else {
-            $("#contenedor").html("");
         }
     });
 
     $("#myModal").on("show.bs.modal",function (e) {
-        if ($("#fechaInicio").inputmask("isComplete") && $("#fechaCierre").inputmask("isComplete")) {
+        dateFechaInicio = $("#fechaInicio").val();
+        dateFechaCierre = $("#fechaCierre").val();
+        if(!$.isEmptyObject(dateFechaInicio) && !$.isEmptyObject(dateFechaCierre)){
         }else{
             e.preventDefault();
         }

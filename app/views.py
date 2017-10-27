@@ -64,7 +64,7 @@ class Detail_PrecioRubroView(APIView):
             if op == "id":
                 return PrecioRubroFecha.objects.get(pk=pk)
             else:
-                date = datetime.datetime.strptime(pk, '%Y%m%d').date()
+                date = parse_str_fecha(pk) #datetime.datetime.strptime(pk, '%Y%m%d').date()
                 return PrecioRubroFecha.objects.get(fecha_mes=date)
         except PrecioRubroFecha.DoesNotExist:
             raise Http404
@@ -193,15 +193,21 @@ class Detail_Orden_TrabajoView(APIView):
 
 
 class ExampleView(APIView):
-    def get(self,request):
-        fecha_mes = '2017-08-01'
+    def get(self,request,fecha):
+        fecha_mes = parse_str_fecha(fecha)
         precio_rubro_fecha = PrecioRubroFecha.objects.get(fecha_mes=fecha_mes)
         precio_rubro_fecha_json = PrecioRubroFechaSerializer(precio_rubro_fecha)
-        return Response(precio_rubro_fecha_json.data)
+
+        cantidad_ot = OrdenTrabajo.objects.filter(fecha_inicio__year=fecha_mes.year,fecha_inicio__month=fecha_mes.month,estado=1).count()
+
+        _return = {
+            "precio_rubro" : precio_rubro_fecha_json.data,
+            "cantidad_ot": cantidad_ot
+        }
+        return Response(_return, status=201)
 
     parser_classes = (JSONParser,)
     renderer_classes = (JSONRenderer,)
-
     def post(self, request, format=None):
         actividades = request.data["actividades"]
         for act in actividades:

@@ -42,8 +42,7 @@ $('.year_date').datetimepicker({
          linkFormat: 'yyyy-mm-dd'
     })
     .on('changeDate', function(ev){
-        console.log(ev);
-        /*if (ev.date.valueOf() < date-start-display.valueOf()){
-            alert();
-        }*/
+        field = $(ev.target).attr("data-link-field");
+        //console.log(field);
+        $("#"+field).change();
 });

@@ -1,55 +1,29 @@
 <!DOCTYPE html>
 <div class="row">
-                    <div class="col-md-12">
-                        <div class="pull-right">
-                            <button class="btn btn-success" data-toggle="modal" data-target="#modal_material"><i class="fa fa-plus"></i> Agregar Material </button>
-                        </div>
-                        <div class="clearfix"></div>
-                        <br>
-                        <table data-toggle="table" >
-                            <thead>
-                                <tr>
-                                    <th data-align="center">Cod.</th>
-                                    <th class="col-md-4">Descripción</th>
-                                    <th data-align="center">Unidad</th>
-                                    <th class="col-md-1" data-align="center" data-formatter="input_format">Utilizado</th>
-                                    <th data-align="center">V. Unit.</th>
-                                    <th data-align="center">V. Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+    <div class="col-md-12">
+        <div class="pull-right">
+            <button class="btn btn-success" data-toggle="modal" data-target="#modal_material"><i class="fa fa-plus"></i> Agregar Material </button>
+        </div>
+        <div class="clearfix"></div>
+        <br>
+        <table data-toggle="table" >
+            <thead>
+                <tr>
+                    <th data-align="center">Cod.</th>
+                    <th class="col-md-4">Descripción</th>
+                    <th data-align="center">Unidad</th>
+                    <th class="col-md-1" data-align="center" data-formatter="input_format">Utilizado</th>
+                    <th data-align="center">V. Unit.</th>
+                    <th data-align="center">V. Total</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
 <hr>
 <div class="row">
     <div class="col-md-12">
-        <table data-toggle="table">
+        <table data-toggle="table" id="tb_rTransporte">
             <thead>
                 <tr>
                     <th colspan="3" data-align="center">
@@ -57,25 +31,25 @@
                     </th>
                 </tr>
                 <tr>
-                    <th  >N°</th>
-                    <th  >Descripcion</th>
-                    <th  >V. Total</th>
+                    <th data-field="n" data-align="center" >N°</th>
+                    <th data-field="descripcion"  >Descripcion</th>
+                    <th data-field="total" data-align="center" >V. Total</th>
                 </tr>
             </thead>
-            <tbody>
+            <!--<tbody>
                 <tr>
                     <td>1</td>
                     <td>MOVILIZACION</td>
                     <td>0</td>
                 </tr>
-            </tbody>
+            </tbody>-->
         </table>
     </div>
 </div>
 <hr>
 <div class="row">
     <div class="col-md-12">
-        <table data-toggle="table">
+        <table data-toggle="table" id="tb_rSeguridad">
             <thead>
                 <tr>
                     <th colspan="3" data-align="center">
@@ -83,25 +57,25 @@
                     </th>
                 </tr>
                 <tr>
-                    <th>N°</th>
-                    <th>Descripcion</th>
-                    <th>V. Total</th>
+                    <th data-field="n" data-align="center">N°</th>
+                    <th data-field="descripcion" >Descripcion</th>
+                    <th data-field="total" data-align="center">V. Total</th>
                 </tr>
             </thead>
-            <tbody>
+            <!--<tbody>
                 <tr>
                     <td>1</td>
                     <td>SEGURIDAD INDUSTRIAL</td>
                     <td>0</td>
                 </tr>
-            </tbody>
+            </tbody>-->
         </table>
     </div>
 </div>
 <hr>
 <div class="row">
     <div class="col-md-12">
-        <table data-toggle="table">
+        <table data-toggle="table" id="tb_rOperaciones">
             <thead>
                 <tr>
                     <th colspan="3" data-align="center">
@@ -109,18 +83,18 @@
                     </th>
                 </tr>
                 <tr>
-                    <th>N°</th>
-                    <th>Descripcion</th>
-                    <th>V. Total</th>
+                    <th data-field="n" data-align="center">N°</th>
+                    <th data-field="descripcion">Descripcion</th>
+                    <th data-field="total" data-align="center">V. Total</th>
                 </tr>
             </thead>
-            <tbody>
+            <!--<tbody>
                 <tr>
                     <td>1</td>
                     <td>GASTOS OPERACIONES</td>
                     <td>0</td>
                 </tr>
-            </tbody>
+            </tbody>-->
         </table>
     </div>
 </div>
