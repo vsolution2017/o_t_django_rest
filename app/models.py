@@ -341,8 +341,8 @@ class TipoActividad(models.Model):
 
 
 class TipoActividadPrecio(models.Model):
-    fecha_inicio = models.DateTimeField(blank=True, null=True)
-    fecha_fin = models.DateTimeField(blank=True, null=True)
+    fecha_inicio = models.DateField(blank=True, null=True)
+    fecha_fin = models.DateField(blank=True, null=True)
     costo = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
     sub_actividad = models.ForeignKey(SubActividad, models.DO_NOTHING, db_column='sub_actividad')
 

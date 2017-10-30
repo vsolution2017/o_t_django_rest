@@ -9,6 +9,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import *
 from .tests import *
+from .excel_generador import excel_cuadro_consolidado
 from .serializers import *
 
 def list_ot(request):
