@@ -22,8 +22,10 @@ urlpatterns = [
     url(r'^list/(?P<op>[\w-]+)/', ListView.as_view()),
     url(r'^contratista/$', Contratista_view.as_view()),
     url(r'^cargo/(?P<pk_cargo>[0-9]+)$', Cargo_view.as_view()),
+    url(r'^g_cconsolidado/(?P<fecha>\d{8})$', ExampleView.as_view()),
+
     #url(r'^test/(?P<fecha>\d{8})$', ExampleView.as_view()),
-    url(r'^test/$', ExampleView.as_view()),
+    #url(r'^test/$', ExampleView.as_view(),name="gen_excel"),
     #url(r'^c_consolidado/', c_consolidado,name="c_consolidado"),
     #url(r'^test/$', test),
 

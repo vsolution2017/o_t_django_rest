@@ -1,7 +1,7 @@
 table = ("#tb_precio_rubro");
 $(function(){
     $(table).bootstrapTable();
-    $(":input").inputmask();
+    //$(":input").inputmask();
     $("#_save").data("id",0);
 
     load_precio_rubro();

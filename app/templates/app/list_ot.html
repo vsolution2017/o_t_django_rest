@@ -6,16 +6,26 @@
 
 {%block contenedor %}
 <div class="row">
-    <div class="row">
-        <div style="width: 75%; margin: 0 auto;" >
+    <div style="width: 75%; margin: 0 auto;" >
+        <div class="col-md-12"  >
+            <div class="pull-left">
+                <div class="form-inline">
+                    <div class="input-group date month_date" data-link-field="fecha_mes" >
+                        <input class="form-control" size="16" type="text" value="" readonly>
+                        <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                    </div>
+                    <input type="hidden" id="fecha_mes" value="" />
+                    <a class="btn btn-info" id="gen_consolidado">Cuadro Consolidado</a>
+                </div>
+            </div>
             <div class="pull-right">
-                <a href="{% url 'app:o_t' %}" class="btn btn-success"><i class="fa fa-plus"></i>  Agregar Planilla</a>
+                <a href="{% url 'app:o_t' %}" class="btn btn-success" ><i class="fa fa-plus"></i>  Agregar Planilla</a>
                 <!--<button id="btn_test" class="btn btn-success">POST</button>-->
                 <!--<button data-toggle="modal" data-target="#add-modif" class="btn btn-info"><i class="fa fa-plus"></i> Agregar Planilla</button>-->
             </div>
             <div class="clearfix"></div>
             <br>
-            <table data-toogle="table" data-unique-id="id" >
+            <table id="tb_OrdenesTrabajo" data-toogle="table" data-unique-id="id" >
                 <thead>
                 <tr>
                     <th data-field="id" data-align="center">ID</th>
@@ -36,6 +46,7 @@
                   <li><a href="#">5</a></li>
                 </ul>
             </div>
+
         </div>
     </div>
 </div>

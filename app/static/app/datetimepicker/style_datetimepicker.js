@@ -6,6 +6,7 @@ $('.month_date').datetimepicker({
     autoclose: 1,
     format: 'yyyy-MM'
 });
+$('.month_date').datetimepicker('update', new Date());
 $('.year_date').datetimepicker({
     language:  'es',
     todayBtn:  1,

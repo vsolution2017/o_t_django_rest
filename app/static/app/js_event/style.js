@@ -42,7 +42,7 @@ function get_tiempo_total(){
 }
 
 $(function () {
-    $(":input").inputmask();
+    //$(":input").inputmask();
 
     $("#myModal").on("hidden.bs.modal",function(e){
         $('input[name="_tiempo"]').val(get_tiempo_total()).change();

@@ -208,8 +208,10 @@ class Detail_Orden_TrabajoView(APIView):
 
 
 class ExampleView(APIView):
-    def get(self,request):
-        return excel_cuadro_consolidado()
+    def get(self,request,fecha):
+        fecha = parse_str_fecha(fecha)
+
+        return excel_cuadro_consolidado(fecha)
         """
         ordenes = OrdenTrabajo.objects.all()
         ordenes_json = OrdenTrabajo_CCSerializer(ordenes, many=True)

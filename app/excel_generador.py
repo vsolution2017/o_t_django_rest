@@ -48,95 +48,94 @@ def sumarAreas(_detalle):
     return sum
 
 
-def excel_cuadro_consolidado():
+def excel_cuadro_consolidado(fecha):
     output = io.BytesIO()
     workbook = xlsxwriter.Workbook(output, {'in_memory': True})
     worksheet = workbook.add_worksheet()
-    ordenes = OrdenTrabajo.objects.all()
+    ordenes = OrdenTrabajo.objects.filter(fecha_inicio__year=fecha.year ,fecha_inicio__month=fecha.month,estado=1)
 
     date_format = workbook.add_format({'num_format': 'yyyy-mm-dd'})
     cabezera_cuadro_consolidado(worksheet)
 
-    row_sum = ordenes.count() + 1
-    # Formula Sumatoria Final
-    for i in range(5, 17):
-        worksheet.write_formula(row_sum, i, "=SUM(" + xl_rowcol_to_cell(1, i) + ":" + xl_rowcol_to_cell(row_sum - 1, i) + ")")
+    if ordenes.count() > 0:
+        # Formula Sumatoria Final
+        row_sum = ordenes.count() + 1
+        for i in range(5, 17):
+            worksheet.write_formula(row_sum, i, "=SUM(" + xl_rowcol_to_cell(1, i) + ":" + xl_rowcol_to_cell(row_sum - 1, i) + ")")
+        row = 1
+        for orden in ordenes:
+            worksheet.write_datetime(row, 1, orden.fecha_inicio, date_format)
+            worksheet.write(row, 2, orden.cod_crav)
+            worksheet.write(row, 3, orden.direccion)
+            worksheet.write(row, 4, orden.tipo_mantenimiento.descripcion)
 
-    row = 1
-    for orden in ordenes:
-        worksheet.write_datetime(row, 1, orden.fecha_inicio, date_format)
-        worksheet.write(row, 2, orden.cod_crav)
-        worksheet.write(row, 3, orden.direccion)
-        worksheet.write(row, 4, orden.tipo_mantenimiento.descripcion)
-
-        # Maquinarias
-        ot_cont_maq = OtContMaq.objects.filter(orden_trabajo=orden)
-        total_maq = 0
-        for item in ot_cont_maq:
-            #fecha = parse_str_fecha("20171015")
-            precios = ContratistaMaquinariaPrecio.objects.filter(contratista_maquinaria=item.contratista_maquinaria, fecha_inicio__lte= orden.fecha_inicio)
-            costo = precio_calculado(precios,orden.fecha_inicio)
-            total_maq += (item.cantidad * horario_precio(DetalleOrdenTrabajo.objects.get(orden_trabajo=orden).horas_totales, costo))
-        worksheet.write(row, 5, total_maq)
-
-        # Actividades
-        detalle_actividades = DetalleOtActividad.objects.filter(orden_trabajo=orden)
-        total_act = 0
-        for item in detalle_actividades:
-            sub_actividades = json.loads(item.sub_actividades)
-            costo = 0
-            for sub_actividad in sub_actividades:
-                precios = TipoActividadPrecio.objects.filter(sub_actividad=sub_actividad["id"], fecha_inicio__lte=orden.fecha_inicio)
+            # Maquinarias
+            ot_cont_maq = OtContMaq.objects.filter(orden_trabajo=orden)
+            total_maq = 0
+            for item in ot_cont_maq:
+                #fecha = parse_str_fecha("20171015")
+                precios = ContratistaMaquinariaPrecio.objects.filter(contratista_maquinaria=item.contratista_maquinaria, fecha_inicio__lte= orden.fecha_inicio)
                 costo = precio_calculado(precios,orden.fecha_inicio)
-            total_act += costo * sumarAreas(item)
-        worksheet.write(row, 6, total_act)
-        contratista = float(total_maq + total_act)
-        worksheet.write(row, 7, contratista)
+                total_maq += (item.cantidad * horario_precio(DetalleOrdenTrabajo.objects.get(orden_trabajo=orden).horas_totales, costo))
+            worksheet.write(row, 5, total_maq)
 
-        fecha_rubro = orden.fecha_inicio.replace(day=1)
-        precio_rubro = PrecioRubroFecha.objects.get(fecha_mes=fecha_rubro)
-        _json = json.loads(precio_rubro.valores)
-        #Transporte
-        transporte = _json["transporte"]
-        t_km = float(transporte["t_km"])
-        v_km = float(transporte["v_km"])
-        transporte_val = float(v_km * t_km)
-        worksheet.write(row, 10, round(transporte_val, 2))
-        # Seguridad Industrial
-        seguridad = _json["seguridad"]
-        t_si = float(seguridad["t_si"])
-        c_hombre = float(seguridad["c_hombre"])
-        seguridad_val = float((t_si * c_hombre) / ordenes.count())
-        worksheet.write(row, 11, round(seguridad_val, 2))
+            # Actividades
+            detalle_actividades = DetalleOtActividad.objects.filter(orden_trabajo=orden)
+            total_act = 0
+            for item in detalle_actividades:
+                sub_actividades = json.loads(item.sub_actividades)
+                costo = 0
+                for sub_actividad in sub_actividades:
+                    precios = TipoActividadPrecio.objects.filter(sub_actividad=sub_actividad["id"], fecha_inicio__lte=orden.fecha_inicio)
+                    costo = precio_calculado(precios,orden.fecha_inicio)
+                total_act += costo * sumarAreas(item)
+            worksheet.write(row, 6, total_act)
+            contratista = float(total_maq + total_act)
+            worksheet.write(row, 7, contratista)
 
-        # Material Utilizado
-        mat_ut = 0
-        worksheet.write(row, 8, round(mat_ut, 2))
+            fecha_rubro = orden.fecha_inicio.replace(day=1)
+            precio_rubro = PrecioRubroFecha.objects.get(fecha_mes=fecha_rubro)
+            _json = json.loads(precio_rubro.valores)
+            #Transporte
+            transporte = _json["transporte"]
+            t_km = float(transporte["t_km"])
+            v_km = float(transporte["v_km"])
+            transporte_val = float(v_km * t_km)
+            worksheet.write(row, 10, round(transporte_val, 2))
+            # Seguridad Industrial
+            seguridad = _json["seguridad"]
+            t_si = float(seguridad["t_si"])
+            c_hombre = float(seguridad["c_hombre"])
+            seguridad_val = float((t_si * c_hombre) / ordenes.count())
+            worksheet.write(row, 11, round(seguridad_val, 2))
 
-        #RRHH
-        rrhh = _json["rrhh"]
-        rrhh_promedio = float(rrhh["promedio"])
-        rrhh_previo = contratista + mat_ut + transporte_val + seguridad_val
-        worksheet.write(row, 12, round(rrhh_previo, 2))
-        worksheet.write_formula(row, 13, "="+ xl_rowcol_to_cell(row,12) +"/$F$"+str(ordenes.count() + 2))
-        worksheet.write_formula(row, 14, "=" + xl_rowcol_to_cell(row, 13) + "*" + str(rrhh_promedio))
+            # Material Utilizado
+            mat_ut = 0
+            worksheet.write(row, 8, round(mat_ut, 2))
+
+            #RRHH
+            rrhh = _json["rrhh"]
+            rrhh_promedio = float(rrhh["promedio"])
+            rrhh_previo = contratista + mat_ut + transporte_val + seguridad_val
+            worksheet.write(row, 12, round(rrhh_previo, 2))
+            worksheet.write_formula(row, 13, "="+ xl_rowcol_to_cell(row,12) +"/$F$"+str(ordenes.count() + 2))
+            worksheet.write_formula(row, 14, "=" + xl_rowcol_to_cell(row, 13) + "*" + str(rrhh_promedio))
 
 
-        # Operacion
-        operacion = _json["operacion"]
-        operacion_porce = float(operacion["porcentaje_op"])
-        worksheet.write_formula(row, 15, "=(SUM(" + xl_rowcol_to_cell(row, 7) + ":" + xl_rowcol_to_cell(row, 11) + ")+" + xl_rowcol_to_cell(row, 14) + ")*"+str(operacion_porce))
+            # Operacion
+            operacion = _json["operacion"]
+            operacion_porce = float(operacion["porcentaje_op"])
+            worksheet.write_formula(row, 15, "=(SUM(" + xl_rowcol_to_cell(row, 7) + ":" + xl_rowcol_to_cell(row, 11) + ")+" + xl_rowcol_to_cell(row, 14) + ")*"+str(operacion_porce))
 
-        # Total
-        worksheet.write_formula(row,16,"=SUM(" + xl_rowcol_to_cell(row, 7) + ":" + xl_rowcol_to_cell(row, 11) + ") + "+ xl_rowcol_to_cell(row,15) +" + "+ xl_rowcol_to_cell(row,14))
+            # Total
+            worksheet.write_formula(row,16,"=SUM(" + xl_rowcol_to_cell(row, 7) + ":" + xl_rowcol_to_cell(row, 11) + ") + "+ xl_rowcol_to_cell(row,15) +" + "+ xl_rowcol_to_cell(row,14))
 
-        row += 1
-
+            row += 1
 
     workbook.close()
     output.seek(0)
 
     response = HttpResponse(output.read(),
                             content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-    response['Content-Disposition'] = "attachment; filename=test.xlsx"
+    response['Content-Disposition'] = "attachment; filename=cConsolidado.xlsx"
     return response
