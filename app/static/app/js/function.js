@@ -8,7 +8,6 @@ function load_rubros(fecha){
         async: false,
         success: function(response){
             data = JSON.parse(response.precio_rubro.valores);
-            console.log(response);
             //Transporte
             transporte = data.transporte;
             t_transporte = (transporte.t_km * transporte.v_km);
@@ -24,10 +23,16 @@ function load_rubros(fecha){
 
             //Operaciones
             operaciones = data.operacion;
-            t_operaciones = operaciones.porcentaje_op * (t_transporte + t_seguridad);
+            t_operaciones = operaciones.porcentaje_op ;
             $("#tb_rOperaciones").bootstrapTable("insertRow",{ index: 1 , row : {n : 1,
                 descripcion: "Operaciones",
                 total: t_operaciones}});
+
+            //RRHH
+            rrhh = data.rrhh;
+            $("#tb_rRRHH").bootstrapTable("insertRow",{ index: 1 , row : {n : 1,
+                descripcion: "Personal",
+                total: rrhh.promedio}});
 
         }
     });
@@ -175,7 +180,7 @@ function get_TabInicio(){
         direccion : $("#i_direccion").val(),
         descripcion_problema : $("#i_problema").val(),
         observacion : "",
-        cod_crav : $("#_cod").val()
+        cod_crav : $("#_cod").val(),
     };
     t_fecha_horas = [];
     $("#myModal .modal-body #contenedor .modal_horas").each(function(i,div_horas){
@@ -252,7 +257,10 @@ function get_TabMaquinarias(){
 function get_save(){
     return  $.extend({},get_TabInicio(),{
         maquinarias : JSON.stringify(get_TabMaquinarias()),
-        actividades : JSON.stringify(get_TabActividades())
+        actividades : JSON.stringify(get_TabActividades()),
+        detalle : JSON.stringify([{
+            horas_totales : $("#tab_maquinaria input[name='_tiempo']").val()
+        }])
     });
 }
 

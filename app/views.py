@@ -81,11 +81,11 @@ class Detail_PrecioRubroView(APIView):
 
             if op == "date":
                 fecha_mes = parse_str_fecha(pk)
-                cantidad_ot = OrdenTrabajo.objects.filter(fecha_inicio__year=fecha_mes.year,fecha_inicio__month=fecha_mes.month,estado=1).count()
+                cantidad_ot = OrdenTrabajo.objects.filter(fecha_inicio__year=fecha_mes.year, fecha_inicio__month=fecha_mes.month, estado=1).count()
                 return Response({
                                     "precio_rubro" : precio_rubro_fecha_json.data,
                                     "cantidad_ot": cantidad_ot
-                                },status=201)
+                                }, status=201)
 
             return Response(precio_rubro_fecha_json.data)
         except PrecioRubroFecha.DoesNotExist:
@@ -132,14 +132,6 @@ class Cargo_view(APIView):
         return Response(cargos_json.data)
 
 class Orden_TrabajoView(APIView):
-    """
-    def get_array(self,id_orden,_array):
-        _array = json.loads(_array)
-        for item in _array:
-            item["orden_trabajo"] = id_orden
-        return _array
-    """
-
     def get(self,request):
         ordenes = OrdenTrabajo.objects.filter(estado=1)
         ordenes_json = OrdenTrabajoSerializer_tabview(ordenes,many=True)
@@ -158,13 +150,21 @@ class Orden_TrabajoView(APIView):
             else:
                 return Response(horas_json.errors, status=400)
 
+            # Guardar Detalles
+            detalle = get_array(orden.data["id"], "orden_trabajo", request.data["detalle"])
+            detalle_json = DetalleOrdenTrabajoSerializer(data=detalle, many=True)
+            if detalle_json.is_valid():
+                detalle_json.save()
+            else:
+                return Response(detalle_json.errors, status=400)
+
+
             # Guardar Maquinarias
             maquinarias = get_array(orden.data["id"],"orden_trabajo", request.data["maquinarias"])
             maquinarias_json = OtContMaqSerializer(data=maquinarias,many=True)
 
             if maquinarias_json.is_valid():
                 maquinarias_json.save()
-                #return Response(maquinarias_json.data, status=201)
             else:
                 return Response(maquinarias_json.errors, status=400)
 
@@ -208,14 +208,18 @@ class Detail_Orden_TrabajoView(APIView):
 
 class ExampleView(APIView):
     def get(self,request):
+        return excel_cuadro_consolidado()
+        """
         ordenes = OrdenTrabajo.objects.all()
         ordenes_json = OrdenTrabajo_CCSerializer(ordenes, many=True)
         return Response(ordenes_json.data, status=201)
+        """
 
     parser_classes = (JSONParser,)
     renderer_classes = (JSONRenderer,)
     def post(self, request, format=None):
         actividades = request.data["actividades"]
+
         for act in actividades:
             _array = get_array("0", "detalle_ot_actividad", act["areas"])
             return Response(_array, status=201)

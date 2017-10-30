@@ -24,6 +24,7 @@ $(function(){
         $(".modal").find(".modal-title").html("Editar Registro");
         $(".modal").find("#f_precio").val(row.fecha_mes);
 
+
         valores = JSON.parse(row.valores);
 
         /* Transporte */

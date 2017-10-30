@@ -21,6 +21,9 @@ function getData(id){
         transporte : {
             t_km : $("#t_km").val(),
             v_km: $("#v_km").val()
+        },
+        rrhh: {
+            promedio : $("#rrhh_avg").val()
         }
     };
 
@@ -39,7 +42,7 @@ function getData(id){
 
 function _delete(id){
     $.ajax({
-        url : "/app/s_PrecioRubro/"+ id,
+        url : "/app/s_PrecioRubro/"+ id+"/id",
         type: "DELETE",
         success: function(response){
             load_precio_rubro();

@@ -3,6 +3,13 @@ function load_pag(){
         alert("good");
     }
 }
+function total_tabActividad() {
+    total = 0;
+    $.each($("#tab_actividades input[name='total_actividad']"),function (i,input) {
+        total += parseFloat($(input).val());
+    });
+    $("#tab_actividades input[name='costo_tab']").val(total.toFixed(2)).change();
+}
 $(function () {
     $("#tab_maquinaria table").bootstrapTable();
     $("#tab_rubros table").bootstrapTable();
@@ -22,13 +29,7 @@ $(function () {
 
     $("#_cod").val(gen_Cod());
 
-    $('input[name="costo_tab"]').change(function () {
-       total =0;
-       $.each('input[name="costo_tab"]',function (i,input) {
-          total+= $(input).val()
-       });
-       $('input[name="costo_general"]').val(total);
-    });
+
 
     $("#cal").click(function () {
        console.log($("#tab_maquinaria table").bootstrapTable("getData"));
@@ -60,6 +61,7 @@ $(function () {
             field: 'id',
             values: ids
         });
+        total_tabMaquinaria();
 
     });
 
@@ -88,6 +90,11 @@ $(function () {
         _sumTotalAreas($(this).closest(".content"));
     });
 
+    $("#tab_actividades").on("change", "input[name='total_actividad']", function () {
+       total_tabActividad();
+    });
+
+
     $("#tab_actividades").on("change", "input[name='costo_actividad']", function () {
         sum = 0;
         $(this).closest(".row").find("input[name='costo_actividad']").each(function(i,input){
@@ -98,8 +105,17 @@ $(function () {
                 sum *= parseFloat($(input).val());
             }
         });
-        $(this).closest(".row").find("input[name='total_actividad']").val(sum.toFixed(2));
+        $(this).closest(".row").find("input[name='total_actividad']").val(sum.toFixed(2)).change();
     });
+
+    $("input[name='costo_tab']").change(function (e) {
+        total = 0;
+        $.each($("input[name='costo_tab']"),function (i,input) {
+            total += parseFloat($(input).val());
+        });
+        $("input[name='costo_general']").val(total.toFixed(2));
+    });
+
 
     $("#exTab2").on("click","button[name='btn_area']",function () {
         op_area = $(this).closest(".row").find(".op_add_area").clone();
@@ -115,6 +131,7 @@ $(function () {
         actividades.splice($.inArray(id, actividades),1);
         $("#cont-actividades").data("actividades",actividades)
         $(this).closest(".row").remove();
+        total_tabActividad();
     });
 
     $("#btn_add_activity").click(function(){

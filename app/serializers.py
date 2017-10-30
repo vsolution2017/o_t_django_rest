@@ -24,7 +24,7 @@ class ContratistaMaquinariaSerializer(serializers.ModelSerializer):
     class Meta:
         model= ContratistaMaquinaria
         fields= ('id','maquinaria','contratista','stock','precio')
-    def get_precio(self,obj):
+    def get_precio(self, obj):
         try:
             tipo_precio = ContratistaMaquinariaPrecio.objects.filter(contratista_maquinaria=obj.id).latest('fecha_inicio')
             tipo_precio_json = ContratistaMaquinariaPrecioSerializer(tipo_precio)
@@ -93,6 +93,11 @@ class DetalleFinicioFcierreSerializer(serializers.ModelSerializer):
 class OtContMaqSerializer(serializers.ModelSerializer):
     class Meta:
         model = OtContMaq
+        fields = "__all__"
+
+class DetalleOrdenTrabajoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DetalleOrdenTrabajo
         fields = "__all__"
 
 class DetalleOtActividadSerializer(serializers.ModelSerializer):
