@@ -6,6 +6,7 @@ function cbo_option(cbo){
     data = $(cbo).find("option[value='"+ $(cbo).selectpicker("val") +"']").data("json");
     return $.isEmptyObject(data)? "":data;
 }
+
 function _sumTotalAreas(elem){
     sum = 0;
     $(elem).closest(".content").find(".row:not(.hidden) .total-area").each(function (i, v_ta) {
@@ -159,6 +160,7 @@ function get_TabInicio(){
         fecha_pedido : $("#f_pedido").val(),
         fecha_planificada : $("#f_planificada").val(),
         fecha_inicio: $("#fechaInicio").val(),
+        fecha_cierre:  $.isEmptyObject($("#fechaCierre").val())? null:$("#fechaCierre").val() ,
         parroquia : $("#cboParroquia").selectpicker("val"),
         direccion : $("#i_direccion").val(),
         descripcion_problema : $("#i_problema").val(),
@@ -247,7 +249,6 @@ function get_save(){
     });
 }
 
-
 function get_Rubros() {
     $.ajax({
         url : "/app/s_rubro_orden/",
@@ -264,6 +265,75 @@ function gen_Cod() {
     t_mantenimiento = cbo_option("#cboTipo_mantenimiento").abr;
     fecha = moment().format("YYYYMMDD");
     return ["CRAV",_tipo,parroquia,"OTR",t_mantenimiento,fecha].join("-");
+}
+
+function load_pag(){
+    if(!$.isEmptyObject($("div[name='redimensionar']").attr("data-id"))){
+        id = $("div[name='redimensionar']").attr("data-id");
+        $.ajax({
+            url: "/app/s_OrdenTrabajo/"+ id,
+            type: "GET",
+            success: function (response) {
+                console.log(response);
+                setOrden(response.orden);
+                setHoras(response.horas);
+                setMaquinaria(response.maquinaria);
+                setActividad(response.actividades);
+
+            }
+        });
+    }
+}
+
+function _getDate(field,fecha) {
+    if (!$.isEmptyObject(fecha)){
+        $(".day_date[data-link-field='"+ field +"']").datetimepicker("update",moment(fecha).toDate());
+    }
+}
+
+function setOrden(orden){
+    $("#cboTipo_mantenimiento").selectpicker("val",orden.tipo_mantenimiento);
+    $("#cboParroquia").selectpicker("val",orden.parroquia);
+
+    _getDate('f_planificada',orden.fecha_planificada);
+    _getDate('f_pedido',orden.fecha_pedido);
+    _getDate('fechaInicio',orden.fecha_inicio);
+    _getDate('fechaCierre',orden.fecha_cierre);
+
+    $("#i_direccion").val(orden.direccion);
+    $("#i_problema").val(orden.descripcion_problema);
+
+    $("#_cod").val(orden.cod_crav);
+
+}
+
+function setHoras(horas) {
+    if (horas.length > 0){
+        $("#fechaCierre").change();
+        $.each(horas,function (i,hora) {
+            row_horas = $("#contenedor .modal_horas:eq("+ i + ")");
+            $(row_horas).find("input[name='h_inicio']").val(hora.hora_entrada);
+            $(row_horas).find("input[name='h_fin']").val(hora.hora_salida);
+            //$(row_horas).data("id",hora.id);
+        });
+         $('input[name="_tiempo"]').val(get_tiempo_total()).change();
+    }
+}
+function setMaquinaria(maquinarias) {
+    $.each(maquinarias,function (i,maquinaria) {
+        $("#cboContratista").selectpicker("val",maquinaria.contratista_maquinaria.contratista).change();
+
+        $("#cbo_maq").selectpicker("val",maquinaria.contratista_maquinaria.maquinaria.id);
+        $("#btn_add_maq").click();
+    });
+}
+function setActividad(actividades) {
+    $.each(actividades,function (i,actividad) {
+        console.log(actividad);
+        $("#cboTipoActividad").selectpicker("val",actividad.id);
+        $("#btn_add_activity").click();
+
+    });
 }
 
 /*function load_rubros(fecha){

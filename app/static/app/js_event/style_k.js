@@ -1,16 +1,3 @@
-function load_pag(){
-    if(!$.isEmptyObject($("div[name='redimensionar']").attr("data-id"))){
-        id = $("div[name='redimensionar']").attr("data-id");
-        $.ajax({
-            url: "/app/s_OrdenTrabajo/"+ id,
-            type: "GET",
-            success: function (response) {
-
-            }
-        });
-    }
-}
-
 $(function () {
     $("#tab_maquinaria table").bootstrapTable();
     $("#tab_rubros table").bootstrapTable();

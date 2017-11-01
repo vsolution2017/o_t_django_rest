@@ -99,6 +99,12 @@ class OtContMaqSerializer(serializers.ModelSerializer):
         model = OtContMaq
         fields = "__all__"
 
+class OtContMaqSerializer_get(serializers.ModelSerializer):
+    contratista_maquinaria = ContratistaMaquinariaSerializer(read_only=True)
+    class Meta:
+        model = OtContMaq
+        fields = ("id","cantidad","contratista_maquinaria")
+
 class DetalleOrdenTrabajoSerializer(serializers.ModelSerializer):
     class Meta:
         model = DetalleOrdenTrabajo
@@ -108,6 +114,26 @@ class DetalleOtActividadSerializer(serializers.ModelSerializer):
     class Meta:
         model = DetalleOtActividad
         fields = "__all__"
+
+
+class DetalleOtActividadSerializer_get(serializers.ModelSerializer):
+    sub_actividades = serializers.SerializerMethodField()
+    tipo_actividad = serializers.SerializerMethodField()
+    areas = serializers.SerializerMethodField()
+    class Meta:
+        model = DetalleOtActividad
+        fields = ("id","sub_actividades","tipo_actividad","areas")
+    def get_sub_actividades(self,obj):
+        subs = []
+        for sub in json.loads(obj.sub_actividades):
+            subs.append(SubActividad.objects.get(pk=sub["id"]))
+        return SubActividadSerializer(subs,many=True).data
+    def get_tipo_actividad(self,obj):
+        tipo_actividad = TipoActividad.objects.get(pk=obj.tipo_actividad.id)
+        return TipoActividadSerializer(tipo_actividad).data
+    def get_areas(self,obj):
+        detalles = DetalleOtActividadArea.objects.filter(detalle_ot_actividad=obj)
+        return DetalleOtActividadAreaSerializer(detalles,many=True).data
 
 class DetalleOtActividadAreaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -142,12 +168,7 @@ class OrdenTrabajoSerializer_tabview(serializers.ModelSerializer):
         return obj.cod_crav
 
     def get_f_cierre(self, obj):
-        if DetalleFinicioFcierre.objects.filter(orden_trabajo=obj.id).exists():
-            try:
-                horas = DetalleFinicioFcierre.objects.filter(orden_trabajo=obj.id).latest('fecha')
-                return horas.fecha
-            except DetalleFinicioFcierre.DoesNotExist:
-                return "-"
+        return obj.fecha_cierre
 
 # Vista para la clase normal
 class OrdenTrabajoSerializer(serializers.ModelSerializer):
@@ -164,11 +185,3 @@ class OrdenTrabajo_CCSerializer(serializers.ModelSerializer):
         fields = ["id","cod_crav","direccion","t_mantenimiento"]
     def get_t_mantenimiento(self,obj):
         return obj.tipo_mantenimiento.descripcion # TipoMantenimiento.objects.get(pk=obj.tipo_mantenimiento.id).descripcion
-
-
-class Rubros_OrdenTrabajo(serializers.Serializer):
-    #nombre = serializers.SerializerMethodField()
-    nombre = serializers.SerializerMethodField()
-
-
-

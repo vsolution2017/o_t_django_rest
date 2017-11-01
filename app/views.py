@@ -207,8 +207,15 @@ class Detail_Orden_TrabajoView(APIView):
 
     def get(self,request,pk):
         orden = self.get_object(pk)
-        orden_json = OrdenTrabajoSerializer(orden)
-        return Response(orden_json.data, status=201)
+        otContMaq = OtContMaq.objects.filter(orden_trabajo=orden)
+        detalleOtActividad = DetalleOtActividad.objects.filter(orden_trabajo=orden)
+        horas = DetalleFinicioFcierre.objects.filter(orden_trabajo=orden)
+        return Response({
+            "orden": OrdenTrabajoSerializer(orden).data,
+            "maquinaria": OtContMaqSerializer_get(otContMaq,many=True).data,
+            "actividades": DetalleOtActividadSerializer_get(detalleOtActividad, many=True).data,
+            "horas" : DetalleFinicioFcierreSerializer(horas,many=True).data
+        }, status=201)
 
     def put(self,request,pk):
         pass
