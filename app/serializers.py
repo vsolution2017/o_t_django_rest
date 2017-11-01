@@ -117,20 +117,24 @@ class DetalleOtActividadSerializer(serializers.ModelSerializer):
 
 
 class DetalleOtActividadSerializer_get(serializers.ModelSerializer):
-    sub_actividades = serializers.SerializerMethodField()
-    tipo_actividad = serializers.SerializerMethodField()
+    #sub_actividades = serializers.SerializerMethodField()
+    #tipo_actividad = serializers.SerializerMethodField()
     areas = serializers.SerializerMethodField()
     class Meta:
         model = DetalleOtActividad
         fields = ("id","sub_actividades","tipo_actividad","areas")
+    """
     def get_sub_actividades(self,obj):
         subs = []
         for sub in json.loads(obj.sub_actividades):
             subs.append(SubActividad.objects.get(pk=sub["id"]))
         return SubActividadSerializer(subs,many=True).data
+
+
     def get_tipo_actividad(self,obj):
         tipo_actividad = TipoActividad.objects.get(pk=obj.tipo_actividad.id)
         return TipoActividadSerializer(tipo_actividad).data
+    """
     def get_areas(self,obj):
         detalles = DetalleOtActividadArea.objects.filter(detalle_ot_actividad=obj)
         return DetalleOtActividadAreaSerializer(detalles,many=True).data

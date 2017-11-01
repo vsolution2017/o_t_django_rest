@@ -213,6 +213,7 @@ class Detail_Orden_TrabajoView(APIView):
         return Response({
             "orden": OrdenTrabajoSerializer(orden).data,
             "maquinaria": OtContMaqSerializer_get(otContMaq,many=True).data,
+            #"actividades": DetalleOtActividadSerializer(detalleOtActividad, many=True).data,
             "actividades": DetalleOtActividadSerializer_get(detalleOtActividad, many=True).data,
             "horas" : DetalleFinicioFcierreSerializer(horas,many=True).data
         }, status=201)

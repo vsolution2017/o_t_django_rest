@@ -149,6 +149,7 @@ $(function () {
                 $.each(sub_actividades,function(i,sub_actividad){
                     op_subactividad = $(actividad_sample).find(".op_subactividad").clone();
                     $(op_subactividad).data("json",sub_actividad);
+                    $(op_subactividad).attr("data-id",sub_actividad.id);
                     $(op_subactividad).removeClass("hidden");
                     $(op_subactividad).removeClass("op_subactividad");
                     $(op_subactividad).find(".buying-selling-word").html(sub_actividad.descripcion);

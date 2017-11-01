@@ -102,7 +102,6 @@ $(function () {
 
     $("#btn_add_maq").click(function () {
         datos = cbo_option("#cbo_maq");
-        console.log(datos);
         ids = $.map($("#tab_maquinaria table").bootstrapTable('getData'), function (row) {
             return row.id;
         });
@@ -121,7 +120,6 @@ $(function () {
                         total: total
                     }
             });
-            console.log($("#tab_maquinaria table").bootstrapTable("getData"));
             total_tabMaquinaria();
         }
     });

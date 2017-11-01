@@ -83,7 +83,6 @@ function load_TipoActividad(cbo){
 
 function getSubActividades(id_actividad){
     fecha = fechaFormat_URL($("#fechaInicio").val());
-    console.log(('/app/sub_actividad/' + id_actividad+'/'+fecha));
     response = null;
     $.ajax({
         url: ('/app/sub_actividad/' + id_actividad+'/'+fecha) ,
@@ -116,7 +115,6 @@ function load_contratista(){
 
 function load_maquinarias(cbo,contratista){
     fecha = fechaFormat_URL($("#fechaInicio").val());
-    console.log(('/app/maquinarias/' + contratista+'/'+fecha));
     $.ajax({
         url: '/app/maquinarias/' + contratista +'/'+fecha,
         type: 'GET',
@@ -274,7 +272,6 @@ function load_pag(){
             url: "/app/s_OrdenTrabajo/"+ id,
             type: "GET",
             success: function (response) {
-                console.log(response);
                 setOrden(response.orden);
                 setHoras(response.horas);
                 setMaquinaria(response.maquinaria);
@@ -319,6 +316,7 @@ function setHoras(horas) {
          $('input[name="_tiempo"]').val(get_tiempo_total()).change();
     }
 }
+
 function setMaquinaria(maquinarias) {
     $.each(maquinarias,function (i,maquinaria) {
         $("#cboContratista").selectpicker("val",maquinaria.contratista_maquinaria.contratista).change();
@@ -327,12 +325,30 @@ function setMaquinaria(maquinarias) {
         $("#btn_add_maq").click();
     });
 }
-function setActividad(actividades) {
-    $.each(actividades,function (i,actividad) {
-        console.log(actividad);
-        $("#cboTipoActividad").selectpicker("val",actividad.id);
-        $("#btn_add_activity").click();
 
+function setActividad(_actividades) {
+    $.each(_actividades,function (i,actividad) {
+        _sub_actividades =    $.map(JSON.parse(actividad.sub_actividades),function (sub) {
+            return sub.id;
+        }) ;
+        $("#cboTipoActividad").selectpicker("val",actividad.tipo_actividad);
+        $("#btn_add_activity").click();
+        index = $.inArray(actividad.tipo_actividad,actividades);
+        _div_actividad = "#cont-actividades div[name='_actividades']:eq("+ index +")";
+
+        $.each(_sub_actividades,function (i,sub) {
+            $(_div_actividad +" .buying-selling-group label[data-id='"+ sub +"']")
+                .addClass("active")
+                .click();
+        });
+
+        $.each(actividad.areas,function (i,area) {
+           $(_div_actividad + " button[name='btn_area']").click();
+           $(_div_actividad + " .add_area:eq(" + i + ") input[name='nom_area']").val(area.nombre);
+           $(_div_actividad + " .add_area:eq(" + i + ") .input-area:eq(0)").val(area.v1).change();
+           $(_div_actividad + " .add_area:eq(" + i + ") .input-area:eq(1)").val(area.v2).change();
+           $(_div_actividad + " .add_area:eq(" + i + ") .input-area:eq(2)").val(area.v3).change();
+        });
     });
 }
 
