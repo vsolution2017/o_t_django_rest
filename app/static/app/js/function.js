@@ -1,46 +1,25 @@
-function load_rubros(fecha){
-    fecha1 = moment(fecha);
-    fecha1.set("date",1);
-    console.log(fecha1.format("YYYYMMDD"));
-    $.ajax({
-        url: '/app/s_PrecioRubro/'+fecha1.format("YYYYMMDD")+'/date',
-        type:'GET',
-        async: false,
-        success: function(response){
-            data = JSON.parse(response.precio_rubro.valores);
-            //Transporte
-            transporte = data.transporte;
-            t_transporte = (transporte.t_km * transporte.v_km);
-            $("#tb_rTransporte").bootstrapTable("insertRow",{ index: 1 , row : {n : 1,
-                descripcion: "Transporte",
-                total: t_transporte}});
-            //Seguridad
-            seguridad = data.seguridad;
-            t_seguridad = (seguridad.t_si * seguridad.c_hombre) / response.cantidad_ot
-            $("#tb_rSeguridad").bootstrapTable("insertRow",{ index: 1 , row : {n : 1,
-                descripcion: "Seguridad",
-                total: t_seguridad }});
-
-            //Operaciones
-            operaciones = data.operacion;
-            t_operaciones = operaciones.porcentaje_op ;
-            $("#tb_rOperaciones").bootstrapTable("insertRow",{ index: 1 , row : {n : 1,
-                descripcion: "Operaciones",
-                total: t_operaciones}});
-
-            //RRHH
-            rrhh = data.rrhh;
-            $("#tb_rRRHH").bootstrapTable("insertRow",{ index: 1 , row : {n : 1,
-                descripcion: "Personal",
-                total: rrhh.promedio}});
-
-        }
-    });
+function fechaFormat_URL(fecha){
+    return moment(fecha).format("YYYYMMDD");
 }
 
 function cbo_option(cbo){
     data = $(cbo).find("option[value='"+ $(cbo).selectpicker("val") +"']").data("json");
     return $.isEmptyObject(data)? "":data;
+}
+function _sumTotalAreas(elem){
+    sum = 0;
+    $(elem).closest(".content").find(".row:not(.hidden) .total-area").each(function (i, v_ta) {
+        sum += parseFloat($(v_ta).val());
+    });
+    $(elem).closest(".content").closest(".row").find(".v_total-area").val(sum.toFixed(2)).change();
+}
+
+function total_tabActividad() {
+    total = 0;
+    $.each($("#tab_actividades input[name='total_actividad']"),function (i,input) {
+        total += parseFloat($(input).val());
+    });
+    $("#tab_actividades input[name='costo_tab']").val(total.toFixed(2)).change();
 }
 
 function load_Mantenimiento(cbo){
@@ -102,9 +81,11 @@ function load_TipoActividad(cbo){
 }
 
 function getSubActividades(id_actividad){
+    fecha = fechaFormat_URL($("#fechaInicio").val());
+    console.log(('/app/sub_actividad/' + id_actividad+'/'+fecha));
     response = null;
     $.ajax({
-        url: ('/app/sub_actividad/' + id_actividad) ,
+        url: ('/app/sub_actividad/' + id_actividad+'/'+fecha) ,
         type: 'GET',
         async:false,
         success: function(result){
@@ -133,8 +114,10 @@ function load_contratista(){
 }
 
 function load_maquinarias(cbo,contratista){
+    fecha = fechaFormat_URL($("#fechaInicio").val());
+    console.log(('/app/maquinarias/' + contratista+'/'+fecha));
     $.ajax({
-        url: '/app/maquinarias/' + contratista ,
+        url: '/app/maquinarias/' + contratista +'/'+fecha,
         type: 'GET',
         success: function(result){
             $(cbo).html("");
@@ -282,3 +265,43 @@ function gen_Cod() {
     fecha = moment().format("YYYYMMDD");
     return ["CRAV",_tipo,parroquia,"OTR",t_mantenimiento,fecha].join("-");
 }
+
+/*function load_rubros(fecha){
+    fecha1 = moment(fecha);
+    fecha1.set("date",1);
+    console.log(fecha1.format("YYYYMMDD"));
+    $.ajax({
+        url: '/app/s_PrecioRubro/'+fecha1.format("YYYYMMDD")+'/date',
+        type:'GET',
+        async: false,
+        success: function(response){
+            data = JSON.parse(response.precio_rubro.valores);
+            //Transporte
+            transporte = data.transporte;
+            t_transporte = (transporte.t_km * transporte.v_km);
+            $("#tb_rTransporte").bootstrapTable("insertRow",{ index: 1 , row : {n : 1,
+                descripcion: "Transporte",
+                total: t_transporte}});
+            //Seguridad
+            seguridad = data.seguridad;
+            t_seguridad = (seguridad.t_si * seguridad.c_hombre) / response.cantidad_ot
+            $("#tb_rSeguridad").bootstrapTable("insertRow",{ index: 1 , row : {n : 1,
+                descripcion: "Seguridad",
+                total: t_seguridad }});
+
+            //Operaciones
+            operaciones = data.operacion;
+            t_operaciones = operaciones.porcentaje_op ;
+            $("#tb_rOperaciones").bootstrapTable("insertRow",{ index: 1 , row : {n : 1,
+                descripcion: "Operaciones",
+                total: t_operaciones}});
+
+            //RRHH
+            rrhh = data.rrhh;
+            $("#tb_rRRHH").bootstrapTable("insertRow",{ index: 1 , row : {n : 1,
+                descripcion: "Personal",
+                total: rrhh.promedio}});
+
+        }
+    });
+}*/

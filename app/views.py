@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import *
 from .tests import *
-from .excel_generador import excel_cuadro_consolidado
+from .excel_generador import excel_cuadro_consolidado,precio_calculado
 from .serializers import *
 
 def list_ot(request):
@@ -44,7 +44,7 @@ class ListView(APIView):
             return Response(tipo_mantenimientos_json.data)
         elif op == "actividad":
             actividades = TipoActividad.objects.all()
-            actividades_json = TipoActividadSerializer(actividades,many=True)
+            actividades_json = TipoActividadSerializer(actividades, many=True)
             return Response(actividades_json.data)
 
 
@@ -113,17 +113,23 @@ class Contratista_view(APIView):
         return Response(contratistas_json.data)
 
 class Maquinaria_view(APIView):
-    def get(self,request,pk_contratista):
-        contratista = Contratista.objects.get(pk=pk_contratista)
-        maq_conts = ContratistaMaquinaria.objects.filter(contratista=contratista).select_related()
-        maq_conts_json = ContratistaMaquinariaSerializer(maq_conts,many=True)
+    def get(self,request,pk_contratista, fecha):
+        #contratista = Contratista.objects.get(pk=pk_contratista)
+        maq_conts = ContratistaMaquinaria.objects.filter(contratista=pk_contratista).select_related()
+        maq_conts_json = ContratistaMaquinariaSerializer(maq_conts, many=True)
+        _fecha = parse_str_fecha(fecha)
+        for maq_con in maq_conts_json.data:
+            maq_con["precio"] = precio_calculado(ContratistaMaquinariaPrecio.objects.filter(contratista_maquinaria=maq_con["id"],fecha_inicio__lte=_fecha),_fecha)
         return Response(maq_conts_json.data)
 
 class SubActividad_view(APIView):
-    def get(self, request, pk_actividad):
-        tipo_actividad = TipoActividad.objects.get(pk=pk_actividad)
-        sub_actividades = SubActividad.objects.filter(tipo_actividad=tipo_actividad)
-        sub_actividades_json = SubActividadSerializer(sub_actividades,many=True)
+    def get(self, request, pk_actividad, fecha):
+        #tipo_actividad = TipoActividad.objects.get(pk=pk_actividad)
+        sub_actividades = SubActividad.objects.filter(tipo_actividad=pk_actividad)
+        sub_actividades_json = SubActividadSerializer(sub_actividades, many=True)
+        for sub in sub_actividades_json.data:
+            _fecha = parse_str_fecha(fecha)
+            sub["precio"] = precio_calculado(TipoActividadPrecio.objects.filter(sub_actividad=sub["id"],fecha_inicio__lte=_fecha),_fecha)
         return Response(sub_actividades_json.data)
 
 class Cargo_view(APIView):
@@ -198,8 +204,15 @@ class Detail_Orden_TrabajoView(APIView):
             return OrdenTrabajo.objects.get(pk=pk)
         except OrdenTrabajo.DoesNotExist:
             raise Http404
-    def put(self,request):
+
+    def get(self,request,pk):
+        orden = self.get_object(pk)
+        orden_json = OrdenTrabajoSerializer(orden)
+        return Response(orden_json.data, status=201)
+
+    def put(self,request,pk):
         pass
+
     def delete(self,request,pk):
         orden = self.get_object(pk)
         orden.estado = 0

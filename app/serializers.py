@@ -20,10 +20,11 @@ class ContratistaMaquinariaPrecioSerializer(serializers.ModelSerializer):
 
 class ContratistaMaquinariaSerializer(serializers.ModelSerializer):
     maquinaria = MaquinariaSerializer(read_only=True)
-    precio = serializers.SerializerMethodField()
+    #precio = serializers.SerializerMethodField()
     class Meta:
-        model= ContratistaMaquinaria
-        fields= ('id','maquinaria','contratista','stock','precio')
+        model = ContratistaMaquinaria
+        fields = ('id','maquinaria','contratista','stock')
+    """
     def get_precio(self, obj):
         try:
             tipo_precio = ContratistaMaquinariaPrecio.objects.filter(contratista_maquinaria=obj.id).latest('fecha_inicio')
@@ -31,6 +32,7 @@ class ContratistaMaquinariaSerializer(serializers.ModelSerializer):
             return tipo_precio_json.data
         except ContratistaMaquinariaPrecio.DoesNotExist:
             return 0
+    """
 
 class TipoMantenimientoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -53,10 +55,11 @@ class TipoActividadPrecioSerializer(serializers.ModelSerializer):
         fields = ('id', 'fecha_inicio','fecha_fin','costo')
 
 class SubActividadSerializer(serializers.ModelSerializer):
-    precio = serializers.SerializerMethodField()
+    #precio = serializers.SerializerMethodField()
     class Meta:
         model = SubActividad
-        fields = ('id', 'descripcion','precio')
+        fields = ('id', 'descripcion')
+    """
     def get_precio(self,obj):
         try:
             tipo_precio = TipoActividadPrecio.objects.filter(sub_actividad=obj.id).latest('fecha_inicio')
@@ -64,6 +67,7 @@ class SubActividadSerializer(serializers.ModelSerializer):
             return tipo_precio_json.data
         except TipoActividadPrecio.DoesNotExist:
             return 0
+    """
 
 class RrhhSerializer(serializers.ModelSerializer):
     class Meta:

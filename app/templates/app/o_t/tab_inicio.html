@@ -28,10 +28,6 @@
                     </div>
                     <input type="hidden" id="f_pedido" value="" /><br/>
                 </div>
-                <!--<div class="form-group">
-                    <label  class="control-label">Fecha pedido: </label>
-                    <input id="f_pedido" data-inputmask="'alias': 'yyyy-mm-dd'" class="form-control"/>
-                </div>-->
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
@@ -42,10 +38,7 @@
                     </div>
                     <input type="hidden" id="f_planificada" value="" /><br/>
                 </div>
-                <!--<div class="form-group">
-                    <label  class="control-label">Fecha planificada: </label>
-                    <input id="f_planificada" data-inputmask="'alias': 'yyyy-mm-dd'" class="form-control"/>
-                </div>-->
+
             </div>
         </div>
 
@@ -59,16 +52,11 @@
                     </div>
                     <input type="hidden" id="fechaInicio" value="" /><br/>
                 </div>
-                <!--<div class="form-group">
-                    <label  class="control-label">Fecha inicio:</label>
-                    <input data-inputmask="'alias': 'yyyy-mm-dd'" class="form-control" id="fechaInicio"/>
-                </div>-->
-
             </div>
             <div class="col-sm-5">
                 <div class="form-group">
                     <label for="fechaCierre" class="control-label">Fecha cierre: </label>
-                    <div class="input-group date day_date" data-link-field="fechaCierre">
+                    <div class="input-group date day_date exclude" data-link-field="fechaCierre" >
                         <input class="form-control" size="16" type="text" value="" readonly>
                         <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                     </div>

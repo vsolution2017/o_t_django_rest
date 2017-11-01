@@ -109,7 +109,7 @@ $(function () {
 
         if($.inArray(datos.id,ids) == -1){
             tiempo = $('input[name="_tiempo"]').val();
-            total = get_costo_tiempo(tiempo,datos.precio.costo);
+            total = get_costo_tiempo(tiempo, parseFloat(datos.precio));
             $("#tab_maquinaria table").bootstrapTable("insertRow",{
                 index: 0,
                 row:{
@@ -117,8 +117,7 @@ $(function () {
                         cantidad: 1,
                         stock: datos.stock,
                         recurso: datos.maquinaria.descripcion,
-                        costo_id : datos.precio.id,
-                        costo:  datos.precio.costo,
+                        costo:  parseFloat(datos.precio).toFixed(2),
                         total: total
                     }
             });

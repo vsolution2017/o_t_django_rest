@@ -1,43 +1,34 @@
 function load_pag(){
     if(!$.isEmptyObject($("div[name='redimensionar']").attr("data-id"))){
-        alert("good");
+        id = $("div[name='redimensionar']").attr("data-id");
+        $.ajax({
+            url: "/app/s_OrdenTrabajo/"+ id,
+            type: "GET",
+            success: function (response) {
+
+            }
+        });
     }
 }
-function total_tabActividad() {
-    total = 0;
-    $.each($("#tab_actividades input[name='total_actividad']"),function (i,input) {
-        total += parseFloat($(input).val());
-    });
-    $("#tab_actividades input[name='costo_tab']").val(total.toFixed(2)).change();
-}
+
 $(function () {
     $("#tab_maquinaria table").bootstrapTable();
     $("#tab_rubros table").bootstrapTable();
     $('#exTab2 select').selectpicker();
-    //load_rubros("2017-09-30");
-    load_rubros(moment());
+
+
+    $(".day_date:not(.exclude)").datetimepicker("update",new Date());
 
     load_Mantenimiento("#cboTipo_mantenimiento");
     load_Parroquia("#cboParroquia");
-    load_TipoActividad("#cboTipoActividad");
     load_Cargos(1,"#cbo_jefe");
     load_Cargos(2,"#cbo_coord");
+    load_TipoActividad("#cboTipoActividad");
     load_contratista();
 
     load_pag();
 
-
     $("#_cod").val(gen_Cod());
-
-
-
-    $("#cal").click(function () {
-       console.log($("#tab_maquinaria table").bootstrapTable("getData"));
-        /*fields = $.map($('.day_date'),function(date){
-           return $("#"+ $(date).attr("data-link-field")).val();
-       });
-       console.log(fields);*/
-    });
 
     $("#_save").click(function(){
         $.ajax({
@@ -77,7 +68,7 @@ $(function () {
 
     $("#tab_actividades").on("click","label.buying-selling",function(){
         datos = $(this).data("json");
-        div = $(this).closest(".row").find("input.costo").val(datos.precio.costo).change();
+        div = $(this).closest(".row").find("input.costo").val(parseFloat(datos.precio)).change();
     });
 
     /*Actividades*/
@@ -93,7 +84,6 @@ $(function () {
     $("#tab_actividades").on("change", "input[name='total_actividad']", function () {
        total_tabActividad();
     });
-
 
     $("#tab_actividades").on("change", "input[name='costo_actividad']", function () {
         sum = 0;
@@ -115,7 +105,6 @@ $(function () {
         });
         $("input[name='costo_general']").val(total.toFixed(2));
     });
-
 
     $("#exTab2").on("click","button[name='btn_area']",function () {
         op_area = $(this).closest(".row").find(".op_add_area").clone();
@@ -167,7 +156,7 @@ $(function () {
 
             if(sub_actividades.length === 1){
                 if(sub_actividades[0].descripcion === "_"){
-                    $(actividad_sample).find("input.costo").val(sub_actividades[0].precio.costo).change();
+                    $(actividad_sample).find("input.costo").val(parseFloat(sub_actividades[0].precio)).change();
                 }
             }else{
                 $.each(sub_actividades,function(i,sub_actividad){
@@ -220,10 +209,3 @@ $(function () {
 
 });
 
-function _sumTotalAreas(elem){
-    sum = 0;
-    $(elem).closest(".content").find(".row:not(.hidden) .total-area").each(function (i, v_ta) {
-        sum += parseFloat($(v_ta).val());
-    });
-    $(elem).closest(".content").closest(".row").find(".v_total-area").val(sum.toFixed(2)).change();
-}

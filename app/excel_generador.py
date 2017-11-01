@@ -31,9 +31,9 @@ def horario_precio(hora,costo):
 def precio_calculado(precios, fecha):
     for precio in precios:
         if precio.fecha_fin is None:
-            return precio.costo
+            return round(precio.costo, 2)
         elif precio.fecha_fin >= fecha:
-            return precio.costo
+            return round(precio.costo, 2)
 
 def producto(valores):
     f = lambda a, b: a if (a == 0 or b == 0)  else a * b
