@@ -230,6 +230,17 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
+class Fotos(models.Model):
+    nombre = models.CharField(max_length=45, blank=True, null=True)
+    tipo = models.CharField(max_length=45, blank=True, null=True)
+    datos = models.TextField(blank=True, null=True)
+    orden_trabajo = models.ForeignKey('OrdenTrabajo', models.DO_NOTHING, db_column='orden_trabajo', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'fotos'
+
+
 class Maquinaria(models.Model):
     descripcion = models.TextField()
 
@@ -252,7 +263,7 @@ class OrdenTrabajo(models.Model):
     observacion = models.TextField(blank=True, null=True)
     tipo_mantenimiento = models.ForeignKey('TipoMantenimiento', models.DO_NOTHING, db_column='tipo_mantenimiento')
     parroquia = models.ForeignKey('Parroquia', models.DO_NOTHING, db_column='parroquia')
-    estado = models.CharField(max_length=1, default=1)
+    estado = models.CharField(max_length=1,default=1)
     cod_crav = models.TextField(blank=True, null=True)
     fecha_inicio = models.DateField(blank=True, null=True)
     fecha_cierre = models.DateField(blank=True, null=True)

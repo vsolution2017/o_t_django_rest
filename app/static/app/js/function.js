@@ -107,8 +107,8 @@ function load_contratista(){
             });
             $("#cboContratista").html(append);
             $("#cboContratista").selectpicker("refresh");
-            $("#cboContratista").change();
-            load_maquinarias("#cbo_maq", $("#cboContratista").val());
+            //$("#cboContratista").change();
+            //load_maquinarias("#cbo_maq", $("#cboContratista").val());
         }
     });
 }
@@ -118,6 +118,7 @@ function load_maquinarias(cbo,contratista){
     $.ajax({
         url: '/app/maquinarias/' + contratista +'/'+fecha,
         type: 'GET',
+        async:false,
         success: function(result){
             $(cbo).html("");
             $(result).each(function(i,val){
@@ -176,6 +177,12 @@ function get_TabInicio(){
     $.extend(tab_inicio,{
         horas : JSON.stringify(t_fecha_horas)
     });
+    /*if($("div[name='redimensionar']").attr("data-id") !== "0"){
+        $.extend(tab_inicio,{
+            id : $("div[name='redimensionar']").attr("data-id")
+        });
+    }*/
+
     return tab_inicio;
 }
 
@@ -243,7 +250,8 @@ function get_save(){
         actividades : JSON.stringify(get_TabActividades()),
         detalle : JSON.stringify([{
             horas_totales : $("#tab_maquinaria input[name='_tiempo']").val()
-        }])
+        }]),
+        fotos: JSON.stringify(imgs)
     });
 }
 
@@ -266,20 +274,24 @@ function gen_Cod() {
 }
 
 function load_pag(){
-    if(!$.isEmptyObject($("div[name='redimensionar']").attr("data-id"))){
-        id = $("div[name='redimensionar']").attr("data-id");
+    editar = false;
+    id = $("div[name='redimensionar']").attr("data-id");
+    if(id !== "0"){
         $.ajax({
             url: "/app/s_OrdenTrabajo/"+ id,
             type: "GET",
+            async: false,
             success: function (response) {
                 setOrden(response.orden);
                 setHoras(response.horas);
                 setMaquinaria(response.maquinaria);
                 setActividad(response.actividades);
-
+                setFotos(response.fotos);
+                editar = true;
             }
         });
     }
+    return editar;
 }
 
 function _getDate(field,fecha) {
@@ -318,21 +330,31 @@ function setHoras(horas) {
 }
 
 function setMaquinaria(maquinarias) {
-    $.each(maquinarias,function (i,maquinaria) {
-        $("#cboContratista").selectpicker("val",maquinaria.contratista_maquinaria.contratista).change();
+    if(maquinarias.length > 0){
+        $.each(maquinarias,function (i,maquinaria) {
+            $("#cboContratista").selectpicker("val",maquinaria.contratista_maquinaria.contratista).change();
+            $("#cbo_maq").selectpicker("val",maquinaria.contratista_maquinaria.maquinaria.id);
+            $("#btn_add_maq").click();
+        });
+    }
+    else{
+        $("#cboContratista").change();
+    }
 
-        $("#cbo_maq").selectpicker("val",maquinaria.contratista_maquinaria.maquinaria.id);
-        $("#btn_add_maq").click();
-    });
+    //load_maquinarias("#cbo_maq", $("#cboContratista").val());
 }
 
 function setActividad(_actividades) {
     $.each(_actividades,function (i,actividad) {
-        _sub_actividades =    $.map(JSON.parse(actividad.sub_actividades),function (sub) {
+        _sub_actividades = $.map(JSON.parse(actividad.sub_actividades),function (sub) {
             return sub.id;
         }) ;
         $("#cboTipoActividad").selectpicker("val",actividad.tipo_actividad);
+
         $("#btn_add_activity").click();
+
+        //actividades = $("#cont-actividades").data("actividades");
+        console.log(actividades);
         index = $.inArray(actividad.tipo_actividad,actividades);
         _div_actividad = "#cont-actividades div[name='_actividades']:eq("+ index +")";
 
@@ -350,6 +372,24 @@ function setActividad(_actividades) {
            $(_div_actividad + " .add_area:eq(" + i + ") .input-area:eq(2)").val(area.v3).change();
         });
     });
+}
+
+function setFotos(fotos) {
+    initPreview = [];
+    initPreviewConfig= [];
+    $.each(fotos,function (i,row) {
+        initPreview.push(row.datos);
+        initPreviewConfig.push({
+            caption: row.nombre, size: 329892, width: "120px", url: "/app/d_img/", key: i, extra: {id: row.id}
+        });
+    });
+
+    $('#fotos').fileinput($.extend({},_config_fileinput,{
+        initialPreviewAsData: true,
+        overwriteInitial: false,
+        initialPreview: initPreview,
+        initialPreviewConfig: initPreviewConfig
+    }));
 }
 
 /*function load_rubros(fecha){

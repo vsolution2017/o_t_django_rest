@@ -28,7 +28,7 @@ def login(request):
 def admin(request):
     return render(request,'app/base.html',{})
 def o_t_register(request):
-    return render(request, 'app/register_ot.html', { "title" : "Orden de Trabajo"})
+    return render(request, 'app/register_ot.html', { "title" : "Orden de Trabajo", "id" : 0})
 def o_t_update(request,pk):
     return render(request, 'app/register_ot.html', { "title" : "Orden de Trabajo", "id" : pk})
 
@@ -195,6 +195,15 @@ class Orden_TrabajoView(APIView):
             else:
                 return Response(actividades_json.errors, status=400)
 
+            #Guardar Fotos
+            fotos = get_array(orden.data["id"],"orden_trabajo",request.data["fotos"])
+            fotos_json = FotosSerializer(data=fotos,many=True)
+
+            if fotos_json.is_valid():
+                fotos_json.save()
+            else:
+                Response(fotos_json.errors, status=400)
+
             return Response({ "estado" : "ok"}, status=201)
         return Response(orden.errors, status=400)
 
@@ -210,16 +219,35 @@ class Detail_Orden_TrabajoView(APIView):
         otContMaq = OtContMaq.objects.filter(orden_trabajo=orden)
         detalleOtActividad = DetalleOtActividad.objects.filter(orden_trabajo=orden)
         horas = DetalleFinicioFcierre.objects.filter(orden_trabajo=orden)
+        fotos = Fotos.objects.filter(orden_trabajo=orden)
+        #fotos_json = FotosSerializer(fotos, many=True)
         return Response({
             "orden": OrdenTrabajoSerializer(orden).data,
             "maquinaria": OtContMaqSerializer_get(otContMaq,many=True).data,
             #"actividades": DetalleOtActividadSerializer(detalleOtActividad, many=True).data,
             "actividades": DetalleOtActividadSerializer_get(detalleOtActividad, many=True).data,
-            "horas" : DetalleFinicioFcierreSerializer(horas,many=True).data
+            "horas" : DetalleFinicioFcierreSerializer(horas,many=True).data,
+            "fotos": FotosSerializer(fotos, many=True).data
         }, status=201)
 
-    def put(self,request,pk):
-        pass
+    def put(self, request, pk, format=None):
+        orden = self.get_object(pk)
+        orden_json = OrdenTrabajoSerializer(orden, data=request.data)
+        if orden_json.is_valid():
+            orden_json.save()
+            # Eliminacion de Actividades
+            DetalleOtActividad.objects.filter(orden_trabajo=orden).delete()
+            # Eliminacion de Maquinarias
+            OtContMaq.objects.filter(orden_trabajo=orden).delete()
+            # Eliminacion Horas
+            DetalleFinicioFcierre.objects.filter(orden_trabajo=orden).delete()
+
+            # Actualizar
+            save_ordenTrabajo(request.data, orden_json)
+            return Response(orden_json.data, status=201)
+
+        return Response(orden_json.errors, status=400)
+
 
     def delete(self,request,pk):
         orden = self.get_object(pk)
@@ -227,6 +255,29 @@ class Detail_Orden_TrabajoView(APIView):
         orden.save()
         return Response(OrdenTrabajoSerializer(orden).data,status=201)
 
+
+class Imgview(APIView):
+    def post(self, request):
+        imgs = json.loads(request.data["imagenes"])
+        #return JsonResponse(imgs)
+
+        fotos_json = FotosSerializer(data=imgs, many=True)
+        if fotos_json.is_valid():
+            fotos_json.save()
+            return JsonResponse({
+                "img": fotos_json.data
+            })
+        return JsonResponse({})
+    def get(self,request):
+        fotos = Fotos.objects.filter(orden_trabajo=46)
+        fotos_json = FotosSerializer(fotos, many=True)
+        return Response(fotos_json.data, status=201)
+
+class DetailImgview(APIView):
+    def post(self, request):
+        foto = Fotos.objects.get(pk=request.data["id"])
+        foto.delete()
+        return Response({}, status=201)
 
 class ExampleView(APIView):
     def get(self,request,fecha):

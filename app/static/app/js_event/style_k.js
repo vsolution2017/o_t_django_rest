@@ -1,4 +1,5 @@
 $(function () {
+
     $("#tab_maquinaria table").bootstrapTable();
     $("#tab_rubros table").bootstrapTable();
     $('#exTab2 select').selectpicker();

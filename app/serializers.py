@@ -189,3 +189,8 @@ class OrdenTrabajo_CCSerializer(serializers.ModelSerializer):
         fields = ["id","cod_crav","direccion","t_mantenimiento"]
     def get_t_mantenimiento(self,obj):
         return obj.tipo_mantenimiento.descripcion # TipoMantenimiento.objects.get(pk=obj.tipo_mantenimiento.id).descripcion
+
+class FotosSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Fotos
+        fields = "__all__"

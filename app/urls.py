@@ -27,7 +27,9 @@ urlpatterns = [
     #url(r'^test/(?P<fecha>\d{8})$', ExampleView.as_view()),
     #url(r'^test/$', ExampleView.as_view(),name="gen_excel"),
     #url(r'^c_consolidado/', c_consolidado,name="c_consolidado"),
-    #url(r'^test/$', test),
+    url(r'^test/$', test),
+    url(r'^img/$', Imgview.as_view()),
+    url(r'^d_img/$', DetailImgview.as_view()),
 
 ]
 
