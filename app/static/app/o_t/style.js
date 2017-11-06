@@ -1,21 +1,26 @@
+_defaultOption ={
+    visiblePages: 3,
+    initiateStartPageClick: false,
+    first: "&laquo;",
+    prev: "&lsaquo;",
+    next: "&rsaquo;",
+    last: "&raquo;"
+};
 $(function(){
-    $("#tb_OrdenesTrabajo").bootstrapTable();
-    load_OrdenTrabajo();
-    generarExcel_fecha();
 
     $("#gen_consolidado").click(function (e) {
         generarExcel_fecha();
-        //alert($(this).attr("href"));
-        //e.preventDefault();
-
     });
+
+    $("#fecha_mes").change(function () {
+        load_OrdenTrabajo(1);
+    });
+
+    $("#tb_OrdenesTrabajo").bootstrapTable();
+
+    load_OrdenTrabajo(1);
 });
 
-function generarExcel_fecha(){
-    fecha = moment($("#fecha_mes").val());
-    fecha.set("date",1);
-    $("#gen_consolidado").attr("href",'/app/g_cconsolidado/' + fecha.format("YYYYMMDD"));
-}
 
 window.func_accion ={
     'click button[name="edit"]': function (e, value, row, index) {

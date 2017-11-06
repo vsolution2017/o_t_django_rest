@@ -1,14 +1,38 @@
-function load_precio_rubro(){
-    $.get("/app/s_PrecioRubro/",function(response){
-        $.each(response,function(i,row){
-            $.extend(row,{
-                accion : "<button name='edit' d-id='"+ row.id +"' class='btn btn-sm btn-primary'><i class='fa fa-edit'></i> Editar</button> " +
-                        "<button name='delete' d-id='"+ row.id +"' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i> Eliminar</button>"
-            });
-        });
-        $("#tb_precio_rubro").bootstrapTable("load",response);
+function load_precio_rubro(pag){
+    cant = parseInt($("#cboCant").selectpicker("val"));
+    $.ajax({
+        url: "/app/list/precio_rubro/",
+        type: "POST",
+        data:{
+            inicio: (pag * cant) - cant,
+            fin: ((pag + 1) * cant) - cant,
+            año: parseFecha_moment($("#fecha_mes").val()).year()
+        },
+        success: function (data) {
+            total = Math.ceil(data.count / cant);
+            $("#tb_precio_rubro").bootstrapTable("load",data.datos);
+
+            $('#pagination-demo').twbsPagination('destroy');
+            $("#pagination-demo").twbsPagination(
+                $.extend({},_defaultOption,{
+                    startPage: pag,
+                    totalPages: total,
+                    onPageClick: function (event, page) {
+                        load_precio_rubro(page);
+                    }
+                })
+            );
+        }
     });
 }
+
+function btn_accion(){
+    buttons =
+        "<button name='edit' class='btn btn-sm btn-primary'><i class='fa fa-edit'></i> Editar</button> " +
+        "<button name='del' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i> Eliminar</button> ";
+    return buttons;
+}
+
 function getData(id){
     valores = {
         seguridad : {
@@ -50,6 +74,7 @@ function _delete(id){
     });
 
 }
+
 function _save(id,method){
     url = id == 0 ? "/app/s_PrecioRubro/" : "/app/s_PrecioRubro/"+ id+"/id";
     $.ajax({

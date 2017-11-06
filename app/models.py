@@ -273,6 +273,7 @@ class OrdenTrabajo(models.Model):
     class Meta:
         managed = False
         db_table = 'orden_trabajo'
+        ordering = ["fecha_inicio"]
 
 
 class OtContMaq(models.Model):

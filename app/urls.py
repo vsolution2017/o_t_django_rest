@@ -6,11 +6,11 @@ app_name= "app"
 urlpatterns = [
     url(r'^admin/', admin, name="admin"),
     url(r'^login/', login,name="login"),
-    url(r'^list_ot/', list_ot,name="list_ot"),
+    url(r'^list_ot/', list_ot, name="list_ot"),
 
     url(r'^o_t/$', o_t_register,name="o_t"),
     url(r'^o_t/(?P<pk>[0-9]+)$', o_t_update,name="ot_update"),
-    url(r'^s_OrdenTrabajo/$', Orden_TrabajoView.as_view(),name="test"),
+    url(r'^s_OrdenTrabajo/$', Orden_TrabajoView.as_view(), name="test"),
     url(r'^s_OrdenTrabajo/(?P<pk>[0-9]+)$', Detail_Orden_TrabajoView.as_view(), name="d_Orden_trabajo"),
     url(r'^settings/', settings, name="settings"),
     url(r'^s_PrecioRubro/$', PrecioRubroView.as_view(), name="s_PrecioRubro"),

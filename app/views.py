@@ -1,4 +1,6 @@
 import datetime
+
+from django.db.models import Count
 from django.http import JsonResponse, HttpResponse, Http404
 from django.shortcuts import render
 #from django.http import HttpResponse
@@ -46,12 +48,34 @@ class ListView(APIView):
             actividades = TipoActividad.objects.all()
             actividades_json = TipoActividadSerializer(actividades, many=True)
             return Response(actividades_json.data)
-
+    def post(self,request,op):
+        init = int(request.data["inicio"])
+        fin = int(request.data["fin"])
+        if op == "ot":
+            fechaI = parse_str_fecha(request.data["finicio"])
+            fechaF = parse_str_fecha(request.data["ffin"])
+            count = OrdenTrabajo.objects.filter(fecha_inicio__range=(fechaI, fechaF), estado=1).count()
+            ordenes = OrdenTrabajo.objects.filter(fecha_inicio__range=(fechaI, fechaF), estado=1)[
+                init:fin]
+            ordenes_json = OrdenTrabajoSerializer_tabview(ordenes, many=True)
+            return Response({
+                "count": count,
+                "datos": ordenes_json.data
+            }, status=201)
+        elif op == "precio_rubro":
+            count = PrecioRubroFecha.objects.filter(fecha_mes__year=request.data["año"]).count()
+            precio_rubro = PrecioRubroFecha.objects.filter(fecha_mes__year=request.data["año"])[
+                init:fin]
+            precio_rubro_json = PrecioRubroFechaSerializer(precio_rubro, many=True)
+            return Response({
+                "count": count,
+                "datos": precio_rubro_json.data
+            }, status=201)
 
 class PrecioRubroView(APIView):
     def get(self,request):
         precio_rubro = PrecioRubroFecha.objects.all()
-        precio_rubro_json = PrecioRubroFechaSerializer(precio_rubro,many=True)
+        precio_rubro_json = PrecioRubroFechaSerializer(precio_rubro, many=True)
         return Response(precio_rubro_json.data)
 
     def post(self,request):

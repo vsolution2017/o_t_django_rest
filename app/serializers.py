@@ -148,23 +148,23 @@ class DetalleOtActividadAreaSerializer(serializers.ModelSerializer):
 class OrdenTrabajoSerializer_tabview(serializers.ModelSerializer):
     t_mantenimiento = serializers.SerializerMethodField()
     horas = serializers.SerializerMethodField()
-    f_inicio = serializers.SerializerMethodField()
-    f_cierre = serializers.SerializerMethodField()
-    codigo = serializers.SerializerMethodField()
     class Meta:
         model = OrdenTrabajo
-        fields = "__all__"
-        extra_fields = ['t_mantenimiento','horas','f_inicio','f_cierre','codigo']
+        fields = ('t_mantenimiento','horas','fecha_inicio','fecha_cierre','cod_crav')
+        #fields = "__all__"
+        #extra_fields = ['t_mantenimiento','horas','f_inicio','f_cierre','codigo']
 
-    def get_t_mantenimiento(self,obj):
-        tipo = TipoMantenimiento.objects.get(pk=obj.tipo_mantenimiento.id)
-        return tipo.descripcion
+    def get_t_mantenimiento(self, obj):
+        return obj.tipo_mantenimiento.descripcion
+
     def get_horas(self,obj):
         try:
             horas = DetalleFinicioFcierre.objects.filter(orden_trabajo=obj.id)
             return DetalleFinicioFcierreSerializer(horas, many=True).data
         except DetalleFinicioFcierre.DoesNotExist:
             return 0
+
+    """
     def get_f_inicio(self,obj):
         return obj.fecha_inicio
 
@@ -173,6 +173,7 @@ class OrdenTrabajoSerializer_tabview(serializers.ModelSerializer):
 
     def get_f_cierre(self, obj):
         return obj.fecha_cierre
+    """
 
 # Vista para la clase normal
 class OrdenTrabajoSerializer(serializers.ModelSerializer):

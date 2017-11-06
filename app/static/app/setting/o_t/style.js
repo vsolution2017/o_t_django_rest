@@ -1,10 +1,22 @@
 table = ("#tb_precio_rubro");
+_defaultOption ={
+    visiblePages: 3,
+    initiateStartPageClick: false,
+    first: "&laquo;",
+    prev: "&lsaquo;",
+    next: "&rsaquo;",
+    last: "&raquo;"
+};
 $(function(){
     $(table).bootstrapTable();
-    //$(":input").inputmask();
+
     $("#_save").data("id",0);
 
-    load_precio_rubro();
+    load_precio_rubro(1);
+
+    $("#fecha_mes").change(function () {
+        load_precio_rubro(1);
+    });
 
     $(".modal").on("hidden.bs.modal",function(e){
         $(".modal input").each(function(i,input){
@@ -13,16 +25,25 @@ $(function(){
         $("#_save").data("id",0);
     });
 
-    $(table).on("click","button[name='delete']",function () {
-        id = $(this).attr("d-id");
-        _delete(id);
+    $("#_cancel").click(function(){
+        alert("Cancelar");
     });
 
-    $(table).on("click","button[name='edit']",function () {
-        row = $(table).bootstrapTable("getRowByUniqueId",$(this).attr("d-id"));
+    $("#_save").click(function(){
+        id = $(this).data("id");
+        method = (id == 0)? "POST":"PUT";
+        _save(id,method);
+    });
+
+});
+
+window.func_accion ={
+    'click button[name="edit"]': function (e, value, row, index) {
+        //window.location.href = "/app/o_t/"+row.id;
+        //row = $(table).bootstrapTable("getRowByUniqueId",$(this).attr("d-id"));
 
         $(".modal").find(".modal-title").html("Editar Registro");
-        $(".modal").find("#f_precio").val(row.fecha_mes);
+        $(".modal").find(".month_date").datetimepicker("update",moment(row.fecha_mes).toDate());
 
 
         valores = JSON.parse(row.valores);
@@ -43,15 +64,8 @@ $(function(){
         //console.log(row.id);
 
         $(".modal").modal("toggle");
-    });
-
-
-    $("#_cancel").click(function(){
-        alert("Cancelar");
-    });
-    $("#_save").click(function(){
-        id = $(this).data("id");
-        method = (id == 0)? "POST":"PUT";
-        _save(id,method);
-    });
-});
+    },
+    'click button[name="del"]': function (e, value, row, index) {
+        _delete(row.id);
+    }
+};
