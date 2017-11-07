@@ -179,7 +179,7 @@ class DetalleOtActividadArea(models.Model):
 class DetalleOtRubro(models.Model):
     v_total = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
     tipo_rubro = models.ForeignKey('TipoRubro', models.DO_NOTHING, db_column='tipo_rubro')
-    orden_trabajo = models.ForeignKey('OrdenTrabajo', models.DO_NOTHING, db_column='orden_trabajo')
+    orden_trabajo = models.IntegerField()
 
     class Meta:
         managed = False
@@ -251,10 +251,33 @@ class Maquinaria(models.Model):
 
 class Material(models.Model):
     nombre = models.TextField()
+    stock = models.SmallIntegerField(blank=True, null=True)
+    medida = models.TextField()
 
     class Meta:
         managed = False
         db_table = 'material'
+
+
+class MaterialOt(models.Model):
+    cantidadmaterial = models.IntegerField(blank=True, null=True)
+    material = models.ForeignKey(Material, models.DO_NOTHING, db_column='material')
+    orden_trabajo = models.ForeignKey('OrdenTrabajo', models.DO_NOTHING, db_column='orden_trabajo')
+
+    class Meta:
+        managed = False
+        db_table = 'material_ot'
+
+
+class MaterialPrecio(models.Model):
+    fecha_inicio = models.DateField(blank=True, null=True)
+    fecha_fin = models.DateField(blank=True, null=True)
+    costo = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
+    material = models.ForeignKey(Material, models.DO_NOTHING, db_column='material')
+
+    class Meta:
+        managed = False
+        db_table = 'material_precio'
 
 
 class OrdenTrabajo(models.Model):
@@ -325,8 +348,8 @@ class Rrhh(models.Model):
 
 class RubroOtDetalle(models.Model):
     cantidadmaterial = models.IntegerField(blank=True, null=True)
-    material = models.ForeignKey(Material, models.DO_NOTHING, db_column='material')
-    detalle_ot_rubro = models.ForeignKey(DetalleOtRubro, models.DO_NOTHING, db_column='detalle_ot_rubro')
+    material = models.IntegerField()
+    detalle_ot_rubro = models.IntegerField()
 
     class Meta:
         managed = False

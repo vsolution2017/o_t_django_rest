@@ -195,3 +195,9 @@ class FotosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fotos
         fields = "__all__"
+
+
+class MaterialSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Material
+        fields = "__all__"

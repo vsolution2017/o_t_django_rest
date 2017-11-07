@@ -60,8 +60,11 @@ window.func_accion ={
         $(".modal").find("input[id='c_hombre']").val(valores.seguridad.c_hombre);
         /* Seguridad */
 
+        /* RRHH */
+        $(".modal input[id='rrhh_avg']").val(valores.rrhh.promedio);
+        /* RRHH */
+
         $("#_save").data("id",row.id);
-        //console.log(row.id);
 
         $(".modal").modal("toggle");
     },

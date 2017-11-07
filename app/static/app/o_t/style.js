@@ -1,11 +1,11 @@
-_defaultOption ={
+/*_defaultOption ={
     visiblePages: 3,
     initiateStartPageClick: false,
     first: "&laquo;",
     prev: "&lsaquo;",
     next: "&rsaquo;",
     last: "&raquo;"
-};
+};*/
 $(function(){
 
     $("#gen_consolidado").click(function (e) {

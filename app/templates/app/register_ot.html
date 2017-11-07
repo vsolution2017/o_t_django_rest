@@ -34,10 +34,10 @@
             <li >
                 <a href="#tab_actividades" data-toggle="tab">Actividades</a>
             </li>
-            <li >
+            <li class="active">
                 <a href="#tab_rubros" data-toggle="tab">Rubros</a>
             </li>
-            <li class="active">
+            <li >
                 <a href="#tab_fotos" data-toggle="tab">Fotos</a>
             </li>
         </ul>
@@ -51,10 +51,10 @@
             <div class="tab-pane " id="tab_actividades">
                 {% include 'app/o_t/tab_actividades.html' %}
             </div>
-            <div class="tab-pane " id="tab_rubros">
+            <div class="tab-pane active" id="tab_rubros">
                 {% include 'app/o_t/tab_rubros.html' %}
             </div>
-            <div class="tab-pane active" id="tab_fotos">
+            <div class="tab-pane " id="tab_fotos">
                 {% include 'app/o_t/tab_fotos.html' %}
             </div>
         </div>
@@ -79,7 +79,7 @@
 
 
 
-
+    <script src="{% static 'app/pagination/jquery.twbsPagination.js' %}" type="text/javascript"></script>
     <!-- Table -->
     <script src="{% static 'app/table/bootstrap-table.min.js' %}" type="text/javascript"></script>
     <script src="{% static 'app/table/bootstrap-editable.js' %}" type="text/javascript"></script>

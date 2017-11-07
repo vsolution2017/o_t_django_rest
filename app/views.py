@@ -71,6 +71,14 @@ class ListView(APIView):
                 "count": count,
                 "datos": precio_rubro_json.data
             }, status=201)
+        elif op == "material":
+            count = Material.objects.filter().count()
+            material = Material.objects.filter()[init:fin]
+            material_json = MaterialSerializer(material,many=True)
+            return Response({
+                "count": count,
+                "datos": material_json.data
+            }, status=201)
 
 class PrecioRubroView(APIView):
     def get(self,request):
@@ -302,17 +310,19 @@ class DetailImgview(APIView):
         foto.delete()
         return Response({}, status=201)
 
+class MaterialView(APIView):
+    def get(self,request):
+        material = Material.objects.all()
+        material_json = MaterialSerializer(material,many=True)
+        return Response(material_json.data, status=201)
+
+
 class ExampleView(APIView):
     def get(self,request,fecha):
         fecha = parse_str_fecha(fecha)
         if PrecioRubroFecha.objects.filter(fecha_mes=fecha).exists():
             return excel_cuadro_consolidado(fecha)
         raise Http404
-        """
-        ordenes = OrdenTrabajo.objects.all()
-        ordenes_json = OrdenTrabajo_CCSerializer(ordenes, many=True)
-        return Response(ordenes_json.data, status=201)
-        """
 
     parser_classes = (JSONParser,)
     renderer_classes = (JSONRenderer,)

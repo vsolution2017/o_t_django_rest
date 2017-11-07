@@ -8,6 +8,33 @@ _config_fileinput = {
             allowedFileExtensions: ['jpg', 'png']
         };
 
+function load_materiales(pag) {
+    cant = 3;
+    $.ajax({
+        url : "/app/list/material/",
+        type: "POST",
+        data: {
+            inicio: (pag * cant) - cant,
+            fin: ((pag + 1) * cant) - cant
+        },
+        success: function (data) {
+            total = Math.ceil(data.count / cant);
+
+            $(".modal table").bootstrapTable("load",data.datos);
+            $('#pagination-material').twbsPagination('destroy');
+            $("#pagination-material").twbsPagination(
+                $.extend({},_defaultOption,{
+                    startPage: pag,
+                    totalPages: total,
+                    onPageClick: function (event, page) {
+                        load_materiales(page);
+                    }
+                })
+            );
+        }
+    });
+}
+
 $(function(){
 
     /* Inicial */
@@ -17,7 +44,7 @@ $(function(){
     //$(".day_date:not(.exclude)").datetimepicker("update",new Date());
 
 
-
+    load_materiales(1);
 
 
     $("#_cod").val(gen_Cod());

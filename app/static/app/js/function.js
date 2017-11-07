@@ -1,3 +1,4 @@
+
 function fechaFormat_URL(fecha){
     return moment(fecha).format("YYYYMMDD");
 }
@@ -392,43 +393,3 @@ function setFotos(fotos) {
         initialPreviewConfig: initPreviewConfig
     }));
 }
-
-/*function load_rubros(fecha){
-    fecha1 = moment(fecha);
-    fecha1.set("date",1);
-    console.log(fecha1.format("YYYYMMDD"));
-    $.ajax({
-        url: '/app/s_PrecioRubro/'+fecha1.format("YYYYMMDD")+'/date',
-        type:'GET',
-        async: false,
-        success: function(response){
-            data = JSON.parse(response.precio_rubro.valores);
-            //Transporte
-            transporte = data.transporte;
-            t_transporte = (transporte.t_km * transporte.v_km);
-            $("#tb_rTransporte").bootstrapTable("insertRow",{ index: 1 , row : {n : 1,
-                descripcion: "Transporte",
-                total: t_transporte}});
-            //Seguridad
-            seguridad = data.seguridad;
-            t_seguridad = (seguridad.t_si * seguridad.c_hombre) / response.cantidad_ot
-            $("#tb_rSeguridad").bootstrapTable("insertRow",{ index: 1 , row : {n : 1,
-                descripcion: "Seguridad",
-                total: t_seguridad }});
-
-            //Operaciones
-            operaciones = data.operacion;
-            t_operaciones = operaciones.porcentaje_op ;
-            $("#tb_rOperaciones").bootstrapTable("insertRow",{ index: 1 , row : {n : 1,
-                descripcion: "Operaciones",
-                total: t_operaciones}});
-
-            //RRHH
-            rrhh = data.rrhh;
-            $("#tb_rRRHH").bootstrapTable("insertRow",{ index: 1 , row : {n : 1,
-                descripcion: "Personal",
-                total: rrhh.promedio}});
-
-        }
-    });
-}*/

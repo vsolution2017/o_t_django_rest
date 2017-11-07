@@ -60,7 +60,6 @@ function getData(id){
                 id:id
             });
     }
-    //console.log(data);
     return data;
 }
 
@@ -69,7 +68,7 @@ function _delete(id){
         url : "/app/s_PrecioRubro/"+ id+"/id",
         type: "DELETE",
         success: function(response){
-            load_precio_rubro();
+            load_precio_rubro(1);
         }
     });
 
@@ -83,9 +82,8 @@ function _save(id,method){
         dataType: "json",
         data: getData(id),
         success: function(response){
-            console.log(response);
             $(".modal").modal("toggle");
-            load_precio_rubro();
+            load_precio_rubro(1);
         }
     });
 }

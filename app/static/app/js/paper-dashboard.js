@@ -3,6 +3,15 @@ var transparent = true;
 var navbar_initialized = false;
 var container_initialized = false;
 
+_defaultOption ={
+    visiblePages: 3,
+    initiateStartPageClick: false,
+    first: "&laquo;",
+    prev: "&lsaquo;",
+    next: "&rsaquo;",
+    last: "&raquo;"
+};
+
 $(document).ready(function(){
     window_width = $(window).width();
 

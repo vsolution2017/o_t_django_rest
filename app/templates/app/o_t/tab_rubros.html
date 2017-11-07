@@ -6,99 +6,20 @@
         </div>
         <div class="clearfix"></div>
         <br>
-        <table data-toggle="table" >
+        <table data-toggle="table" id="tb_material">
             <thead>
                 <tr>
-                    <th data-align="center">Cod.</th>
-                    <th class="col-md-4">Descripción</th>
-                    <th data-align="center">Unidad</th>
-                    <th class="col-md-1" data-align="center" data-formatter="input_format">Utilizado</th>
-                    <th data-align="center">V. Unit.</th>
+                    <th data-field="cod" data-align="center">Cod.</th>
+                    <th data-field="descripcion" class="col-md-4">Descripción</th>
+                    <!--<th data-align="center">Unidad</th>-->
+                    <th data-field="cantidad" class="col-md-1" data-align="center" data-formatter="input_format">Utilizado</th>
+                    <th data-field="v_unit" data-align="center">V. Unit.</th>
                     <th data-align="center">V. Total</th>
                 </tr>
             </thead>
         </table>
     </div>
 </div>
-<!--<hr>
-<div class="row">
-    <div class="col-md-12">
-        <table data-toggle="table" id="tb_rTransporte">
-            <thead>
-                <tr>
-                    <th colspan="3" data-align="center">
-                        TRANSPORTE
-                    </th>
-                </tr>
-                <tr>
-                    <th data-field="n" data-align="center" >N°</th>
-                    <th data-field="descripcion"  >Descripcion</th>
-                    <th data-field="total" data-align="center" >V. Total</th>
-                </tr>
-            </thead>
-
-        </table>
-    </div>
-</div>
-<hr>
-<div class="row">
-    <div class="col-md-12">
-        <table data-toggle="table" id="tb_rSeguridad">
-            <thead>
-                <tr>
-                    <th colspan="3" data-align="center">
-                        SEGURIDAD
-                    </th>
-                </tr>
-                <tr>
-                    <th data-field="n" data-align="center">N°</th>
-                    <th data-field="descripcion" >Descripcion</th>
-                    <th data-field="total" data-align="center">V. Total</th>
-                </tr>
-            </thead>
-
-        </table>
-    </div>
-</div>
-<hr>
-<div class="row">
-    <div class="col-md-12">
-        <table data-toggle="table" id="tb_rRRHH">
-            <thead>
-                <tr>
-                    <th colspan="3" data-align="center">
-                        RRHH
-                    </th>
-                </tr>
-                <tr>
-                    <th data-field="n" data-align="center">N°</th>
-                    <th data-field="descripcion">Descripcion</th>
-                    <th data-field="total" data-align="center">V. Total</th>
-                </tr>
-            </thead>
-        </table>
-    </div>
-</div>
-<hr>
-<div class="row">
-    <div class="col-md-12">
-        <table data-toggle="table" id="tb_rOperaciones">
-            <thead>
-                <tr>
-                    <th colspan="3" data-align="center">
-                        OPERACIONES
-                    </th>
-                </tr>
-                <tr>
-                    <th data-field="n" data-align="center">N°</th>
-                    <th data-field="descripcion">Descripcion</th>
-                    <th data-field="total" data-align="center">V. Total</th>
-                </tr>
-            </thead>
-
-        </table>
-    </div>
-</div>-->
 
 <div id="modal_material" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -126,13 +47,14 @@
                         <table data-toggle="table">
                             <thead>
                                 <tr>
-                                    <th>Cod.</th>
-                                    <th>Detalles</th>
-                                    <th>Medida</th>
-                                    <th>Stock</th>
+                                    <th data-field="id">Cod.</th>
+                                    <th data-field="nombre">Detalles</th>
+                                    <th data-field="medida">Medida</th>
+                                    <th data-field="stock">Stock</th>
+                                    <th data-field="accion" data-align="center" data-formatter="btn" data-events="btn_accion">Accion</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <!--<tbody>
                                 <tr>
                                     <td>1</td>
                                     <td>Bomba centrifuga</td>
@@ -151,15 +73,11 @@
                                     <td>273mm</td>
                                     <td>10</td>
                                 </tr>
-                            </tbody>
+                            </tbody>-->
                         </table>
                         <div class="clearfix"></div>
                         <div class="pull-right">
-                            <ul class="pagination">
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                            </ul>
+                            <ul id="pagination-material" class="pagination-sm"></ul>
                         </div>
                     </div>
                 </div>
