@@ -9,7 +9,10 @@ _defaultOption ={
 $(function(){
 
     $("#gen_consolidado").click(function (e) {
-        generarExcel_fecha();
+        if(!generarExcel_fecha()){
+            e.preventDefault();
+            alert("No hay Costo asignados para el mes..!");
+        }
     });
 
     $("#fecha_mes").change(function () {

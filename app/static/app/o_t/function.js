@@ -37,7 +37,21 @@ function load_OrdenTrabajo(pag){
 function generarExcel_fecha(){
     fecha = moment($("#fecha_mes").val());
     fecha.set("date",1);
+    bandera = true;
+    $.ajax({
+        url: '/app/s_PrecioRubro/' + fecha.format("YYYYMMDD")+'/fecha',
+        type: "GET",
+        async: false,
+        success: function (response) {
+            return
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            bandera =  false;
+        }
+    });
     $("#gen_consolidado").attr("href",'/app/g_cconsolidado/' + fecha.format("YYYYMMDD"));
+    return bandera;
+
 }
 
 function btn_accion(){

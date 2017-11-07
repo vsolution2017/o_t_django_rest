@@ -52,7 +52,7 @@ def excel_cuadro_consolidado(fecha):
     output = io.BytesIO()
     workbook = xlsxwriter.Workbook(output, {'in_memory': True})
     worksheet = workbook.add_worksheet()
-    ordenes = OrdenTrabajo.objects.filter(fecha_inicio__year=fecha.year ,fecha_inicio__month=fecha.month,estado=1)
+    ordenes = OrdenTrabajo.objects.filter(fecha_inicio__year=fecha.year, fecha_inicio__month=fecha.month, estado=1)
 
     date_format = workbook.add_format({'num_format': 'yyyy-mm-dd'})
     cabezera_cuadro_consolidado(worksheet)

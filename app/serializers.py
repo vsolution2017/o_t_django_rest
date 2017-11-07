@@ -150,7 +150,7 @@ class OrdenTrabajoSerializer_tabview(serializers.ModelSerializer):
     horas = serializers.SerializerMethodField()
     class Meta:
         model = OrdenTrabajo
-        fields = ('t_mantenimiento','horas','fecha_inicio','fecha_cierre','cod_crav')
+        fields = ('id','t_mantenimiento','horas','fecha_inicio','fecha_cierre','cod_crav')
         #fields = "__all__"
         #extra_fields = ['t_mantenimiento','horas','f_inicio','f_cierre','codigo']
 

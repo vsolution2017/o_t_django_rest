@@ -100,8 +100,7 @@ class Detail_PrecioRubroView(APIView):
             raise Http404
     def get(self,request,pk,op):
         try:
-            #fecha_mes = '2017-08-01'
-            precio_rubro_fecha = self.get_object(pk,op) # PrecioRubroFecha.objects.get(fecha_mes=fecha_mes)
+            precio_rubro_fecha = self.get_object(pk, op)
             precio_rubro_fecha_json = PrecioRubroFechaSerializer(precio_rubro_fecha)
 
             if op == "date":
@@ -306,8 +305,9 @@ class DetailImgview(APIView):
 class ExampleView(APIView):
     def get(self,request,fecha):
         fecha = parse_str_fecha(fecha)
-
-        return excel_cuadro_consolidado(fecha)
+        if PrecioRubroFecha.objects.filter(fecha_mes=fecha).exists():
+            return excel_cuadro_consolidado(fecha)
+        raise Http404
         """
         ordenes = OrdenTrabajo.objects.all()
         ordenes_json = OrdenTrabajo_CCSerializer(ordenes, many=True)

@@ -36,7 +36,7 @@ $(function(){
 
     });
 
-    $('.dropdown-menu[role="combobox"]').removeClass("open");
+    //$('.dropdown-menu[role="combobox"]').removeClass("open");
 
     /* Inicial */
 
@@ -164,7 +164,7 @@ $(function(){
     $("#tab_actividades").on("change", "input[name='costo_actividad']", function () {
         sum = 0;
         $(this).closest(".row").find("input[name='costo_actividad']").each(function(i,input){
-            if(sum == 0){
+            if(i == 0){
                 sum = parseFloat($(input).val());
             }
             else {
@@ -278,9 +278,31 @@ $(function(){
         $(this).removeClass("save");
     });
 
-    $("#tab_actividades").on("click","label.buying-selling",function(){
+    $("#tab_actividades").on("click","label.buying-selling:not(label.buying-selling input[type='checkbox'])",function(){
         datos = $(this).data("json");
-        div = $(this).closest(".row").find("input.costo").val(parseFloat(datos.precio)).change();
+        if(parseFloat(datos.precio) > 0){
+            div = $(this).closest(".row").find("input.costo").val(parseFloat(datos.precio).toFixed(2)).change();
+        }
+    });
+
+    $("#tab_actividades").on("change","label.buying-selling input[type='checkbox']",function(){
+        total = $(this).closest(".buying-selling-group").find("input[type='checkbox']:checked").length;
+        if(total > 0){
+            datos = $(this).closest("label").data("json");
+            precio = parseFloat(datos.precio);
+            if($(this).is(":checked")){
+                if(precio > 0){
+                    $(this).closest(".row").find("input.costo").val(precio.toFixed(2)).change();
+                }else if(parseFloat($(this).closest(".row").find("input.costo").val()) === 0){
+                    $(this).closest(".row").find("input.costo").val(parseFloat(0.00)).change();
+                }
+            }else{
+                valor = parseFloat($(this).closest(".row").find("input.costo").val());
+                $(this).closest(".row").find("input.costo").val((valor - precio).toFixed(2)).change()
+            }
+        }else{
+            $(this).closest(".row").find("input.costo").val(parseFloat(0.00)).change();
+        }
     });
     /* Actividades */
 

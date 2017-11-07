@@ -163,7 +163,7 @@ function get_TabInicio(){
         parroquia : $("#cboParroquia").selectpicker("val"),
         direccion : $("#i_direccion").val(),
         descripcion_problema : $("#i_problema").val(),
-        observacion : "",
+        observacion : $("#i_observacion").val(),
         cod_crav : $("#_cod").val(),
     };
     t_fecha_horas = [];
@@ -311,6 +311,7 @@ function setOrden(orden){
 
     $("#i_direccion").val(orden.direccion);
     $("#i_problema").val(orden.descripcion_problema);
+    $("#i_observacion").val(orden.observacion);
 
     $("#_cod").val(orden.cod_crav);
 

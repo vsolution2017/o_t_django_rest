@@ -7,6 +7,7 @@ $(document).ready(function(){
     window_width = $(window).width();
 
     $('.modal').appendTo('body');
+    $('.dropdown-menu[role="combobox"]').removeClass("open");
 
     // Init navigation toggle for small screens
     if(window_width <= 991){
