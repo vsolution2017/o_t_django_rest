@@ -72,10 +72,11 @@ def save_ordenTrabajo(datos, orden):
     else:
         Response(fotos_json.errors, status=400)
 
+    # Guardar Material
+    material = get_array(orden.data["id"], "orden_trabajo", datos["material"])
+    material_json = MaterialOtSerializer(data=material, many=True)
 
-
-
-
-
-
-
+    if material_json.is_valid():
+        material_json.save()
+    else:
+        Response(material_json.errors, status=400)

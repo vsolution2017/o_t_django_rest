@@ -187,6 +187,16 @@ function get_TabInicio(){
     return tab_inicio;
 }
 
+function get_Material(){
+    material = $.map($("#tb_material").bootstrapTable("getData"),function (row) {
+       return {
+           cantidadmaterial : row.cantidad,
+           material: row.cod
+       };
+    });
+    return JSON.stringify(material);
+}
+
 function get_TabActividades(){
     actividades = [];
     $("#cont-actividades div[name='_actividades']").each(function(i,div_actividad){
@@ -252,7 +262,8 @@ function get_save(){
         detalle : JSON.stringify([{
             horas_totales : $("#tab_maquinaria input[name='_tiempo']").val()
         }]),
-        fotos: JSON.stringify(imgs)
+        fotos: JSON.stringify(imgs),
+        material: get_Material()
     });
 }
 
@@ -288,6 +299,7 @@ function load_pag(){
                 setMaquinaria(response.maquinaria);
                 setActividad(response.actividades);
                 setFotos(response.fotos);
+                setMaterial(response.material);
                 editar = true;
             }
         });
@@ -299,6 +311,17 @@ function _getDate(field,fecha) {
     if (!$.isEmptyObject(fecha)){
         $(".day_date[data-link-field='"+ field +"']").datetimepicker("update",moment(fecha).toDate());
     }
+}
+
+function setMaterial(material) {
+    _data = $.map(material,function (row) {
+       return {
+           cod : row.material.id,
+           descripcion: row.material.nombre,
+           cantidad: row.cantidadmaterial
+       };
+    });
+    $("#tb_material").bootstrapTable("load",_data);
 }
 
 function setOrden(orden){

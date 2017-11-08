@@ -1,6 +1,4 @@
 function input_format(value,row) {
-    console.log(row);
-    //value = $.isEmptyObject(value) ? "" : value;
     return '<input type="number" min="1" max="'+ row.stock +'" class="form-control text-center" style="width:100px;" value="' + value + '" >';
 }
 
@@ -9,12 +7,13 @@ function btn() {
 }
 window.btn_accion= {
     "click button[name='add']" : function (e, value, row, index) {
-        $(this).closest()
-
-
-        $("#tb_material").bootstrapTable("insertRow",
+        ids = $.map($("#tb_material").bootstrapTable("getData"),function (data) {
+            return data.cod;
+        });
+        if($.inArray(row.id,ids) === -1){
+            $("#tb_material").bootstrapTable("insertRow",
             {
-                index:0,
+                index: ids.length,
                 row :{
                     cod : row.id,
                     descripcion: row.nombre,
@@ -22,6 +21,16 @@ window.btn_accion= {
                     v_unit: 0,
                     stock: row.stock
                 }
-            })
+            });
+        }
+    },
+    "change [type='number']": function (e, value, row, index) {
+        cantidad = parseInt($(e.target).val());
+        row.cantidad = cantidad;
+        table = $(this).closest("table");
+        $(table).bootstrapTable('updateRow', {
+            index : index,
+            row : row
+        });
     }
 };

@@ -157,7 +157,7 @@ class OrdenTrabajoSerializer_tabview(serializers.ModelSerializer):
     def get_t_mantenimiento(self, obj):
         return obj.tipo_mantenimiento.descripcion
 
-    def get_horas(self,obj):
+    def get_horas(self, obj):
         try:
             horas = DetalleFinicioFcierre.objects.filter(orden_trabajo=obj.id)
             return DetalleFinicioFcierreSerializer(horas, many=True).data
@@ -200,4 +200,15 @@ class FotosSerializer(serializers.ModelSerializer):
 class MaterialSerializer(serializers.ModelSerializer):
     class Meta:
         model = Material
+        fields = "__all__"
+
+class MaterialOtSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MaterialOt
+        fields = "__all__"
+
+class MaterialOtSerializer_table(serializers.ModelSerializer):
+    material = MaterialSerializer()
+    class Meta:
+        model = MaterialOt
         fields = "__all__"

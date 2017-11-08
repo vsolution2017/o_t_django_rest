@@ -4,17 +4,21 @@
         <div class="pull-right">
             <button class="btn btn-success" data-toggle="modal" data-target="#modal_material"><i class="fa fa-plus"></i> Agregar Material </button>
         </div>
+        <div class="pull-left">
+            <button id="removerMaterial" class="btn btn-danger"><i class="fa fa-trash"></i> Remover</button>
+        </div>
         <div class="clearfix"></div>
         <br>
         <table data-toggle="table" id="tb_material">
             <thead>
                 <tr>
-                    <th data-field="cod" data-align="center">Cod.</th>
-                    <th data-field="descripcion" class="col-md-4">Descripción</th>
+                    <th data-field="state" data-checkbox="true" class="col-md-1"></th>
+                    <th data-field="cod" data-align="center" class="col-md-1">Cod.</th>
+                    <th data-field="descripcion" class="col-md-9">Descripción</th>
                     <!--<th data-align="center">Unidad</th>-->
-                    <th data-field="cantidad" class="col-md-1" data-align="center" data-formatter="input_format">Utilizado</th>
-                    <th data-field="v_unit" data-align="center">V. Unit.</th>
-                    <th data-align="center">V. Total</th>
+                    <th data-field="cantidad" class="col-md-1" data-align="center" data-formatter="input_format" data-events="btn_accion">Utilizado</th>
+                    <!--<th data-field="v_unit" data-align="center">V. Unit.</th>
+                    <th data-field="total" data-align="center">V. Total</th>-->
                 </tr>
             </thead>
         </table>
@@ -33,10 +37,10 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="pull-left">
-                            <select class="form-control">
-                                <option value="">5</option>
-                                <option value="">10</option>
-                                <option value="">20</option>
+                            <select class="selectpicker" id="cboCant">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
                             </select>
                         </div>
                         <div class="pull-right">

@@ -9,7 +9,7 @@ _config_fileinput = {
         };
 
 function load_materiales(pag) {
-    cant = 3;
+    cant = parseInt($("#tab_rubros #cboCant").selectpicker("val"));
     $.ajax({
         url : "/app/list/material/",
         type: "POST",
@@ -82,8 +82,7 @@ $(function(){
             type: _type,
             data: get_save(),
             success: function (response) {
-                console.log(response);
-                //window.location.href = "/app/list_ot/";
+                window.location.href = "/app/list_ot/";
             }
         });
     });
@@ -333,7 +332,17 @@ $(function(){
     });
     /* Actividades */
 
-
+    /* Materiales */
+    $("#removerMaterial").click(function () {
+        ids = $.map($("#tb_material").bootstrapTable("getSelections"),function (row) {
+            return row.cod;
+        }) ;
+        $("#tb_material").bootstrapTable("remove",{
+            field: 'cod',
+            values: ids
+        });
+    });
+    /* Materiales */
 
     /* Fotos */
     $('#fotos').on('fileclear', function(event) {

@@ -179,86 +179,32 @@ class Orden_TrabajoView(APIView):
         orden = OrdenTrabajoSerializer(data=request.data)
         if orden.is_valid():
             orden.save()
-            # Guardar Horas
-            horas = get_array(orden.data["id"],"orden_trabajo", request.data["horas"])
-            horas_json = DetalleFinicioFcierreSerializer(data=horas, many=True)
+            save_ordenTrabajo(request.data, orden)
 
-            if horas_json.is_valid():
-                horas_json.save()
-            else:
-                return Response(horas_json.errors, status=400)
-
-            # Guardar Detalles
-            detalle = get_array(orden.data["id"], "orden_trabajo", request.data["detalle"])
-            detalle_json = DetalleOrdenTrabajoSerializer(data=detalle, many=True)
-            if detalle_json.is_valid():
-                detalle_json.save()
-            else:
-                return Response(detalle_json.errors, status=400)
-
-
-            # Guardar Maquinarias
-            maquinarias = get_array(orden.data["id"],"orden_trabajo", request.data["maquinarias"])
-            maquinarias_json = OtContMaqSerializer(data=maquinarias,many=True)
-
-            if maquinarias_json.is_valid():
-                maquinarias_json.save()
-            else:
-                return Response(maquinarias_json.errors, status=400)
-
-            # Guardar Actividades
-            actividades = get_array(orden.data["id"],"orden_trabajo",request.data["actividades"])
-            actividades_json = DetalleOtActividadSerializer(data=actividades,many=True)
-
-            if actividades_json.is_valid():
-                actividades_json.save()
-                #Se recorren las actividades para asignar el [id] correspondiente
-                i = 0
-                for actividad in actividades_json.data:
-                    areas = get_array(actividad["id"], "detalle_ot_actividad",
-                                      actividades[i]["areas"])
-                    i+=1
-                    areas_json = DetalleOtActividadAreaSerializer(data=areas, many=True)
-                    if areas_json.is_valid():
-                        areas_json.save()
-                    else:
-                        return Response(areas_json.errors, status=400)
-            else:
-                return Response(actividades_json.errors, status=400)
-
-            #Guardar Fotos
-            fotos = get_array(orden.data["id"],"orden_trabajo",request.data["fotos"])
-            fotos_json = FotosSerializer(data=fotos,many=True)
-
-            if fotos_json.is_valid():
-                fotos_json.save()
-            else:
-                Response(fotos_json.errors, status=400)
-
-            return Response({ "estado" : "ok"}, status=201)
         return Response(orden.errors, status=400)
 
 class Detail_Orden_TrabajoView(APIView):
-    def get_object(self,pk):
+    def get_object(self, pk):
         try:
             return OrdenTrabajo.objects.get(pk=pk)
         except OrdenTrabajo.DoesNotExist:
             raise Http404
 
-    def get(self,request,pk):
+    def get(self, request, pk):
         orden = self.get_object(pk)
         otContMaq = OtContMaq.objects.filter(orden_trabajo=orden)
         detalleOtActividad = DetalleOtActividad.objects.filter(orden_trabajo=orden)
         horas = DetalleFinicioFcierre.objects.filter(orden_trabajo=orden)
         fotos = Fotos.objects.filter(orden_trabajo=orden)
+        material = MaterialOt.objects.filter(orden_trabajo=orden)
         #fotos_json = FotosSerializer(fotos, many=True)
         return Response({
             "orden": OrdenTrabajoSerializer(orden).data,
             "maquinaria": OtContMaqSerializer_get(otContMaq,many=True).data,
-            #"actividades": DetalleOtActividadSerializer(detalleOtActividad, many=True).data,
             "actividades": DetalleOtActividadSerializer_get(detalleOtActividad, many=True).data,
             "horas" : DetalleFinicioFcierreSerializer(horas,many=True).data,
-            "fotos": FotosSerializer(fotos, many=True).data
+            "fotos": FotosSerializer(fotos, many=True).data,
+            "material": MaterialOtSerializer_table(material, many=True).data
         }, status=201)
 
     def put(self, request, pk, format=None):
@@ -272,6 +218,8 @@ class Detail_Orden_TrabajoView(APIView):
             OtContMaq.objects.filter(orden_trabajo=orden).delete()
             # Eliminacion Horas
             DetalleFinicioFcierre.objects.filter(orden_trabajo=orden).delete()
+            # Eliminar Material
+            MaterialOt.objects.filter(orden_trabajo=orden).delete()
 
             # Actualizar
             save_ordenTrabajo(request.data, orden_json)
