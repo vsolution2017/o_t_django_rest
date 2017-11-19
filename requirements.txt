@@ -1,0 +1,6 @@
+Django==1.11.6
+djangorestframework==3.7.0
+psycopg2==2.6.2
+pytz==2017.2
+virtualenv==15.1.0
+XlsxWriter==1.0.2
