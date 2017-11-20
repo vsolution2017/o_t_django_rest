@@ -212,3 +212,22 @@ class MaterialOtSerializer_table(serializers.ModelSerializer):
     class Meta:
         model = MaterialOt
         fields = "__all__"
+
+
+class RolSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Rol
+        fields = "__all__"
+
+
+class UsuarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Usuario
+        fields = "__all__"
+
+class RolUsuarioSerializer(serializers.ModelSerializer):
+    rol = RolSerializer()
+    usuario = UsuarioSerializer()
+    class Meta:
+        model = RolUsuario
+        fields = "__all__"

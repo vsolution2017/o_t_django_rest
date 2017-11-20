@@ -5,8 +5,14 @@ from .views import *
 app_name= "app"
 urlpatterns = [
     url(r'^admin/', admin, name="admin"),
-    url(r'^login/', login,name="login"),
+    url(r'^login/', login, name="login"),
     url(r'^list_ot/', list_ot, name="list_ot"),
+    url(r'^list_usuarios/', list_usuarios, name="list_user"),
+    url(r'^usuarios/$', UsuarioView.as_view(), name="user"),
+    url(r'^usuarios/(?P<pk>[0-9]+)$', UsuarioDetailView.as_view(), name="detail_user"),
+    url(r'^autenticar/$', LoginView.as_view(), name="autenticar"),
+    url(r'^logout/$', logout, name="logout"),
+
 
     url(r'^o_t/$', o_t_register,name="o_t"),
     url(r'^o_t/(?P<pk>[0-9]+)$', o_t_update,name="ot_update"),
@@ -29,6 +35,8 @@ urlpatterns = [
 
 
     url(r'^test/$', MaterialView.as_view()),
+
+    #url(r'^test2/$', TestView.as_view()),
 
 ]
 

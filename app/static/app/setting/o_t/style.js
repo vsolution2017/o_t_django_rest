@@ -19,7 +19,7 @@ $(function(){
     });
 
     $(".modal").on("hidden.bs.modal",function(e){
-        $(".modal input").each(function(i,input){
+        $(".modal input:not('.exclude')").each(function(i,input){
             $(input).val("");
         });
         $("#_save").data("id",0);

@@ -1,0 +1,97 @@
+{% extends 'app/base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <link href="{% static 'app/table/bootstrap-table.min.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{%block contenedor %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-right">
+            <button class="btn btn-info" data-toggle="modal" data-target="#add-user"> <i class="fa fa-plus"></i> Agregar Usuario {{ count_usuarios_rols }}</button>
+        </div>
+        <div class="clearfix"></div>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th data-field="id" class="col-md-1">Cód.</th>
+                    <th data-field="user" data-align="center">Usuario</th>
+                    <th data-field="id_rol" data-align="center">IdRol</th>
+                    <th data-field="rol" data-align="center">Rol</th>
+                    <th data-field="accion" data-align="center" data-formatter="btn_accion" data-events="event_accion">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuarios_rol in usuarios_rols %}
+                    <tr>
+                        <td>{{ usuarios_rol.id }}</td>
+                        <td>{{ usuarios_rol.usuario.usuario }}</td>
+                        <td>{{ usuarios_rol.rol.id }}</td>
+                        <td>{{ usuarios_rol.rol.descripcion }}</td>
+                        <td></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<div id="add-user" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+            <h4 class="modal-title">Nuevo Usuario</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                    <label for="" class="control-label">Rol</label>
+                    <select id="cboRol" class="selectpicker form-control">
+                        {% for rol in roles %}
+                            <option value="{{ rol.id }}">{{ rol.descripcion }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                    <div class="form-group">
+                    <label for="" class="control-label">Usuario:</label>
+                    <input type="text" class="form-control" id="txtUser">
+                </div>
+                    <div class="form-group">
+                    <label for="" class="control-label">Contraseña:</label>
+                    <input type="password" class="form-control" id="txtPass">
+                </div>
+                </div>
+
+            </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-success" id="_save">Guardar</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+{% endblock %}
+
+
+{% block js %}
+
+    <script src="{% static 'app/pagination/jquery.twbsPagination.js' %}" type="text/javascript"></script>
+
+    <!-- Table -->
+    <script src="{% static 'app/table/bootstrap-table.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'app/table/locale/bootstrap-table-es-ES.min.js' %}" type="text/javascript"></script>
+
+    <script src="{% static 'app/Usuarios/function.js' %}" type="text/javascript"></script>
+    <script src="{% static 'app/Usuarios/style.js' %}" type="text/javascript"></script>
+
+    <!-- Table -->
+{% endblock %}

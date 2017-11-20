@@ -252,7 +252,7 @@ class Maquinaria(models.Model):
 class Material(models.Model):
     nombre = models.TextField()
     stock = models.SmallIntegerField(blank=True, null=True)
-    medida = models.TextField()
+    medida = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -286,7 +286,7 @@ class OrdenTrabajo(models.Model):
     observacion = models.TextField(blank=True, null=True)
     tipo_mantenimiento = models.ForeignKey('TipoMantenimiento', models.DO_NOTHING, db_column='tipo_mantenimiento')
     parroquia = models.ForeignKey('Parroquia', models.DO_NOTHING, db_column='parroquia')
-    estado = models.CharField(max_length=1,default=1)
+    estado = models.CharField(max_length=1, default=1)
     cod_crav = models.TextField(blank=True, null=True)
     fecha_inicio = models.DateField(blank=True, null=True)
     fecha_cierre = models.DateField(blank=True, null=True)
@@ -296,7 +296,6 @@ class OrdenTrabajo(models.Model):
     class Meta:
         managed = False
         db_table = 'orden_trabajo'
-        ordering = ["fecha_inicio"]
 
 
 class OtContMaq(models.Model):
@@ -334,6 +333,25 @@ class PrecioRubroFecha(models.Model):
     class Meta:
         managed = False
         db_table = 'precio_rubro_fecha'
+
+
+class Rol(models.Model):
+    descripcion = models.TextField()
+    estado = models.NullBooleanField()
+
+    class Meta:
+        managed = False
+        db_table = 'rol'
+
+
+class RolUsuario(models.Model):
+    rol = models.ForeignKey(Rol, models.DO_NOTHING, db_column='rol')
+    usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='usuario')
+    estado = models.NullBooleanField(default=True)
+
+    class Meta:
+        managed = False
+        db_table = 'rol_usuario'
 
 
 class Rrhh(models.Model):
@@ -413,3 +431,13 @@ class TipoRubroPrecio(models.Model):
     class Meta:
         managed = False
         db_table = 'tipo_rubro_precio'
+
+
+class Usuario(models.Model):
+    usuario = models.TextField()
+    password = models.TextField(null=True)
+    estado = models.NullBooleanField(default=True)
+
+    class Meta:
+        managed = False
+        db_table = 'usuario'

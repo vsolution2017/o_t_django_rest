@@ -50,28 +50,9 @@
 		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
 		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
 	-->
+            {% include 'app/Usuarios/navbar.html' %}
 
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="{% url 'app:admin' %}" class="simple-text">
-                    Verde Solution
-                </a>
-                </div>
-                <ul class="nav">
-                    <li class="active">
-                        <a href="{% url 'app:list_ot' %}">
-                            <i class="ti-pie-chart"></i>
-                            <p>Orden trabajo</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'app:settings' %}">
-                            <i class="ti-pie-chart"></i>
-                            <p>Rubros</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+
         </div>
 
         <div class="main-panel">
@@ -99,12 +80,13 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="ti-settings"></i>
                                     <!--<p class="notification">5</p>-->
-									<p>Perfil</p>
+									<p>{{ request.session.name_user }}</p>
 									<b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
+                                    <li><a href="#">{{ request.session.rol.descripcion }}</a></li>
                                     <li><a href="#">Configuración</a></li>
-                                    <li><a href="{% url "app:login" %}">Cerrar Sesión</a></li>
+                                    <li><a href="{% url "app:logout" %}">Cerrar Sesión</a></li>
                                 </ul>
                             </li>
                             <!--<li>
@@ -124,24 +106,8 @@
                 <div class="container-fluid">
                     {% block contenedor %}
                     {% endblock %}
-                    <!--<div class="row">
-                        Cualquier cosa
-                    </div>-->
                 </div>
             </div>
-
-
-            <!--<footer class="footer">
-                <div class="container-fluid">
-                    <div class="copyright pull-right">
-                        &copy;
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script>
-                    </div>
-                </div>
-            </footer>-->
-
         </div>
     </div>
 

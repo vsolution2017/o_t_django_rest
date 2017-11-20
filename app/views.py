@@ -14,8 +14,49 @@ from .tests import *
 from .excel_generador import excel_cuadro_consolidado,precio_calculado
 from .serializers import *
 
+
+def estado(error):
+    if error == 1:
+        return {
+            "status": True,
+            "message": "Registro Correcto"
+        }
+    elif error == 2:
+        return {
+            "status": False,
+            "message": "Transacción tuvo errores"
+        }
+    elif error == 3:
+        return {
+            "status": False,
+            "message": "Registro Existente"
+        }
+    elif error == 4:
+        return {
+            "status": True,
+            "message": "Registro Eliminado"
+        }
+    elif error == 5:
+        return {
+            "status": True,
+            "message": "Registro Existente"
+        }
+    elif error == 6:
+        return {
+            "status": False,
+            "message": "Registro No Localizado"
+        }
+
 def list_ot(request):
     return render(request, 'app/list_ot.html', {"title": "Listado de Ordenes de Trabajo"})
+
+def list_usuarios(request):
+    context = {
+        "title": "Listado de Usuarios",
+        "roles": RolSerializer(Rol.objects.filter(estado=True), many=True).data,
+        "usuarios_rols": RolUsuarioSerializer(RolUsuario.objects.filter(estado=True), many=True).data
+    }
+    return render(request, 'app/Usuarios/list_Rol.html', context)
 
 def c_consolidado(request):
     pass
@@ -25,13 +66,31 @@ def test(request):
     return render(request, 'app/test.html', {"title": "Configuración"})
 def settings(request):
     return render(request, 'app/settings_ot.html', { "title" : "Precio Rubro Mensual"})
+
+def logout(request):
+    try:
+        del request.session['logeado']
+    except KeyError:
+        pass
+    return render(request,'app/login.html',{})
+
 def login(request):
     return render(request,'app/login.html',{})
+
 def admin(request):
-    return render(request,'app/base.html',{})
+    if request.session.has_key('logeado'):
+        bandera = request.session.get("logeado")
+        if bandera:
+            return render(request, 'app/base.html', {})
+    return render(request, 'app/login.html', {})
+
 def o_t_register(request):
-    return render(request, 'app/register_ot.html', { "title" : "Orden de Trabajo", "id" : 0})
-def o_t_update(request,pk):
+    context = {
+        "id": 0,
+        "title": "Orden de Trabajo"
+    };
+    return render(request, 'app/register_ot.html', context)
+def o_t_update(request, pk):
     return render(request, 'app/register_ot.html', { "title" : "Orden de Trabajo", "id" : pk})
 
 class ListView(APIView):
@@ -86,14 +145,15 @@ class PrecioRubroView(APIView):
         precio_rubro_json = PrecioRubroFechaSerializer(precio_rubro, many=True)
         return Response(precio_rubro_json.data)
 
-    def post(self,request):
+    def post(self, request):
         if PrecioRubroFecha.objects.filter(fecha_mes=request.data["fecha_mes"]).exists():
-            return  Response({"estado": "Configuración Existente"},status=201)
+            return Response(estado(3), status=201)
         else:
             precio_rubro = PrecioRubroFechaSerializer(data=request.data)
             if precio_rubro.is_valid():
                 precio_rubro.save()
-                return Response(precio_rubro.data, status=201)
+                #return Response(precio_rubro.data, status=201)
+                return Response(estado(1), status=201)
             return Response(precio_rubro.errors, status=400)
 
 class Detail_PrecioRubroView(APIView):
@@ -172,7 +232,7 @@ class Cargo_view(APIView):
 class Orden_TrabajoView(APIView):
     def get(self,request):
         ordenes = OrdenTrabajo.objects.filter(estado=1)
-        ordenes_json = OrdenTrabajoSerializer_tabview(ordenes,many=True)
+        ordenes_json = OrdenTrabajoSerializer_tabview(ordenes, many=True)
         return Response(ordenes_json.data)
 
     def post(self, request):
@@ -180,6 +240,7 @@ class Orden_TrabajoView(APIView):
         if orden.is_valid():
             orden.save()
             save_ordenTrabajo(request.data, orden)
+            return Response(orden.data, status=201)
 
         return Response(orden.errors, status=400)
 
@@ -232,7 +293,7 @@ class Detail_Orden_TrabajoView(APIView):
         orden = self.get_object(pk)
         orden.estado = 0
         orden.save()
-        return Response(OrdenTrabajoSerializer(orden).data,status=201)
+        return Response(OrdenTrabajoSerializer(orden).data, status=201)
 
 
 class Imgview(APIView):
@@ -261,7 +322,7 @@ class DetailImgview(APIView):
 class MaterialView(APIView):
     def get(self,request):
         material = Material.objects.all()
-        material_json = MaterialSerializer(material,many=True)
+        material_json = MaterialSerializer(material, many=True)
         return Response(material_json.data, status=201)
 
 
@@ -281,6 +342,58 @@ class ExampleView(APIView):
             _array = get_array("0", "detalle_ot_actividad", act["areas"])
             return Response(_array, status=201)
 
+class UsuarioView(APIView):
+    def post(self, request):
+        if Usuario.objects.filter(usuario__exact=request.data["usuario"]).exists():
+            return Response(estado(3), status=201)
+        usuario_json = UsuarioSerializer(data=request.data)
+        if usuario_json.is_valid():
+            usuario_json.save()
+            rolUsuario = RolUsuario(rol_id=request.data["rol"], usuario_id=usuario_json.data["id"])
+            rolUsuario.save()
+            return Response(estado(1), status=201)
+        return Response(usuario_json.errors, status=400)
+
+class UsuarioDetailView(APIView):
+    def get_Usuario(self, pk):
+        try:
+            return Usuario.objects.get(pk=pk)
+        except Usuario.DoesNotExist:
+            raise Http404
+    def get_object(self, pk):
+        try:
+            return RolUsuario.objects.get(pk=pk)
+        except RolUsuario.DoesNotExist:
+            raise Http404
+
+    def put(self, request, pk):
+        rolUsuario = self.get_object(pk)
+        usuario = self.get_Usuario(rolUsuario.usuario_id)
+        usuario_json = UsuarioSerializer(usuario, data=request.data)
+        if usuario_json.is_valid():
+            usuario_json.save()
+            rolUsuario.rol_id = request.data["rol"]
+            rolUsuario.save()
+            return Response(estado(1), status=201)
+        return Response(usuario_json.errors, status=400)
+
+    def delete(self, request, pk):
+        rolUsuario = self.get_object(pk)
+        rolUsuario.estado = False
+        rolUsuario.save()
+        return Response(estado(4), status=201)
 
 
 
+class LoginView(APIView):
+    def post(self, request):
+        if Usuario.objects.filter(password__exact=request.data["pass"], usuario__exact=request.data["user"]).exists():
+            usuario = Usuario.objects.get(password__exact=request.data["pass"], usuario__exact=request.data["user"])
+            rolUsuario = RolUsuario.objects.get(usuario=usuario)
+            request.session["logeado"] = True
+            request.session["name_user"] = usuario.usuario
+            request.session["rol_user"] = rolUsuario.rol.descripcion
+            request.session["rol"] = RolSerializer(rolUsuario.rol).data
+            return Response(estado(5), status=201)
+
+        return Response(estado(6), status=201)

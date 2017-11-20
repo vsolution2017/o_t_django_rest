@@ -122,7 +122,7 @@ def excel_cuadro_consolidado(fecha):
                 rrhh_promedio = float(rrhh["promedio"])
                 rrhh_previo = contratista + mat_ut + transporte_val + seguridad_val
                 worksheet.write(row, 12, round(rrhh_previo, 2))
-                worksheet.write_formula(row, 13, "=" + xl_rowcol_to_cell(row, 12) + "/$F$" + str(ordenes.count() + 2))
+                worksheet.write_formula(row, 13, "=" + xl_rowcol_to_cell(row, 12) + "/$H$" + str(ordenes.count() + 2))
                 worksheet.write_formula(row, 14, "=" + xl_rowcol_to_cell(row, 13) + "*" + str(rrhh_promedio))
 
                 # Operacion

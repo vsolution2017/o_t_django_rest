@@ -8,8 +8,8 @@ $(function () {
     $(".day_date:not(.exclude)").datetimepicker("update",new Date());
 
     load_Mantenimiento("#cboTipo_mantenimiento");
-    load_Parroquia("#cboParroquia");
-    load_Cargos(1,"#cbo_jefe");
+    //load_Parroquia("#cboParroquia");
+    //load_Cargos(1,"#cbo_jefe");
     load_Cargos(2,"#cbo_coord");
     load_TipoActividad("#cboTipoActividad");
     load_contratista();

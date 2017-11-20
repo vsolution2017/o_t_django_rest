@@ -50,14 +50,15 @@ function getData(id){
             promedio : $("#rrhh_avg").val()
         }
     };
-
+    fecha = parseFecha_moment($("#f_precio").val());
+    fecha.set("date",1);
     data = {
-        fecha_mes: $("#f_precio").val(),
+        fecha_mes: fecha.format("YYYY-MM-DD"),
         valores: JSON.stringify(valores)
     };
     if(id != 0){
         $.extend(data,{
-                id:id
+                id: id
             });
     }
     return data;
@@ -82,8 +83,14 @@ function _save(id,method){
         dataType: "json",
         data: getData(id),
         success: function(response){
-            $(".modal").modal("toggle");
-            load_precio_rubro(1);
+            if(response.status){
+                $(".modal").modal("toggle");
+                load_precio_rubro(1);
+            }else{
+                alert(response.message);
+            }
+
+
         }
     });
 }
